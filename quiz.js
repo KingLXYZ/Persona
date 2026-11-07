@@ -1,49 +1,164 @@
 
 /* =========================================
-   PERSONA — QUESTIONÁRIO INTERATIVO
+   PERSONA — QUESTIONÁRIO DE PERSONALIDADE
+   Versão experimental: 20 perguntas
 ========================================= */
 
-// Perguntas demonstrativas.
-// Futuramente, teremos perguntas para
-// as cinco dimensões da personalidade.
+// As cinco dimensões que serão analisadas.
 
-const questions = [
-    {
-        question:
-            "Quando você precisa tomar uma decisão importante, o que costuma fazer primeiro?",
+const dimensions = {
+    social: "Social",
+    cognitiva: "Cognitiva",
+    decisoria: "Decisória",
+    organizacional: "Organizacional",
+    comportamental: "Comportamental"
+};
 
-        options: [
-            "Analiso as possibilidades e consequências.",
-            "Considero como a decisão afetará as pessoas.",
-            "Procuro equilibrar os dois aspectos."
-        ]
-    },
+// Escala utilizada em todas as perguntas.
 
-    {
-        question:
-            "Quando surge uma ideia nova, como você costuma explorá-la?",
-
-        options: [
-            "Imagino suas possibilidades futuras.",
-            "Procuro exemplos práticos e concretos.",
-            "Combino possibilidades e aplicações reais."
-        ]
-    },
-
-    {
-        question:
-            "Ao conhecer pessoas novas, qual situação parece mais natural para você?",
-
-        options: [
-            "Observar e conversar aos poucos.",
-            "Iniciar conversas espontaneamente.",
-            "Depende do ambiente e do momento."
-        ]
-    }
+const answerOptions = [
+    "Discordo totalmente",
+    "Discordo parcialmente",
+    "Nem concordo nem discordo",
+    "Concordo parcialmente",
+    "Concordo totalmente"
 ];
 
 /* =========================================
-   ELEMENTOS DA PÁGINA
+   BANCO DE PERGUNTAS
+========================================= */
+
+// Cada pergunta possui:
+// texto: afirmação apresentada ao usuário
+// dimensao: dimensão avaliada
+// invertida: indica se a pontuação será invertida
+
+const questions = [
+
+    {
+        texto: "Em um grupo novo, costumo iniciar conversas espontaneamente.",
+        dimensao: "social",
+        invertida: false
+    },
+
+    {
+        texto: "Ao conhecer uma ideia, gosto de imaginar possibilidades que ainda não foram exploradas.",
+        dimensao: "cognitiva",
+        invertida: false
+    },
+
+    {
+        texto: "Em decisões difíceis, costumo organizar argumentos e avaliar sua coerência antes de escolher.",
+        dimensao: "decisoria",
+        invertida: false
+    },
+
+    {
+        texto: "Antes de começar algo importante, gosto de definir as etapas que vou seguir.",
+        dimensao: "organizacional",
+        invertida: false
+    },
+
+    {
+        texto: "Quando algo inesperado acontece, costumo observar a situação antes de reagir.",
+        dimensao: "comportamental",
+        invertida: false
+    },
+
+    {
+        texto: "Depois de passar bastante tempo com muitas pessoas, geralmente prefiro ficar sozinho por um período.",
+        dimensao: "social",
+        invertida: true
+    },
+
+    {
+        texto: "Aprendo melhor quando começo por exemplos concretos, antes de explorar teorias.",
+        dimensao: "cognitiva",
+        invertida: true
+    },
+
+    {
+        texto: "Quando uma escolha afeta outras pessoas, considero primeiro como elas vão se sentir.",
+        dimensao: "decisoria",
+        invertida: true
+    },
+
+    {
+        texto: "Prefiro decidir como realizar uma atividade conforme ela acontece.",
+        dimensao: "organizacional",
+        invertida: true
+    },
+
+    {
+        texto: "Diante de um contratempo, minha reação inicial costuma ser imediata e intensa.",
+        dimensao: "comportamental",
+        invertida: true
+    },
+
+    {
+        texto: "Quando algo me entusiasma, sinto vontade de compartilhar a experiência com várias pessoas.",
+        dimensao: "social",
+        invertida: false
+    },
+
+    {
+        texto: "Frequentemente relaciono assuntos diferentes para encontrar padrões ou novas ideias.",
+        dimensao: "cognitiva",
+        invertida: false
+    },
+
+    {
+        texto: "Ao considerar diferentes escolhas, costumo verificar quais evidências apoiam cada possibilidade.",
+        dimensao: "decisoria",
+        invertida: false
+    },
+
+    {
+        texto: "Mesmo sem cobranças externas, costumo estabelecer prazos ou rotinas para meus objetivos.",
+        dimensao: "organizacional",
+        invertida: false
+    },
+
+    {
+        texto: "Mesmo sob pressão, geralmente consigo avaliar alternativas antes de agir.",
+        dimensao: "comportamental",
+        invertida: false
+    },
+
+    {
+        texto: "Em momentos de lazer, prefiro encontros com poucas pessoas a eventos movimentados.",
+        dimensao: "social",
+        invertida: true
+    },
+
+    {
+        texto: "Ao analisar um problema, minha atenção vai primeiro para os detalhes observáveis, não para cenários hipotéticos.",
+        dimensao: "cognitiva",
+        invertida: true
+    },
+
+    {
+        texto: "Ao escolher, prefiro considerar o que é importante para as pessoas envolvidas antes de comparar vantagens e desvantagens.",
+        dimensao: "decisoria",
+        invertida: true
+    },
+
+    {
+        texto: "Um roteiro aberto, sem etapas fixas, costuma funcionar melhor para mim do que um planejamento detalhado.",
+        dimensao: "organizacional",
+        invertida: true
+    },
+
+    {
+        texto: "Quando um plano falha, costumo reagir primeiro e pensar nos próximos passos depois.",
+        dimensao: "comportamental",
+        invertida: true
+    }
+
+];
+
+/* =========================================
+   ELEMENTOS DO HTML
 ========================================= */
 
 const questionElement =
@@ -76,9 +191,16 @@ const nextButton =
 
 let currentQuestion = 0;
 
+// null representa uma pergunta ainda não respondida.
+
 let answers = Array(questions.length).fill(null);
 
 let quizFinished = false;
+
+// Pontuações calculadas ao concluir.
+// Nesta versão ainda não serão exibidas.
+
+let calculatedScores = null;
 
 /* =========================================
    EXIBIR PERGUNTA
@@ -93,7 +215,7 @@ function showQuestion() {
 
     const current = questions[currentQuestion];
 
-    questionElement.textContent = current.question;
+    questionElement.textContent = current.texto;
 
     counterElement.textContent =
         `Pergunta ${currentQuestion + 1} de ${questions.length}`;
@@ -101,10 +223,10 @@ function showQuestion() {
     instructionElement.textContent =
         "Escolha a alternativa que mais se aproxima da sua maneira de pensar ou agir.";
 
-    optionsElement.hidden = false;
+    optionsElement.style.display = "";
     optionsElement.replaceChildren();
 
-    current.options.forEach((optionText, index) => {
+    answerOptions.forEach((optionText, index) => {
 
         const button = document.createElement("button");
 
@@ -112,7 +234,10 @@ function showQuestion() {
         button.className = "quiz-option";
         button.textContent = optionText;
 
-        const selected = answers[currentQuestion] === index;
+        const answerValue = index + 1;
+
+        const selected =
+            answers[currentQuestion] === answerValue;
 
         button.classList.toggle("selected", selected);
 
@@ -122,7 +247,7 @@ function showQuestion() {
         );
 
         button.addEventListener("click", () => {
-            selectAnswer(index);
+            selectAnswer(answerValue);
         });
 
         optionsElement.appendChild(button);
@@ -130,7 +255,6 @@ function showQuestion() {
     });
 
     backButton.disabled = currentQuestion === 0;
-
     backButton.textContent = "Voltar";
 
     nextButton.disabled =
@@ -145,20 +269,19 @@ function showQuestion() {
 }
 
 /* =========================================
-   SELECIONAR ALTERNATIVA
+   SELECIONAR RESPOSTA
 ========================================= */
 
-function selectAnswer(index) {
+function selectAnswer(value) {
 
-    answers[currentQuestion] = index;
+    answers[currentQuestion] = value;
 
-    const buttons = optionsElement.querySelectorAll(
-        ".quiz-option"
-    );
+    const buttons =
+        optionsElement.querySelectorAll(".quiz-option");
 
-    buttons.forEach((button, buttonIndex) => {
+    buttons.forEach((button, index) => {
 
-        const selected = buttonIndex === index;
+        const selected = index + 1 === value;
 
         button.classList.toggle("selected", selected);
 
@@ -170,18 +293,23 @@ function selectAnswer(index) {
     });
 
     nextButton.disabled = false;
+
+    updateProgress();
 }
 
 /* =========================================
-   ATUALIZAR PROGRESSO
+   BARRA DE PROGRESSO
 ========================================= */
 
 function updateProgress() {
 
+    const answeredCount =
+        answers.filter(answer => answer !== null).length;
+
     const percentage = quizFinished
         ? 100
         : Math.round(
-            (currentQuestion / questions.length) * 100
+            (answeredCount / questions.length) * 100
         );
 
     progressElement.style.width = `${percentage}%`;
@@ -214,9 +342,18 @@ nextButton.addEventListener("click", () => {
 
     } else {
 
-        quizFinished = true;
-        showCompletion();
+        const allAnswered =
+            answers.every(answer => answer !== null);
 
+        if (!allAnswered) {
+            return;
+        }
+
+        calculatedScores = calculateScores();
+
+        quizFinished = true;
+
+        showCompletion();
     }
 
 });
@@ -231,8 +368,8 @@ backButton.addEventListener("click", () => {
 
         quizFinished = false;
         currentQuestion = questions.length - 1;
-        showQuestion();
 
+        showQuestion();
         return;
     }
 
@@ -246,22 +383,95 @@ backButton.addEventListener("click", () => {
 });
 
 /* =========================================
-   CONCLUSÃO
+   CALCULAR PONTUAÇÕES
+========================================= */
+
+// Cada resposta vai de 1 até 5.
+//
+// Em afirmações invertidas:
+// 1 vira 5
+// 2 vira 4
+// 3 continua 3
+// 4 vira 2
+// 5 vira 1
+//
+// Cada dimensão terá quatro pontuações.
+// A soma será convertida para uma escala
+// experimental entre 0 e 100.
+
+function calculateScores() {
+
+    const totals = {};
+    const results = {};
+
+    Object.keys(dimensions).forEach(dimension => {
+
+        totals[dimension] = {
+            soma: 0,
+            quantidade: 0
+        };
+
+    });
+
+    questions.forEach((question, index) => {
+
+        const answer = answers[index];
+
+        if (answer === null) {
+            return;
+        }
+
+        const score = question.invertida
+            ? 6 - answer
+            : answer;
+
+        totals[question.dimensao].soma += score;
+
+        totals[question.dimensao].quantidade++;
+
+    });
+
+    Object.keys(dimensions).forEach(dimension => {
+
+        const total = totals[dimension];
+
+        if (total.quantidade === 0) {
+            results[dimension] = null;
+            return;
+        }
+
+        const average =
+            total.soma / total.quantidade;
+
+        // Normalização da média de 1–5 para 0–100.
+
+        const percentage =
+            Math.round(((average - 1) / 4) * 100);
+
+        results[dimension] = percentage;
+
+    });
+
+    return results;
+}
+
+/* =========================================
+   TELA DE CONCLUSÃO
 ========================================= */
 
 function showCompletion() {
 
     counterElement.textContent =
-        "Exploração concluída";
+        "20 de 20 perguntas respondidas";
 
     questionElement.textContent =
-        "Você concluiu sua primeira exploração.";
+        "Você concluiu sua exploração.";
 
     instructionElement.textContent =
-        "Esta versão demonstra o funcionamento do questionário. Na próxima etapa, construiremos as dimensões e a análise dos resultados.";
+        "Suas respostas foram processadas nesta sessão. Estamos preparando a experiência detalhada de resultados para a próxima etapa do PERSONA.";
 
     optionsElement.replaceChildren();
-    optionsElement.hidden = true;
+    optionsElement.style.display = "none";
 
     backButton.disabled = false;
     backButton.textContent = "Rever respostas";
@@ -273,7 +483,7 @@ function showCompletion() {
 }
 
 /* =========================================
-   RECOMEÇAR
+   RECOMEÇAR QUESTIONÁRIO
 ========================================= */
 
 function restartQuiz() {
@@ -283,6 +493,7 @@ function restartQuiz() {
     answers = Array(questions.length).fill(null);
 
     quizFinished = false;
+    calculatedScores = null;
 
     showQuestion();
 }
