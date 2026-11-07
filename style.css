@@ -3,11 +3,14 @@
     --background: #09090d;
     --surface: #111117;
     --surface-hover: #191820;
+
     --purple: #a78bfa;
     --purple-light: #c4b5fd;
+
     --text: #f5f3fa;
-    --muted: #9995a5;
-    --border: rgba(255, 255, 255, 0.09);
+    --muted: #b0aaba;
+
+    --border: rgba(255, 255, 255, 0.10);
 }
 
 * {
@@ -33,13 +36,30 @@ a {
     text-decoration: none;
 }
 
+a:focus-visible {
+    outline: 2px solid var(--purple-light);
+    outline-offset: 5px;
+}
+
+::selection {
+    background: var(--purple);
+    color: #100c19;
+}
+
+/* =========================
+   CABEÇALHO
+========================= */
+
 .header {
     width: 100%;
-    height: 88px;
+    min-height: 88px;
     padding: 0 8%;
+
     display: flex;
     align-items: center;
     justify-content: space-between;
+    gap: 24px;
+
     border-bottom: 1px solid var(--border);
 }
 
@@ -47,10 +67,12 @@ a {
     display: flex;
     align-items: center;
     gap: 10px;
+
     font-family: "Manrope", sans-serif;
     font-size: 15px;
     font-weight: 800;
     letter-spacing: 3px;
+    white-space: nowrap;
 }
 
 .logo-symbol {
@@ -60,6 +82,7 @@ a {
 
 .navigation {
     display: flex;
+    align-items: center;
     gap: 38px;
 }
 
@@ -67,7 +90,7 @@ a {
 .header-link {
     font-size: 13px;
     color: var(--muted);
-    transition: color 0.3s;
+    transition: color 0.25s ease;
 }
 
 .navigation a:hover,
@@ -80,25 +103,37 @@ a {
     margin-left: 5px;
 }
 
+/* =========================
+   SEÇÃO PRINCIPAL
+========================= */
+
 .hero {
     min-height: 690px;
-    padding: 100px 12%;
-    display: flex;
+    padding: 100px 10% 110px;
+
+    display: grid;
+    grid-template-columns:
+        minmax(0, 1.45fr)
+        minmax(0, 0.85fr);
+
     align-items: center;
-    justify-content: space-between;
+    gap: clamp(30px, 4vw, 65px);
+
     position: relative;
     overflow: hidden;
 }
 
 .hero-content {
-    max-width: 570px;
+    min-width: 0;
+    max-width: 720px;
+    position: relative;
     z-index: 2;
 }
 
 .eyebrow,
 .section-tag {
-    font-size: 10px;
-    letter-spacing: 3px;
+    font-size: 11px;
+    letter-spacing: 2.5px;
     color: var(--purple);
     font-weight: 700;
 }
@@ -107,12 +142,14 @@ a {
     display: flex;
     align-items: center;
     gap: 10px;
-    margin-bottom: 32px;
+    margin-bottom: 30px;
 }
 
 .status-dot {
     width: 7px;
     height: 7px;
+    flex-shrink: 0;
+
     background: var(--purple);
     border-radius: 50%;
     box-shadow: 0 0 12px var(--purple);
@@ -122,12 +159,13 @@ h1,
 h2 {
     font-family: "Manrope", sans-serif;
     font-weight: 800;
-    letter-spacing: -3px;
-    line-height: 1.08;
+    letter-spacing: -0.045em;
+    line-height: 1.12;
 }
 
 .hero h1 {
-    font-size: clamp(48px, 6vw, 78px);
+    font-size: clamp(44px, 4.3vw, 64px);
+    text-wrap: balance;
 }
 
 h1 span,
@@ -137,23 +175,41 @@ h2 span {
 
 .hero-description {
     color: var(--muted);
-    max-width: 440px;
-    margin: 28px 0 35px;
+    max-width: 465px;
+
+    margin: 30px 0 35px;
+
     font-size: 15px;
-    line-height: 1.9;
+    line-height: 1.85;
 }
+
+/* =========================
+   BOTÕES
+========================= */
 
 .primary-button,
 .secondary-button {
     display: inline-flex;
     align-items: center;
-    gap: 22px;
-    padding: 15px 23px;
-    background: var(--purple);
-    color: #100c19;
+    justify-content: center;
+    gap: 20px;
+
+    padding: 16px 24px;
+
     font-size: 13px;
     font-weight: 700;
-    transition: 0.3s;
+    line-height: 1.4;
+
+    transition:
+        background 0.25s ease,
+        color 0.25s ease,
+        transform 0.25s ease,
+        border-color 0.25s ease;
+}
+
+.primary-button {
+    background: var(--purple);
+    color: #100c19;
 }
 
 .primary-button:hover {
@@ -166,68 +222,91 @@ h2 span {
 }
 
 .hero-note {
-    margin-top: 55px;
+    margin-top: 48px;
+
     display: flex;
     align-items: center;
     gap: 12px;
+
     color: var(--muted);
-    font-size: 11px;
-    letter-spacing: 1px;
+    font-size: 12px;
+    letter-spacing: 0.5px;
 }
 
 .note-line {
     width: 35px;
     height: 1px;
+    flex-shrink: 0;
     background: var(--purple);
 }
 
+/* =========================
+   IDENTIDADE GEOMÉTRICA
+========================= */
+
 .hero-visual {
-    width: 380px;
-    height: 380px;
+    width: min(100%, 380px);
+    aspect-ratio: 1;
+
     position: relative;
     display: grid;
     place-items: center;
+
+    justify-self: center;
+    isolation: isolate;
 }
 
 .visual-glow {
     position: absolute;
-    width: 230px;
-    height: 230px;
+
+    width: 60%;
+    height: 60%;
+
     background: rgba(139, 92, 246, 0.15);
-    filter: blur(85px);
+    filter: blur(75px);
     border-radius: 50%;
+
+    pointer-events: none;
 }
 
 .orbit {
     position: absolute;
-    border: 1px solid rgba(167, 139, 250, 0.25);
+
+    border: 1px solid rgba(167, 139, 250, 0.27);
     border-radius: 50%;
+
+    pointer-events: none;
 }
 
 .orbit-one {
-    width: 160px;
-    height: 160px;
+    width: 42%;
+    height: 42%;
 }
 
 .orbit-two {
-    width: 260px;
-    height: 260px;
+    width: 68%;
+    height: 68%;
 }
 
 .orbit-three {
-    width: 360px;
-    height: 360px;
+    width: 94%;
+    height: 94%;
+
     border-style: dashed;
-    animation: rotate 35s linear infinite;
+    animation: rotate 48s linear infinite;
 }
 
 .visual-center {
     width: 105px;
     height: 105px;
+
     border: 1px solid var(--purple);
+
     display: grid;
     place-items: center;
+
     transform: rotate(45deg);
+
     background: rgba(167, 139, 250, 0.08);
     box-shadow: 0 0 55px rgba(167, 139, 250, 0.16);
 }
@@ -236,30 +315,36 @@ h2 span {
     font-family: "Manrope", sans-serif;
     font-size: 55px;
     font-weight: 800;
+
     color: var(--purple-light);
     transform: rotate(-45deg);
 }
 
 .visual-label {
     position: absolute;
-    font-size: 9px;
-    letter-spacing: 2px;
+
+    font-size: 10px;
+    letter-spacing: 1.5px;
+    font-weight: 600;
+
     color: var(--muted);
+    white-space: nowrap;
 }
 
 .label-one {
-    top: 35px;
+    top: 7%;
     left: 50%;
     transform: translateX(-50%);
 }
 
 .label-two {
-    right: -5px;
+    right: -3%;
     top: 50%;
+    transform: translateY(-50%);
 }
 
 .label-three {
-    bottom: 35px;
+    bottom: 7%;
     left: 50%;
     transform: translateX(-50%);
 }
@@ -268,9 +353,11 @@ h2 span {
     position: absolute;
     bottom: 35px;
     right: 8%;
+
     display: flex;
     align-items: center;
     gap: 12px;
+
     color: var(--muted);
     font-size: 10px;
 }
@@ -285,109 +372,150 @@ h2 span {
     background: var(--border);
 }
 
+/* =========================
+   SEÇÕES
+========================= */
+
 .section {
-    padding: 110px 12%;
+    padding: 110px 10%;
     border-top: 1px solid var(--border);
 }
 
 .section-heading h2 {
+    max-width: 900px;
     margin-top: 24px;
-    font-size: clamp(38px, 5vw, 58px);
+
+    font-size: clamp(36px, 4.5vw, 58px);
+    text-wrap: balance;
 }
 
+/* =========================
+   CONCEITO
+========================= */
+
 .concept-content {
-    max-width: 560px;
+    max-width: 570px;
     margin: 45px 0 0 auto;
 }
 
 .concept-content p {
     color: var(--muted);
     margin-bottom: 20px;
-    line-height: 2;
+
+    line-height: 1.95;
     font-size: 15px;
 }
 
 .concept-content strong {
     color: var(--text);
+    font-weight: 700;
 }
 
 .concept-signature {
     display: inline-block;
     margin-top: 15px;
+
     color: var(--purple);
-    font-size: 10px;
-    letter-spacing: 2px;
+    font-size: 11px;
+    letter-spacing: 1.5px;
 }
+
+/* =========================
+   DIMENSÕES
+========================= */
 
 .dimension-grid {
     margin-top: 55px;
+
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 15px;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 16px;
 }
 
 .dimension-card {
     position: relative;
-    min-height: 220px;
-    padding: 28px;
+    min-height: 235px;
+
+    padding: 30px;
+
     background: var(--surface);
     border: 1px solid var(--border);
-    transition: 0.3s;
+
+    transition:
+        background 0.3s ease,
+        border-color 0.3s ease,
+        transform 0.3s ease;
 }
 
 .dimension-card:hover {
     background: var(--surface-hover);
     border-color: rgba(167, 139, 250, 0.5);
-    transform: translateY(-5px);
+    transform: translateY(-4px);
 }
 
 .card-number {
     color: var(--purple);
     font-size: 11px;
     letter-spacing: 2px;
+    font-weight: 700;
 }
 
 .dimension-card h3 {
-    margin-top: 35px;
+    margin-top: 32px;
+
     font-family: "Manrope", sans-serif;
-    font-size: 21px;
+    font-size: 20px;
+    font-weight: 700;
 }
 
 .dimension-card p {
-    margin-top: 12px;
+    margin-top: 13px;
+
     color: var(--muted);
-    font-size: 12px;
-    line-height: 1.8;
+    font-size: 14px;
+    line-height: 1.75;
 }
 
 .card-arrow {
     position: absolute;
-    right: 25px;
-    top: 25px;
+    right: 27px;
+    top: 27px;
+
     color: var(--purple);
+    font-size: 15px;
 }
 
+/* =========================
+   ENCERRAMENTO
+========================= */
+
 .closing {
-    padding: 120px 12%;
+    padding: 120px 10%;
+
     text-align: center;
-    background:
-        radial-gradient(
-            ellipse at center,
-            rgba(139, 92, 246, 0.12),
-            transparent 65%
-        );
+
+    background: radial-gradient(
+        ellipse at center,
+        rgba(139, 92, 246, 0.12),
+        transparent 65%
+    );
+
     border-top: 1px solid var(--border);
 }
 
 .closing h2 {
     margin-top: 28px;
-    font-size: clamp(42px, 6vw, 68px);
+    font-size: clamp(40px, 5.5vw, 68px);
+    text-wrap: balance;
 }
 
 .closing p {
+    max-width: 580px;
     margin: 25px auto 35px;
+
     color: var(--muted);
-    font-size: 14px;
+    font-size: 15px;
+    line-height: 1.8;
 }
 
 .secondary-button {
@@ -399,117 +527,276 @@ h2 span {
 .secondary-button:hover {
     background: var(--purple);
     color: #100c19;
+    transform: translateY(-3px);
 }
 
+/* =========================
+   RODAPÉ
+========================= */
+
 .footer {
-    min-height: 100px;
+    min-height: 110px;
     padding: 30px 8%;
+
     border-top: 1px solid var(--border);
+
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    gap: 20px;
+    justify-content: space-between;
+    gap: 25px;
 }
 
 .footer p,
 .footer > span {
-    font-size: 11px;
+    font-size: 12px;
     color: var(--muted);
 }
+
+/* =========================
+   ANIMAÇÕES
+========================= */
 
 @keyframes rotate {
     from {
         transform: rotate(0deg);
     }
+
     to {
         transform: rotate(360deg);
     }
 }
 
-@media (max-width: 850px) {
+/* =========================
+   TABLETS
+========================= */
+
+@media (max-width: 900px) {
 
     .hero {
-        padding: 80px 8%;
+        min-height: auto;
+        padding: 85px 8% 105px;
+
+        grid-template-columns: 1fr;
+        gap: 45px;
+    }
+
+    .hero-content {
+        max-width: 760px;
+    }
+
+    .hero h1 {
+        font-size: clamp(45px, 6.4vw, 64px);
     }
 
     .hero-visual {
-        width: 300px;
-        height: 300px;
-        transform: scale(0.85);
+        width: min(100%, 330px);
+        margin: 0 auto;
     }
 
-    .dimension-grid {
-        grid-template-columns: repeat(2, 1fr);
+    .hero-index {
+        right: 8%;
+        bottom: 25px;
     }
 
     .section {
         padding: 90px 8%;
     }
+
+    .dimension-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .closing {
+        padding: 100px 8%;
+    }
 }
+
+/* =========================
+   CELULARES
+========================= */
 
 @media (max-width: 600px) {
 
     .header {
-        height: 72px;
+        min-height: 72px;
         padding: 0 6%;
+    }
+
+    .logo {
+        font-size: 13px;
+        letter-spacing: 2px;
+    }
+
+    .logo-symbol {
+        font-size: 23px;
     }
 
     .navigation {
         display: none;
     }
 
+    .header-link {
+        font-size: 12px;
+    }
+
     .hero {
-        min-height: auto;
-        padding: 85px 7% 100px;
-        flex-direction: column;
-        align-items: flex-start;
+        padding: 75px 7% 90px;
+        gap: 42px;
+    }
+
+    .eyebrow,
+    .section-tag {
+        font-size: 10px;
+        letter-spacing: 1.7px;
+    }
+
+    .eyebrow {
+        margin-bottom: 25px;
     }
 
     .hero h1 {
-        font-size: 51px;
+        font-size: clamp(36px, 10vw, 50px);
+        letter-spacing: -0.05em;
+        line-height: 1.14;
+    }
+
+    .hero h1 br {
+        display: none;
+    }
+
+    .hero-description {
+        margin: 25px 0 30px;
+        font-size: 14px;
+        line-height: 1.85;
+    }
+
+    .primary-button,
+    .secondary-button {
+        padding: 15px 21px;
+        font-size: 12px;
+    }
+
+    .hero-note {
+        margin-top: 38px;
+        font-size: 11px;
     }
 
     .hero-visual {
-        align-self: center;
-        margin-top: 55px;
-        width: 300px;
-        height: 300px;
-        transform: scale(0.85);
+        width: min(100%, 300px);
+    }
+
+    .visual-center {
+        width: 85px;
+        height: 85px;
+    }
+
+    .center-symbol {
+        font-size: 45px;
+    }
+
+    .visual-label {
+        font-size: 9px;
+        letter-spacing: 1px;
+    }
+
+    .label-two {
+        right: 0;
     }
 
     .hero-index {
         right: 7%;
-        bottom: 25px;
+        bottom: 22px;
     }
 
     .section {
         padding: 85px 7%;
     }
 
+    .section-heading h2 {
+        margin-top: 20px;
+        font-size: clamp(32px, 8vw, 42px);
+        letter-spacing: -0.04em;
+    }
+
     .concept-content {
         margin-top: 35px;
     }
 
+    .concept-content p {
+        font-size: 14px;
+        line-height: 1.85;
+    }
+
+    .concept-signature {
+        font-size: 10px;
+        letter-spacing: 1px;
+    }
+
     .dimension-grid {
         grid-template-columns: 1fr;
+        gap: 14px;
+        margin-top: 40px;
     }
 
     .dimension-card {
         min-height: 190px;
+        padding: 26px;
+    }
+
+    .dimension-card h3 {
+        margin-top: 25px;
+        font-size: 19px;
+    }
+
+    .dimension-card p {
+        font-size: 14px;
     }
 
     .closing {
         padding: 90px 7%;
     }
 
+    .closing h2 {
+        font-size: clamp(36px, 9vw, 48px);
+    }
+
+    .closing p {
+        font-size: 14px;
+    }
+
     .footer {
         flex-direction: column;
         text-align: center;
+        gap: 18px;
         padding: 35px 7%;
     }
 }
 
+/* =========================
+   TELAS MUITO PEQUENAS
+========================= */
+
+@media (max-width: 360px) {
+
+    .hero h1 {
+        font-size: 34px;
+    }
+
+    .hero-visual {
+        width: min(100%, 270px);
+    }
+
+    .dimension-card {
+        padding: 23px;
+    }
+}
+
+/* =========================
+   ACESSIBILIDADE
+========================= */
+
 @media (prefers-reduced-motion: reduce) {
+
     *,
     *::before,
     *::after {
