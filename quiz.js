@@ -349,11 +349,38 @@ nextButton.addEventListener("click", () => {
             return;
         }
 
-        calculatedScores = calculateScores();
+       
+calculatedScores = calculateScores();
 
-        quizFinished = true;
+try {
 
-        showCompletion();
+    // Salvar as pontuações nesta sessão do navegador.
+
+    sessionStorage.setItem(
+        "persona_resultado_v1",
+        JSON.stringify({
+            version: 1,
+            scores: calculatedScores
+        })
+    );
+
+    // Abrir automaticamente a página de resultados.
+
+    window.location.assign("resultado.html");
+
+} catch (error) {
+
+    // Manter o usuário no questionário
+    // caso o navegador bloqueie o armazenamento.
+
+    quizFinished = true;
+    showCompletion();
+
+    instructionElement.textContent =
+        "Não foi possível armazenar os resultados nesta sessão. Verifique as configurações do navegador e tente novamente.";
+
+}
+
     }
 
 });
