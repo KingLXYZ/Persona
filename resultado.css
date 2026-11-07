@@ -1,0 +1,435 @@
+
+/* ==========================================
+   PERSONA — PÁGINA DE RESULTADOS
+========================================== */
+
+.result-layout {
+    width: 100%;
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 0 9%;
+}
+
+/* ==========================================
+   APRESENTAÇÃO
+========================================== */
+
+.result-intro {
+    max-width: 900px;
+    padding: 110px 0 95px;
+}
+
+.result-tag {
+    color: var(--purple);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2.2px;
+}
+
+.result-intro h1 {
+    max-width: 850px;
+    margin-top: 26px;
+
+    font-family: "Manrope", sans-serif;
+    font-size: clamp(40px, 5vw, 68px);
+    font-weight: 800;
+    line-height: 1.15;
+    letter-spacing: -0.045em;
+}
+
+.result-intro h1 span {
+    color: var(--purple);
+}
+
+.result-intro-text {
+    max-width: 580px;
+    margin-top: 30px;
+
+    color: var(--muted);
+    font-size: 16px;
+    line-height: 1.9;
+}
+
+.result-status {
+    max-width: 670px;
+    margin-top: 45px;
+    padding: 19px 22px;
+
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-left: 2px solid var(--purple);
+
+    color: var(--muted);
+    font-size: 13px;
+    line-height: 1.8;
+}
+
+/* ==========================================
+   SEÇÃO DAS DIMENSÕES
+========================================== */
+
+.result-section {
+    padding: 85px 0 105px;
+    border-top: 1px solid var(--border);
+}
+
+.result-heading {
+    max-width: 760px;
+}
+
+.result-heading h2 {
+    margin-top: 24px;
+
+    font-family: "Manrope", sans-serif;
+    font-size: clamp(34px, 4vw, 52px);
+    font-weight: 800;
+    line-height: 1.2;
+    letter-spacing: -0.04em;
+}
+
+.result-heading h2 span {
+    color: var(--purple);
+}
+
+.result-heading p {
+    max-width: 600px;
+    margin-top: 24px;
+
+    color: var(--muted);
+    font-size: 15px;
+    line-height: 1.9;
+}
+
+/* ==========================================
+   CARTÕES DAS DIMENSÕES
+========================================== */
+
+.result-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px;
+
+    margin-top: 52px;
+}
+
+.result-card {
+    display: flex;
+    flex-direction: column;
+
+    min-width: 0;
+    min-height: 315px;
+    padding: 32px;
+
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+
+    transition:
+        border-color 0.25s ease,
+        background 0.25s ease;
+}
+
+.result-card:hover {
+    border-color: rgba(167, 139, 250, 0.35);
+    background: var(--surface-hover);
+}
+
+.result-number {
+    color: var(--purple);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+}
+
+.result-card h3 {
+    margin-top: 22px;
+
+    color: var(--text);
+    font-family: "Manrope", sans-serif;
+    font-size: 23px;
+    font-weight: 700;
+}
+
+.result-description {
+    max-width: 400px;
+    margin-top: 12px;
+
+    color: var(--muted);
+    font-size: 14px;
+    line-height: 1.8;
+}
+
+/* Pontuação */
+
+.result-score {
+    display: flex;
+    align-items: baseline;
+    gap: 7px;
+
+    margin-top: auto;
+    padding-top: 24px;
+}
+
+.result-score > span {
+    color: var(--text);
+    font-family: "Manrope", sans-serif;
+    font-size: 36px;
+    font-weight: 800;
+    letter-spacing: -1.5px;
+    line-height: 1.2;
+}
+
+.result-score small {
+    color: var(--muted);
+    font-size: 12px;
+}
+
+/* Barras */
+
+.result-meter {
+    width: 100%;
+    height: 7px;
+    margin-top: 18px;
+
+    background: #302838;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.result-fill {
+    width: 0%;
+    height: 100%;
+
+    background: var(--purple);
+    border-radius: inherit;
+
+    transition: width 0.65s ease;
+}
+
+/* Extremos das escalas */
+
+.result-scale {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 12px;
+
+    margin-top: 13px;
+}
+
+.result-scale span {
+    color: var(--muted);
+    font-size: 11px;
+    line-height: 1.5;
+}
+
+.result-scale span:last-child {
+    text-align: right;
+}
+
+/* ==========================================
+   REFLEXÃO FINAL
+========================================== */
+
+.result-reflection {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 65px;
+    align-items: start;
+
+    padding: 100px 0;
+    border-top: 1px solid var(--border);
+}
+
+.result-reflection .result-tag {
+    grid-column: 1 / -1;
+    margin-bottom: 28px;
+}
+
+.result-reflection h2 {
+    max-width: 520px;
+
+    font-family: "Manrope", sans-serif;
+    font-size: clamp(34px, 3.8vw, 51px);
+    font-weight: 800;
+    line-height: 1.2;
+    letter-spacing: -0.04em;
+}
+
+.result-reflection h2 span {
+    color: var(--purple);
+}
+
+.result-reflection p {
+    grid-column: 2;
+    grid-row: 2;
+
+    margin-bottom: 27px;
+
+    color: var(--muted);
+    font-size: 15px;
+    line-height: 1.95;
+}
+
+.result-reflection .primary-button {
+    grid-column: 2;
+    grid-row: 3;
+    justify-self: start;
+}
+
+/* ==========================================
+   AVISO INFORMATIVO
+========================================== */
+
+.result-disclaimer {
+    max-width: 800px;
+
+    padding: 28px 0 55px;
+
+    border-top: 1px solid var(--border);
+
+    color: var(--muted);
+    font-size: 12px;
+    line-height: 1.85;
+}
+
+/* ==========================================
+   TABLETS
+========================================== */
+
+@media (max-width: 900px) {
+
+    .result-layout {
+        padding: 0 7%;
+    }
+
+    .result-intro {
+        padding: 85px 0 80px;
+    }
+
+    .result-section {
+        padding: 75px 0 85px;
+    }
+
+    .result-card {
+        padding: 25px;
+    }
+
+    .result-reflection {
+        column-gap: 35px;
+        padding: 85px 0;
+    }
+}
+
+/* ==========================================
+   CELULARES
+========================================== */
+
+@media (max-width: 600px) {
+
+    .result-layout {
+        padding: 0 7%;
+    }
+
+    .result-intro {
+        padding: 75px 0 65px;
+    }
+
+    .result-tag {
+        font-size: 10px;
+        letter-spacing: 1.5px;
+    }
+
+    .result-intro h1 {
+        font-size: clamp(34px, 9vw, 45px);
+        margin-top: 22px;
+        line-height: 1.18;
+    }
+
+    .result-intro-text {
+        font-size: 14px;
+        margin-top: 25px;
+        line-height: 1.85;
+    }
+
+    .result-status {
+        margin-top: 35px;
+        padding: 17px;
+        font-size: 12px;
+    }
+
+    .result-section {
+        padding: 70px 0 80px;
+    }
+
+    .result-heading h2 {
+        font-size: clamp(30px, 8vw, 40px);
+    }
+
+    .result-heading p {
+        font-size: 14px;
+    }
+
+    .result-grid {
+        grid-template-columns: 1fr;
+        gap: 14px;
+        margin-top: 38px;
+    }
+
+    .result-card {
+        min-height: 280px;
+        padding: 25px;
+    }
+
+    .result-card h3 {
+        font-size: 21px;
+    }
+
+    .result-description {
+        font-size: 13px;
+    }
+
+    .result-score > span {
+        font-size: 33px;
+    }
+
+    .result-reflection {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 22px;
+
+        padding: 75px 0;
+    }
+
+    .result-reflection .result-tag {
+        margin-bottom: 0;
+    }
+
+    .result-reflection h2 {
+        font-size: clamp(32px, 8vw, 42px);
+    }
+
+    .result-reflection p {
+        margin-bottom: 0;
+        font-size: 14px;
+        line-height: 1.85;
+    }
+
+    .result-disclaimer {
+        padding: 25px 0 50px;
+        font-size: 11px;
+    }
+}
+
+/* ==========================================
+   ACESSIBILIDADE
+========================================== */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .result-card,
+    .result-fill {
+        transition: none;
+    }
+}
