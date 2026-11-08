@@ -1,6 +1,7 @@
 
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,36 +10,50 @@
 
     <title>PERSONA — Além da superfície</title>
 
+    <!-- Fontes -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
+    <!-- Estilo principal -->
     <link rel="stylesheet" href="style.css">
 
+    <!-- JavaScript principal -->
     <script src="script.js" defer></script>
 </head>
 
 <body>
 
+    <!-- ===================================
+         CABEÇALHO
+    =================================== -->
+
     <header class="header">
-        <a href="#" class="logo">
+
+        <a href="index.html" class="logo">
             <span class="logo-symbol">P.</span>
             PERSONA
         </a>
 
-        <nav class="navigation">
+        <nav class="navigation" aria-label="Navegação principal">
             <a href="#conceito">O projeto</a>
             <a href="#dimensoes">Dimensões</a>
         </nav>
 
+        <a href="quiz.html" class="header-link">
+            Explorar <span>↗</span>
+        </a>
 
-<a href="quiz.html" class="header-link">
-    Explorar <span>↗</span>
-</a>
+    </header>
 
+    <!-- ===================================
+         CONTEÚDO PRINCIPAL
+    =================================== -->
 
     <main>
+
+        <!-- SEÇÃO DE APRESENTAÇÃO -->
 
         <section class="hero">
 
@@ -60,12 +75,10 @@
                     e a maneira como você percebe o mundo.
                 </p>
 
-                
                 <a href="quiz.html" class="primary-button">
                     Iniciar exploração
                     <span>→</span>
                 </a>
-
 
                 <div class="hero-note">
                     <span class="note-line"></span>
@@ -74,7 +87,9 @@
 
             </div>
 
-            <div class="hero-visual">
+            <!-- ELEMENTO VISUAL GEOMÉTRICO -->
+
+            <div class="hero-visual" aria-hidden="true">
 
                 <div class="visual-glow"></div>
 
@@ -86,13 +101,21 @@
                     <span class="center-symbol">P</span>
                 </div>
 
-                <span class="visual-label label-one">MENTE</span>
-                <span class="visual-label label-two">IDENTIDADE</span>
-                <span class="visual-label label-three">COMPORTAMENTO</span>
+                <span class="visual-label label-one">
+                    MENTE
+                </span>
+
+                <span class="visual-label label-two">
+                    IDENTIDADE
+                </span>
+
+                <span class="visual-label label-three">
+                    COMPORTAMENTO
+                </span>
 
             </div>
 
-            <div class="hero-index">
+            <div class="hero-index" aria-hidden="true">
                 <span>01</span>
                 <span class="index-line"></span>
                 <span>03</span>
@@ -100,15 +123,23 @@
 
         </section>
 
+        <!-- ===================================
+             SEÇÃO 01 — CONCEITO
+        =================================== -->
+
         <section class="concept section" id="conceito">
 
             <div class="section-heading">
-                <span class="section-tag">01 / O CONCEITO</span>
+
+                <span class="section-tag">
+                    01 / O CONCEITO
+                </span>
 
                 <h2>
                     Além da superfície.<br>
                     <span>Em direção a si mesmo.</span>
                 </h2>
+
             </div>
 
             <div class="concept-content">
@@ -139,81 +170,130 @@
 
         </section>
 
+        <!-- ===================================
+             SEÇÃO 02 — DIMENSÕES
+        =================================== -->
+
         <section class="dimensions section" id="dimensoes">
 
             <div class="section-heading">
-                <span class="section-tag">02 / DIMENSÕES DA PERSONALIDADE</span>
+
+                <span class="section-tag">
+                    02 / DIMENSÕES DA PERSONALIDADE
+                </span>
 
                 <h2>
                     Diferentes dimensões.<br>
                     <span>Uma identidade única.</span>
                 </h2>
+
             </div>
 
             <div class="dimension-grid">
 
+                <!-- SOCIAL -->
+
                 <article class="dimension-card">
+
                     <span class="card-number">01</span>
+
                     <h3>Social</h3>
+
                     <p>
                         Explore como você estabelece conexões,
                         interage com outras pessoas e encontra
                         seu espaço nas relações sociais.
                     </p>
-                    <span class="card-arrow">↗</span>
+
+                    <span class="card-arrow" aria-hidden="true">↗</span>
+
                 </article>
 
+                <!-- COGNITIVA -->
+
                 <article class="dimension-card">
+
                     <span class="card-number">02</span>
+
                     <h3>Cognitiva</h3>
+
                     <p>
                         Descubra suas tendências ao interpretar
                         informações, reconhecer padrões
                         e explorar novas possibilidades.
                     </p>
-                    <span class="card-arrow">↗</span>
+
+                    <span class="card-arrow" aria-hidden="true">↗</span>
+
                 </article>
 
+                <!-- DECISÓRIA -->
+
                 <article class="dimension-card">
+
                     <span class="card-number">03</span>
+
                     <h3>Decisória</h3>
+
                     <p>
                         Compreenda como você considera
                         alternativas, avalia consequências
                         e constrói suas decisões.
                     </p>
-                    <span class="card-arrow">↗</span>
+
+                    <span class="card-arrow" aria-hidden="true">↗</span>
+
                 </article>
 
+                <!-- ORGANIZACIONAL -->
+
                 <article class="dimension-card">
+
                     <span class="card-number">04</span>
+
                     <h3>Organizacional</h3>
+
                     <p>
                         Explore sua relação com planejamento,
                         flexibilidade, mudanças
                         e realização de objetivos.
                     </p>
-                    <span class="card-arrow">↗</span>
+
+                    <span class="card-arrow" aria-hidden="true">↗</span>
+
                 </article>
 
+                <!-- COMPORTAMENTAL -->
+
                 <article class="dimension-card">
+
                     <span class="card-number">05</span>
+
                     <h3>Comportamental</h3>
+
                     <p>
                         Observe suas tendências diante
                         de desafios, pressões,
                         emoções e situações inesperadas.
                     </p>
-                    <span class="card-arrow">↗</span>
+
+                    <span class="card-arrow" aria-hidden="true">↗</span>
+
                 </article>
 
             </div>
 
         </section>
 
+        <!-- ===================================
+             SEÇÃO 03 — SUA JORNADA
+        =================================== -->
+
         <section class="closing">
 
-            <span class="section-tag">03 / SUA JORNADA</span>
+            <span class="section-tag">
+                03 / SUA JORNADA
+            </span>
 
             <h2>
                 Toda descoberta<br>
@@ -225,26 +305,32 @@
                 Cada reflexão pode revelar uma nova perspectiva.
             </p>
 
-            
-<a href="quiz.html" class="secondary-button">
-    Descobrir meu perfil →
-</a>
-
+            <a href="quiz.html" class="secondary-button">
+                Descobrir meu perfil →
+            </a>
 
         </section>
 
     </main>
 
+    <!-- ===================================
+         RODAPÉ
+    =================================== -->
+
     <footer class="footer">
 
-        <a href="#" class="logo">
+        <a href="index.html" class="logo">
             <span class="logo-symbol">P.</span>
             PERSONA
         </a>
 
-        <p>Além da superfície, existe muito mais para descobrir.</p>
+        <p>
+            Além da superfície, existe muito mais para descobrir.
+        </p>
 
-        <span>© <span id="current-year"></span> PERSONA.</span>
+        <span>
+            © <span id="current-year"></span> PERSONA.
+        </span>
 
     </footer>
 
