@@ -154,7 +154,7 @@
         totalPerguntas: perguntas.length,
         scores: calcularPontuacoes()
       }));
-      window.location.assign("resultado.html");
+      window.location.assign("resultado.html?versao=3");
     } catch (error) {
       console.error("PERSONA: falha ao salvar o resultado.", error);
       mostrarErro("O navegador não permitiu salvar o resultado nesta sessão. Verifique as permissões de armazenamento e tente novamente.");
