@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Explore suas tendências de personalidade e compreenda diferentes aspectos do seu perfil no PERSONA.">
+    <title>Meu perfil V3 (teste) — PERSONA</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="resultado.css">
+    <script src="resultado-v3.js?v=1" defer></script>
+</head>
+<body>
+    <!-- CABEÇALHO -->
+    <header class="header">
+        <a href="index.html" class="logo" aria-label="PERSONA — Página inicial">
+            <span class="logo-symbol">P.</span>
+            PERSONA
+        </a>
+        <a href="index.html" class="header-link">← Voltar ao início</a>
+    </header>
+
+    <main class="result-layout">
+        <!-- APRESENTAÇÃO -->
+        <section class="result-intro" aria-labelledby="result-intro-title">
+            <span class="result-tag">VERSÃO 3 · AMBIENTE DE TESTE</span>
+            <h1 id="result-intro-title">
+                Sua personalidade em
+                <span>diferentes perspectivas.</span>
+            </h1>
+            <p class="result-intro-text">
+                Suas respostas podem revelar tendências sobre como você pensa,
+                decide, interage e reage às situações do cotidiano.
+            </p>
+            <div class="result-status" id="result-status" role="status" aria-live="polite">
+                Nenhum resultado carregado. Conclua o questionário para visualizar a análise do seu perfil.
+            </div>
+        </section>
+
+        <!-- 01 / CINCO DIMENSÕES -->
+        <section class="result-section" aria-labelledby="result-title">
+            <div class="result-heading">
+                <span class="result-tag">01 / SUAS DIMENSÕES</span>
+                <h2 id="result-title">Um perfil. <span>Múltiplas dimensões.</span></h2>
+                <p>Cada indicador representa a posição das suas respostas em uma escala experimental de tendências.</p>
+            </div>
+
+            <div class="result-grid">
+                <article class="result-card" data-dimension="social">
+                    <span class="result-number">01</span>
+                    <h3>Social</h3>
+                    <p class="result-description" id="description-social">Sua maneira de interagir e estabelecer conexões.</p>
+                    <div class="result-score"><span id="score-social">—</span><small>/ 100</small></div>
+                    <div class="result-meter"><div class="result-fill" id="fill-social"></div></div>
+                    <div class="result-scale"><span>Observação inicial</span><span>Iniciativa social</span></div>
+                </article>
+
+                <article class="result-card" data-dimension="cognitiva">
+                    <span class="result-number">02</span>
+                    <h3>Cognitiva</h3>
+                    <p class="result-description" id="description-cognitiva">Sua maneira de interpretar informações e possibilidades.</p>
+                    <div class="result-score"><span id="score-cognitiva">—</span><small>/ 100</small></div>
+                    <div class="result-meter"><div class="result-fill" id="fill-cognitiva"></div></div>
+                    <div class="result-scale"><span>Concreta</span><span>Abstrata</span></div>
+                </article>
+
+                <article class="result-card" data-dimension="decisoria">
+                    <span class="result-number">03</span>
+                    <h3>Decisória</h3>
+                    <p class="result-description" id="description-decisoria">Como você considera diferentes fatores ao tomar decisões.</p>
+                    <div class="result-score"><span id="score-decisoria">—</span><small>/ 100</small></div>
+                    <div class="result-meter"><div class="result-fill" id="fill-decisoria"></div></div>
+                    <div class="result-scale"><span>Impressão inicial</span><span>Análise estruturada</span></div>
+                </article>
+
+                <article class="result-card" data-dimension="organizacional">
+                    <span class="result-number">04</span>
+                    <h3>Organizacional</h3>
+                    <p class="result-description" id="description-organizacional">Sua relação com planejamento, flexibilidade e objetivos.</p>
+                    <div class="result-score"><span id="score-organizacional">—</span><small>/ 100</small></div>
+                    <div class="result-meter"><div class="result-fill" id="fill-organizacional"></div></div>
+                    <div class="result-scale"><span>Flexibilidade</span><span>Planejamento</span></div>
+                </article>
+
+                <article class="result-card" data-dimension="comportamental">
+                    <span class="result-number">05</span>
+                    <h3>Comportamental</h3>
+                    <p class="result-description" id="description-comportamental">Suas tendências diante de desafios e situações inesperadas.</p>
+                    <div class="result-score"><span id="score-comportamental">—</span><small>/ 100</small></div>
+                    <div class="result-meter"><div class="result-fill" id="fill-comportamental"></div></div>
+                    <div class="result-scale"><span>Reação imediata</span><span>Pausa para avaliar</span></div>
+                </article>
+            </div>
+        </section>
+
+        <!-- 02 / VISÃO INTEGRADA (A LÓGICA SERÁ ADICIONADA NA PRÓXIMA ETAPA) -->
+        <section class="result-section" id="visao-geral" aria-labelledby="overview-title">
+            <div class="result-heading">
+                <span class="result-tag">02 / VISÃO GERAL</span>
+                <h2 id="overview-title">Além dos números. <span>Uma leitura conjunta.</span></h2>
+                <p>As dimensões não existem isoladamente. Aqui vamos relacionar algumas tendências identificadas nas respostas, sem atribuir rótulos fixos.</p>
+            </div>
+            <div class="result-grid">
+                <article class="result-card">
+                    <span class="result-number">LEITURA INTEGRADA</span>
+                    <h3>Como suas tendências se relacionam</h3>
+                    <p class="result-description" id="overview-combination" aria-live="polite">
+                        Estamos preparando uma leitura baseada nas pontuações do seu questionário. Os cinco indicadores acima continuam funcionando normalmente.
+                    </p>
+                </article>
+                <article class="result-card">
+                    <span class="result-number">INTERPRETAÇÃO RESPONSÁVEL</span>
+                    <h3>O que esses números não dizem</h3>
+                    <p class="result-description" id="overview-guidance">
+                        Uma pontuação próxima do centro não significa necessariamente equilíbrio. Ela pode resultar de respostas diferentes para situações diferentes. Nenhum indicador, isoladamente, define quem você é.
+                    </p>
+                </article>
+            </div>
+        </section>
+
+        <!-- 03 / REFLEXÃO FINAL -->
+        <section class="result-reflection" aria-labelledby="reflection-title">
+            <span class="result-tag">03 / SUA JORNADA</span>
+            <h2 id="reflection-title">Você é mais do que <span>um resultado.</span></h2>
+            <p>
+                A personalidade não precisa ser entendida como uma definição imutável.
+                Suas respostas representam percepções sobre você neste momento e
+                podem variar conforme suas experiências.
+            </p>
+            <a href="quiz-teste-v3.html" class="primary-button">
+                Refazer questionário <span aria-hidden="true">→</span>
+            </a>
+        </section>
+
+        <div class="result-disclaimer">
+            O PERSONA é uma ferramenta experimental de autoconhecimento.
+            Seus indicadores não constituem diagnóstico psicológico nem avaliação psicométrica validada.
+        </div>
+    </main>
+
+    <footer class="footer">
+        <a href="index.html" class="logo" aria-label="PERSONA — Página inicial">
+            <span class="logo-symbol">P.</span>
+            PERSONA
+        </a>
+        <p>Além da superfície, existe muito mais para descobrir.</p>
+        <span>© <span id="current-year"></span> PERSONA.</span>
+    </footer>
+</body>
+</html>
