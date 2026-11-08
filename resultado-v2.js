@@ -1,7 +1,7 @@
 
 /* =========================================
-   PERSONA — SISTEMA DE RESULTADOS
-   Versões 1 e 2 + Visão Geral
+   PERSONA — RESULTADOS E ARMAZENAMENTO
+   Compatível com as versões 1 e 2
 ========================================= */
 
 (() => {
@@ -12,8 +12,10 @@
         2: "persona_resultado_v2"
     };
 
+    const CHAVE_SALVA = "persona_perfil_salvo_v1";
+
     /* =====================================
-       DIMENSÕES
+       DEFINIÇÕES DAS DIMENSÕES
     ===================================== */
 
     const comuns = {
@@ -100,7 +102,7 @@
     };
 
     /* =====================================
-       ELEMENTOS
+       ELEMENTOS DA PÁGINA
     ===================================== */
 
     const statusEl =
@@ -110,25 +112,22 @@
         document.getElementById("current-year");
 
     if (anoEl) {
-        anoEl.textContent =
-            String(new Date().getFullYear());
+        anoEl.textContent = String(new Date().getFullYear());
     }
 
     if (!statusEl) {
-        console.error(
-            "PERSONA: elemento result-status não encontrado."
-        );
+        console.error("PERSONA: result-status não encontrado.");
         return;
     }
 
     /* =====================================
-       VALIDAR PONTUAÇÕES
+       VALIDAÇÃO DAS PONTUAÇÕES
     ===================================== */
 
     function pontuacoesValidas(pontuacoes) {
 
         if (
-            !pontuacoes ||
+            pontuacoes === null ||
             typeof pontuacoes !== "object" ||
             Array.isArray(pontuacoes)
         ) {
@@ -136,7 +135,6 @@
         }
 
         return Object.keys(DIMENSOES[2]).every(chave => {
-
             const valor = pontuacoes[chave];
 
             return Number.isInteger(valor) &&
@@ -146,14 +144,15 @@
     }
 
     /* =====================================
-       CARREGAR RESULTADOS
+       CARREGAR RESULTADO TEMPORÁRIO
     ===================================== */
 
     function carregarVersao(versao) {
 
         try {
-            const bruto =
-                sessionStorage.getItem(CHAVES[versao]);
+            const bruto = sessionStorage.getItem(
+                CHAVES[versao]
+            );
 
             if (!bruto) return null;
 
@@ -175,7 +174,7 @@
             }
 
             return {
-                versao,
+                versao: versao,
                 pontuacoes: dados.scores
             };
 
@@ -185,24 +184,81 @@
     }
 
     /* =====================================
-       INTERPRETAÇÕES INDIVIDUAIS
+       RECUPERAR PERFIL SALVO
     ===================================== */
 
-    function interpretar(config, pontuacao) {
+    function carregarPerfilSalvo() {
 
-        if (pontuacao < 35) {
-            return config.baixo;
+        try {
+            const bruto = localStorage.getItem(
+                CHAVE_SALVA
+            );
+
+            if (!bruto) return null;
+
+            const dados = JSON.parse(bruto);
+
+            if (
+                !dados ||
+                dados.formato !== 1 ||
+                ![1, 2].includes(dados.version) ||
+                !pontuacoesValidas(dados.scores)
+            ) {
+                return null;
+            }
+
+            if (
+                dados.version === 2 &&
+                dados.totalPerguntas !== 30
+            ) {
+                return null;
+            }
+
+            if (
+                typeof dados.salvoEm !== "string" ||
+                !Number.isFinite(Date.parse(dados.salvoEm))
+            ) {
+                return null;
+            }
+
+            return {
+                versao: dados.version,
+                pontuacoes: dados.scores,
+                salvoEm: dados.salvoEm
+            };
+
+        } catch (erro) {
+            return null;
         }
+    }
 
-        if (pontuacao > 65) {
-            return config.alto;
-        }
+    function dataLegivel(dataISO) {
 
-        return config.medio;
+        return new Intl.DateTimeFormat("pt-BR", {
+            dateStyle: "short",
+            timeStyle: "short"
+        }).format(new Date(dataISO));
     }
 
     /* =====================================
-       VISÃO GERAL DO PERFIL
+       INTERPRETAR DIMENSÕES
+    ===================================== */
+
+    function interpretar(configuracao, pontuacao) {
+
+        if (pontuacao < 35) {
+            return configuracao.baixo;
+        }
+
+        if (pontuacao > 65) {
+            return configuracao.alto;
+        }
+
+        return configuracao.medio;
+    }
+
+    /* =====================================
+       VISÃO GERAL INTEGRADA
     ===================================== */
 
     function mostrarVisaoGeral(
@@ -212,23 +268,15 @@
     ) {
 
         const leitura =
-            document.getElementById(
-                "overview-combination"
-            );
+            document.getElementById("overview-combination");
 
         const orientacao =
-            document.getElementById(
-                "overview-guidance"
-            );
+            document.getElementById("overview-guidance");
 
-        if (!leitura || !orientacao) {
-            return;
-        }
-
-        const configuracoes = DIMENSOES[versao];
+        if (!leitura || !orientacao) return;
 
         const dados = Object.entries(
-            configuracoes
+            DIMENSOES[versao]
         ).map(([chave, config]) => {
 
             const valor = pontuacoes[chave];
@@ -241,14 +289,11 @@
 
             return {
                 nome: config.nome,
-                valor,
-                polo,
+                valor: valor,
+                polo: polo,
                 distancia: Math.abs(valor - 50)
             };
         });
-
-        // Identificar até duas tendências
-        // mais afastadas do ponto central.
 
         const destaques = dados
             .filter(item => item.polo !== null)
@@ -276,19 +321,15 @@
             leitura.textContent =
                 abertura +
                 `a dimensão ${destaque.nome} apresentou ${destaque.valor}/100, mais próxima do polo “${destaque.polo}”. ` +
-                "As demais pontuações ficaram na faixa central, sem uma direção claramente destacada.";
+                "As demais pontuações ficaram na faixa central deste conjunto de afirmações.";
 
         } else {
 
             leitura.textContent =
                 abertura +
                 "as cinco pontuações ficaram na faixa central (35 a 65). " +
-                "Isso não prova equilíbrio entre os polos: as escolhas podem variar de uma situação para outra.";
+                "Isso não prova equilíbrio entre os polos: as respostas podem variar conforme a situação.";
         }
-
-        /* =================================
-           ORIENTAÇÃO SOBRE OS RESULTADOS
-        ================================= */
 
         const centrais = dados.filter(
             item => item.polo === null
@@ -312,12 +353,12 @@
 
             orientacao.textContent =
                 "Todas as pontuações ficaram fora da faixa central, mas isso não determina características fixas. " +
-                "Os indicadores resumem respostas a situações específicas e não foram validados cientificamente.";
+                "Os indicadores não foram validados cientificamente.";
         }
     }
 
     /* =====================================
-       EXIBIR OS CINCO RESULTADOS
+       MOSTRAR CINCO DIMENSÕES
     ===================================== */
 
     function mostrarResultados(
@@ -326,88 +367,82 @@
         demonstracao = false
     ) {
 
-        Object.entries(
-            DIMENSOES[versao]
-        ).forEach(([chave, config]) => {
+        Object.entries(DIMENSOES[versao]).forEach(
+            ([chave, config]) => {
 
-            const card = document.querySelector(
-                `[data-dimension="${chave}"]`
-            );
+                const card = document.querySelector(
+                    `[data-dimension="${chave}"]`
+                );
 
-            const numero = document.getElementById(
-                `score-${chave}`
-            );
+                const numero = document.getElementById(
+                    `score-${chave}`
+                );
 
-            const preenchimento = document.getElementById(
-                `fill-${chave}`
-            );
+                const preenchimento = document.getElementById(
+                    `fill-${chave}`
+                );
 
-            const descricao = document.getElementById(
-                `description-${chave}`
-            );
+                const descricao = document.getElementById(
+                    `description-${chave}`
+                );
 
-            if (
-                !card ||
-                !numero ||
-                !preenchimento ||
-                !descricao
-            ) {
-                return;
+                if (
+                    !card ||
+                    !numero ||
+                    !preenchimento ||
+                    !descricao
+                ) {
+                    return;
+                }
+
+                const pontuacao = pontuacoes[chave];
+
+                numero.textContent = String(pontuacao);
+
+                preenchimento.style.width =
+                    `${pontuacao}%`;
+
+                descricao.textContent =
+                    interpretar(config, pontuacao);
+
+                const rotulos = card.querySelectorAll(
+                    ".result-scale span"
+                );
+
+                if (rotulos.length === 2) {
+                    rotulos[0].textContent =
+                        config.esquerda;
+
+                    rotulos[1].textContent =
+                        config.direita;
+                }
+
+                const medidor =
+                    preenchimento.parentElement;
+
+                medidor.setAttribute("role", "meter");
+
+                medidor.setAttribute(
+                    "aria-label",
+                    `Indicador exploratório: ${config.nome}`
+                );
+
+                medidor.setAttribute(
+                    "aria-valuemin",
+                    "0"
+                );
+
+                medidor.setAttribute(
+                    "aria-valuemax",
+                    "100"
+                );
+
+                medidor.setAttribute(
+                    "aria-valuenow",
+                    String(pontuacao)
+                );
             }
-
-            const pontuacao = pontuacoes[chave];
-
-            numero.textContent = String(pontuacao);
-
-            preenchimento.style.width =
-                `${pontuacao}%`;
-
-            descricao.textContent =
-                interpretar(config, pontuacao);
-
-            // Atualizar os rótulos da escala.
-
-            const rotulos = card.querySelectorAll(
-                ".result-scale span"
-            );
-
-            if (rotulos.length === 2) {
-                rotulos[0].textContent =
-                    config.esquerda;
-
-                rotulos[1].textContent =
-                    config.direita;
-            }
-
-            // Acessibilidade do medidor.
-
-            const medidor =
-                preenchimento.parentElement;
-
-            medidor.setAttribute("role", "meter");
-
-            medidor.setAttribute(
-                "aria-label",
-                `Indicador exploratório: ${config.nome}`
-            );
-
-            medidor.setAttribute(
-                "aria-valuemin",
-                "0"
-            );
-
-            medidor.setAttribute(
-                "aria-valuemax",
-                "100"
-            );
-
-            medidor.setAttribute(
-                "aria-valuenow",
-                String(pontuacao)
-            );
-        });
-
-        // Atualizar a leitura conjunta.
+        );
 
         mostrarVisaoGeral(
             pontuacoes,
@@ -415,21 +450,210 @@
             demonstracao
         );
 
-        if (demonstracao) {
+        statusEl.textContent = demonstracao
+            ? "DEMONSTRAÇÃO — Valores fictícios da versão de 30 perguntas."
+            : versao === 1
+                ? "Resultado experimental da versão 1 (20 perguntas)."
+                : "Resultado experimental da versão 2 (30 perguntas).";
+    }
 
-            statusEl.textContent =
-                "DEMONSTRAÇÃO — Valores fictícios da versão de 30 perguntas. Não representam seu perfil.";
+    /* =====================================
+       CONTROLES DE ARMAZENAMENTO
+    ===================================== */
 
-        } else if (versao === 1) {
+    function mostrarControlesDeSalvamento(
+        resultado,
+        origem
+    ) {
 
-            statusEl.textContent =
-                "Resultado da versão 1 (20 perguntas). As pontuações não são diretamente comparáveis às da versão de 30 perguntas.";
+        if (!resultado) return;
 
-        } else {
+        const painel = document.createElement("section");
 
-            statusEl.textContent =
-                "Resultado experimental da versão 2 (30 perguntas). Os indicadores refletem apenas suas respostas neste questionário.";
+        painel.setAttribute(
+            "aria-label",
+            "Guardar e excluir resultados"
+        );
+
+        Object.assign(painel.style, {
+            marginTop: "20px",
+            padding: "22px",
+            border: "1px solid var(--border)",
+            borderRadius: "10px",
+            background: "var(--surface)"
+        });
+
+        const titulo = document.createElement("h2");
+
+        titulo.textContent = "Guardar meu perfil";
+
+        Object.assign(titulo.style, {
+            fontSize: "18px",
+            letterSpacing: "-0.02em",
+            lineHeight: "1.4"
+        });
+
+        painel.appendChild(titulo);
+
+        const descricao = document.createElement("p");
+
+        descricao.textContent =
+            "Você decide se quer guardar este resultado. " +
+            "Serão salvas apenas as cinco pontuações, a versão " +
+            "do questionário e a data. Os dados ficam neste " +
+            "navegador e dispositivo, sem sincronização com uma conta.";
+
+        Object.assign(descricao.style, {
+            color: "var(--muted)",
+            fontSize: "13px",
+            lineHeight: "1.8",
+            marginTop: "10px"
+        });
+
+        painel.appendChild(descricao);
+
+        const mensagem = document.createElement("p");
+
+        mensagem.setAttribute("role", "status");
+        mensagem.setAttribute("aria-live", "polite");
+
+        Object.assign(mensagem.style, {
+            color: "var(--purple-light)",
+            fontSize: "12px",
+            marginTop: "14px",
+            lineHeight: "1.7"
+        });
+
+        const salvo = carregarPerfilSalvo();
+
+        if (salvo) {
+
+            mensagem.textContent =
+                `Há um perfil salvo neste navegador desde ${dataLegivel(salvo.salvoEm)}.`;
+
+        } else if (origem === "sessao") {
+
+            mensagem.textContent =
+                "Este perfil ainda não está salvo permanentemente.";
         }
+
+        painel.appendChild(mensagem);
+
+        const acoes = document.createElement("div");
+
+        Object.assign(acoes.style, {
+            display: "flex",
+            flexWrap: "wrap",
+            gap: "12px",
+            marginTop: "18px"
+        });
+
+        /* BOTÃO SALVAR */
+
+        const salvar = document.createElement("button");
+
+        salvar.type = "button";
+        salvar.className = "primary-button";
+
+        salvar.textContent = salvo
+            ? "Atualizar perfil salvo"
+            : "Salvar neste navegador";
+
+        salvar.addEventListener("click", () => {
+
+            const anterior = carregarPerfilSalvo();
+
+            if (
+                anterior &&
+                !window.confirm(
+                    "Já existe um perfil salvo. Deseja substituí-lo por este resultado?"
+                )
+            ) {
+                return;
+            }
+
+            try {
+
+                localStorage.setItem(
+                    CHAVE_SALVA,
+                    JSON.stringify({
+                        formato: 1,
+                        version: resultado.versao,
+                        totalPerguntas:
+                            resultado.versao === 2 ? 30 : 20,
+                        scores: resultado.pontuacoes,
+                        salvoEm: new Date().toISOString()
+                    })
+                );
+
+                mensagem.textContent =
+                    "Perfil salvo! Você poderá consultá-lo novamente neste navegador, mesmo depois de fechar a aba.";
+
+                salvar.textContent =
+                    "Atualizar perfil salvo";
+
+                exibirExcluir();
+
+            } catch (erro) {
+
+                mensagem.textContent =
+                    "Não foi possível salvar. Verifique se o navegador permite armazenamento local.";
+            }
+        });
+
+        acoes.appendChild(salvar);
+
+        /* BOTÃO EXCLUIR */
+
+        let excluir = null;
+
+        function exibirExcluir() {
+
+            if (excluir || !carregarPerfilSalvo()) {
+                return;
+            }
+
+            excluir = document.createElement("button");
+
+            excluir.type = "button";
+            excluir.className = "secondary-button";
+            excluir.textContent = "Excluir resultado salvo";
+
+            excluir.addEventListener("click", () => {
+
+                const confirmou = window.confirm(
+                    "Excluir o perfil salvo e os resultados temporários desta aba? Esta ação não pode ser desfeita."
+                );
+
+                if (!confirmou) return;
+
+                try {
+
+                    localStorage.removeItem(CHAVE_SALVA);
+
+                    sessionStorage.removeItem(CHAVES[1]);
+                    sessionStorage.removeItem(CHAVES[2]);
+
+                    window.location.reload();
+
+                } catch (erro) {
+
+                    mensagem.textContent =
+                        "Não foi possível excluir os dados.";
+                }
+            });
+
+            acoes.appendChild(excluir);
+        }
+
+        exibirExcluir();
+
+        painel.appendChild(acoes);
+
+        statusEl.insertAdjacentElement(
+            "afterend",
+            painel
+        );
     }
 
     /* =====================================
@@ -440,7 +664,12 @@
         window.location.search
     );
 
-    if (parametros.get("exemplo") === "1") {
+    const demonstracao =
+        parametros.get("exemplo") === "1";
+
+    if (demonstracao) {
+
+        // Demonstração não pode ser salva.
 
         mostrarResultados({
             social: 35,
@@ -452,28 +681,48 @@
 
     } else {
 
+        const sessaoAtual = carregarVersao(2);
+
+        const perfilSalvo = carregarPerfilSalvo();
+
+        const sessaoAntiga = carregarVersao(1);
+
         const resultado =
-            carregarVersao(2) ||
-            carregarVersao(1);
+            sessaoAtual || perfilSalvo || sessaoAntiga;
 
         if (resultado) {
+
+            const origem = resultado === perfilSalvo
+                ? "salvo"
+                : "sessao";
 
             mostrarResultados(
                 resultado.pontuacoes,
                 resultado.versao
             );
 
+            if (origem === "salvo") {
+
+                statusEl.textContent +=
+                    " Perfil recuperado do armazenamento deste navegador.";
+            }
+
+            mostrarControlesDeSalvamento(
+                resultado,
+                origem
+            );
+
         } else {
 
             statusEl.textContent =
-                "Nenhum resultado disponível nesta sessão. Conclua o questionário para visualizar seu perfil.";
+                "Nenhum resultado disponível. Conclua o questionário e clique em Salvar neste navegador para consultar seu perfil depois.";
 
-            const leitura =
-                document.getElementById(
-                    "overview-combination"
-                );
+            const leitura = document.getElementById(
+                "overview-combination"
+            );
 
             if (leitura) {
+
                 leitura.textContent =
                     "Conclua o questionário para visualizar a leitura conjunta das dimensões.";
             }
