@@ -806,3 +806,73 @@ h2 span {
         transition-duration: 0.01ms !important;
     }
 }
+
+
+/* =========================================
+   PERSONA — NAVEGAÇÃO RESPONSIVA
+   Celulares e tablets pequenos
+========================================= */
+
+@media (max-width: 760px) {
+
+    .header {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) auto;
+        align-items: center;
+
+        width: 100%;
+        height: auto;
+        min-height: 0;
+
+        padding: 14px 6% 12px;
+        gap: 12px;
+
+        border-bottom: 1px solid var(--border);
+    }
+
+    /* Logo na primeira linha */
+
+    .header > .logo {
+        grid-column: 1;
+        grid-row: 1;
+        min-width: 0;
+    }
+
+    /* Botão Explorar na primeira linha */
+
+    .header > .header-link {
+        grid-column: 2;
+        grid-row: 1;
+        justify-self: end;
+        white-space: nowrap;
+    }
+
+    /* Navegação abaixo do logo */
+
+    .header > .navigation {
+        grid-column: 1 / -1;
+        grid-row: 2;
+
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+
+        width: 100%;
+        gap: 8px 22px;
+
+        padding-top: 12px;
+        border-top: 1px solid var(--border);
+    }
+
+    /* Links do menu */
+
+    .header > .navigation a {
+        display: inline-block;
+        padding: 3px 0;
+
+        font-size: 12px;
+        line-height: 1.5;
+        white-space: nowrap;
+    }
+
+}
