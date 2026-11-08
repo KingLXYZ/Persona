@@ -1,37 +1,26 @@
 
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <meta name="description" content="PERSONA — Explore seus padrões de pensamento, comportamento e decisão. Uma jornada de descoberta e autoconhecimento.">
-
     <title>PERSONA — Além da superfície</title>
 
     <!-- Fontes -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
-    <!-- Estilo principal -->
+    <!-- Arquivos do projeto -->
     <link rel="stylesheet" href="style.css">
-
-    <!-- JavaScript principal -->
     <script src="script.js" defer></script>
 </head>
-
 <body>
 
-    <!-- ===================================
-         CABEÇALHO
-    =================================== -->
-
+    <!-- CABEÇALHO -->
     <header class="header">
-
-        <a href="index.html" class="logo">
+        <a href="index.html" class="logo" aria-label="PERSONA — Página inicial">
             <span class="logo-symbol">P.</span>
             PERSONA
         </a>
@@ -42,29 +31,22 @@
         </nav>
 
         <a href="quiz.html" class="header-link">
-            Explorar <span>↗</span>
+            Explorar <span aria-hidden="true">↗</span>
         </a>
-
     </header>
 
-    <!-- ===================================
-         CONTEÚDO PRINCIPAL
-    =================================== -->
-
+    <!-- CONTEÚDO PRINCIPAL -->
     <main>
 
-        <!-- SEÇÃO DE APRESENTAÇÃO -->
-
-        <section class="hero">
-
+        <!-- APRESENTAÇÃO -->
+        <section class="hero" aria-labelledby="titulo-principal">
             <div class="hero-content">
-
                 <span class="eyebrow">
-                    <span class="status-dot"></span>
+                    <span class="status-dot" aria-hidden="true"></span>
                     EXPLORAÇÃO DA PERSONALIDADE
                 </span>
 
-                <h1>
+                <h1 id="titulo-principal">
                     Descubra o que existe<br>
                     <span>além da superfície.</span>
                 </h1>
@@ -76,43 +58,27 @@
                 </p>
 
                 <a href="quiz.html" class="primary-button">
-                    Iniciar exploração
-                    <span>→</span>
+                    Iniciar exploração <span aria-hidden="true">→</span>
                 </a>
 
                 <div class="hero-note">
-                    <span class="note-line"></span>
+                    <span class="note-line" aria-hidden="true"></span>
                     Uma jornada de autoconhecimento.
                 </div>
-
             </div>
 
-            <!-- ELEMENTO VISUAL GEOMÉTRICO -->
-
+            <!-- Ilustração geométrica do PERSONA -->
             <div class="hero-visual" aria-hidden="true">
-
                 <div class="visual-glow"></div>
-
                 <div class="orbit orbit-one"></div>
                 <div class="orbit orbit-two"></div>
                 <div class="orbit orbit-three"></div>
-
                 <div class="visual-center">
                     <span class="center-symbol">P</span>
                 </div>
-
-                <span class="visual-label label-one">
-                    MENTE
-                </span>
-
-                <span class="visual-label label-two">
-                    IDENTIDADE
-                </span>
-
-                <span class="visual-label label-three">
-                    COMPORTAMENTO
-                </span>
-
+                <span class="visual-label label-one">MENTE</span>
+                <span class="visual-label label-two">IDENTIDADE</span>
+                <span class="visual-label label-three">COMPORTAMENTO</span>
             </div>
 
             <div class="hero-index" aria-hidden="true">
@@ -120,218 +86,134 @@
                 <span class="index-line"></span>
                 <span>03</span>
             </div>
-
         </section>
 
-        <!-- ===================================
-             SEÇÃO 01 — CONCEITO
-        =================================== -->
-
-        <section class="concept section" id="conceito">
-
+        <!-- SEÇÃO 01 — CONCEITO -->
+        <section class="concept section" id="conceito" aria-labelledby="titulo-conceito">
             <div class="section-heading">
-
-                <span class="section-tag">
-                    01 / O CONCEITO
-                </span>
-
-                <h2>
+                <span class="section-tag">01 / O CONCEITO</span>
+                <h2 id="titulo-conceito">
                     Além da superfície.<br>
                     <span>Em direção a si mesmo.</span>
                 </h2>
-
             </div>
 
             <div class="concept-content">
-
                 <p>
                     O PERSONA nasce de uma pergunta simples:
                     <strong>o quanto você realmente conhece a si mesmo?</strong>
                 </p>
-
                 <p>
                     Por meio de perguntas e situações do cotidiano,
                     a plataforma convida você a explorar diferentes
                     aspectos da sua personalidade, identificando
                     tendências e padrões presentes em suas respostas.
                 </p>
-
                 <p>
                     Mais do que oferecer um resultado, nosso objetivo
                     é incentivar a reflexão sobre como você pensa,
                     decide, interage e reage ao mundo ao seu redor.
                 </p>
-
                 <span class="concept-signature">
                     PERSONA — Conheça além do que se vê.
                 </span>
-
             </div>
-
         </section>
 
-        <!-- ===================================
-             SEÇÃO 02 — DIMENSÕES
-        =================================== -->
-
-        <section class="dimensions section" id="dimensoes">
-
+        <!-- SEÇÃO 02 — DIMENSÕES -->
+        <section class="dimensions section" id="dimensoes" aria-labelledby="titulo-dimensoes">
             <div class="section-heading">
-
-                <span class="section-tag">
-                    02 / DIMENSÕES DA PERSONALIDADE
-                </span>
-
-                <h2>
+                <span class="section-tag">02 / DIMENSÕES DA PERSONALIDADE</span>
+                <h2 id="titulo-dimensoes">
                     Diferentes dimensões.<br>
                     <span>Uma identidade única.</span>
                 </h2>
-
             </div>
 
             <div class="dimension-grid">
-
-                <!-- SOCIAL -->
-
                 <article class="dimension-card">
-
                     <span class="card-number">01</span>
-
                     <h3>Social</h3>
-
                     <p>
                         Explore como você estabelece conexões,
                         interage com outras pessoas e encontra
                         seu espaço nas relações sociais.
                     </p>
-
                     <span class="card-arrow" aria-hidden="true">↗</span>
-
                 </article>
 
-                <!-- COGNITIVA -->
-
                 <article class="dimension-card">
-
                     <span class="card-number">02</span>
-
                     <h3>Cognitiva</h3>
-
                     <p>
                         Descubra suas tendências ao interpretar
                         informações, reconhecer padrões
                         e explorar novas possibilidades.
                     </p>
-
                     <span class="card-arrow" aria-hidden="true">↗</span>
-
                 </article>
 
-                <!-- DECISÓRIA -->
-
                 <article class="dimension-card">
-
                     <span class="card-number">03</span>
-
                     <h3>Decisória</h3>
-
                     <p>
                         Compreenda como você considera
                         alternativas, avalia consequências
                         e constrói suas decisões.
                     </p>
-
                     <span class="card-arrow" aria-hidden="true">↗</span>
-
                 </article>
 
-                <!-- ORGANIZACIONAL -->
-
                 <article class="dimension-card">
-
                     <span class="card-number">04</span>
-
                     <h3>Organizacional</h3>
-
                     <p>
                         Explore sua relação com planejamento,
                         flexibilidade, mudanças
                         e realização de objetivos.
                     </p>
-
                     <span class="card-arrow" aria-hidden="true">↗</span>
-
                 </article>
 
-                <!-- COMPORTAMENTAL -->
-
                 <article class="dimension-card">
-
                     <span class="card-number">05</span>
-
                     <h3>Comportamental</h3>
-
                     <p>
                         Observe suas tendências diante
                         de desafios, pressões,
                         emoções e situações inesperadas.
                     </p>
-
                     <span class="card-arrow" aria-hidden="true">↗</span>
-
                 </article>
-
             </div>
-
         </section>
 
-        <!-- ===================================
-             SEÇÃO 03 — SUA JORNADA
-        =================================== -->
-
-        <section class="closing">
-
-            <span class="section-tag">
-                03 / SUA JORNADA
-            </span>
-
-            <h2>
+        <!-- SEÇÃO 03 — JORNADA -->
+        <section class="closing" aria-labelledby="titulo-jornada">
+            <span class="section-tag">03 / SUA JORNADA</span>
+            <h2 id="titulo-jornada">
                 Toda descoberta<br>
                 <span>começa em você.</span>
             </h2>
-
             <p>
                 Conhecer a si mesmo é uma jornada contínua.
                 Cada reflexão pode revelar uma nova perspectiva.
             </p>
-
             <a href="quiz.html" class="secondary-button">
-                Descobrir meu perfil →
+                Descobrir meu perfil <span aria-hidden="true">→</span>
             </a>
-
         </section>
 
     </main>
 
-    <!-- ===================================
-         RODAPÉ
-    =================================== -->
-
+    <!-- RODAPÉ -->
     <footer class="footer">
-
-        <a href="index.html" class="logo">
+        <a href="index.html" class="logo" aria-label="PERSONA — Voltar ao início">
             <span class="logo-symbol">P.</span>
             PERSONA
         </a>
-
-        <p>
-            Além da superfície, existe muito mais para descobrir.
-        </p>
-
-        <span>
-            © <span id="current-year"></span> PERSONA.
-        </span>
-
+        <p>Além da superfície, existe muito mais para descobrir.</p>
+        <span>© <span id="current-year"></span> PERSONA.</span>
     </footer>
 
 </body>
