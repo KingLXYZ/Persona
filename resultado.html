@@ -4,6 +4,7 @@
 
 <head>
     <meta charset="UTF-8">
+
     <meta name="viewport"
           content="width=device-width, initial-scale=1.0">
 
@@ -12,6 +13,7 @@
 
     <title>Meu perfil — PERSONA</title>
 
+    <!-- Fontes -->
     <link rel="preconnect"
           href="https://fonts.googleapis.com">
 
@@ -22,21 +24,29 @@
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap"
           rel="stylesheet">
 
+    <!-- Estilos -->
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="resultado.css">
 
-<script src="resultado-v2.js?v=1" defer></script>
+    <!-- Sistema de resultados -->
+    <script src="resultado-v2.js?v=1" defer></script>
 </head>
 
 <body>
 
-    <!-- CABEÇALHO -->
+    <!-- =====================================
+         CABEÇALHO
+    ====================================== -->
 
     <header class="header">
 
-        <a href="index.html" class="logo">
+        <a href="index.html"
+           class="logo"
+           aria-label="PERSONA — Página inicial">
+
             <span class="logo-symbol">P.</span>
             PERSONA
+
         </a>
 
         <a href="index.html" class="header-link">
@@ -45,17 +55,22 @@
 
     </header>
 
+    <!-- =====================================
+         CONTEÚDO PRINCIPAL
+    ====================================== -->
+
     <main class="result-layout">
 
-        <!-- APRESENTAÇÃO DO PERFIL -->
+        <!-- APRESENTAÇÃO -->
 
-        <section class="result-intro">
+        <section class="result-intro"
+                 aria-labelledby="result-intro-title">
 
             <span class="result-tag">
                 SUA EXPLORAÇÃO
             </span>
 
-            <h1>
+            <h1 id="result-intro-title">
                 Sua personalidade em
                 <span>diferentes perspectivas.</span>
             </h1>
@@ -79,7 +94,9 @@
 
         </section>
 
-        <!-- INDICADORES DAS DIMENSÕES -->
+        <!-- =====================================
+             SEÇÃO 01 — CINCO DIMENSÕES
+        ====================================== -->
 
         <section class="result-section"
                  aria-labelledby="result-title">
@@ -105,7 +122,7 @@
 
             <div class="result-grid">
 
-                <!-- SOCIAL -->
+                <!-- DIMENSÃO SOCIAL -->
 
                 <article class="result-card"
                          data-dimension="social">
@@ -116,8 +133,8 @@
 
                     <p class="result-description"
                        id="description-social">
-                        Sua maneira de interagir
-                        e estabelecer conexões.
+                        Sua maneira de interagir e
+                        estabelecer conexões.
                     </p>
 
                     <div class="result-score">
@@ -131,13 +148,13 @@
                     </div>
 
                     <div class="result-scale">
-                        <span>Reserva</span>
-                        <span>Expansividade</span>
+                        <span>Observação inicial</span>
+                        <span>Iniciativa social</span>
                     </div>
 
                 </article>
 
-                <!-- COGNITIVA -->
+                <!-- DIMENSÃO COGNITIVA -->
 
                 <article class="result-card"
                          data-dimension="cognitiva">
@@ -169,7 +186,7 @@
 
                 </article>
 
-                <!-- DECISÓRIA -->
+                <!-- DIMENSÃO DECISÓRIA -->
 
                 <article class="result-card"
                          data-dimension="decisoria">
@@ -195,13 +212,13 @@
                     </div>
 
                     <div class="result-scale">
-                        <span>Valores</span>
-                        <span>Análise</span>
+                        <span>Impressão inicial</span>
+                        <span>Análise estruturada</span>
                     </div>
 
                 </article>
 
-                <!-- ORGANIZACIONAL -->
+                <!-- DIMENSÃO ORGANIZACIONAL -->
 
                 <article class="result-card"
                          data-dimension="organizacional">
@@ -233,7 +250,7 @@
 
                 </article>
 
-                <!-- COMPORTAMENTAL -->
+                <!-- DIMENSÃO COMPORTAMENTAL -->
 
                 <article class="result-card"
                          data-dimension="comportamental">
@@ -244,8 +261,8 @@
 
                     <p class="result-description"
                        id="description-comportamental">
-                        Suas tendências diante
-                        de desafios e situações inesperadas.
+                        Suas tendências diante de
+                        desafios e situações inesperadas.
                     </p>
 
                     <div class="result-score">
@@ -260,7 +277,7 @@
 
                     <div class="result-scale">
                         <span>Reação imediata</span>
-                        <span>Resposta ponderada</span>
+                        <span>Pausa para avaliar</span>
                     </div>
 
                 </article>
@@ -269,15 +286,106 @@
 
         </section>
 
-        <!-- CONSIDERAÇÕES FINAIS -->
+        <!-- =====================================
+             SEÇÃO 02 — VISÃO GERAL
+        ====================================== -->
 
-        <section class="result-reflection">
+        <section class="result-section"
+                 id="visao-geral"
+                 aria-labelledby="overview-title">
+
+            <div class="result-heading">
+
+                <span class="result-tag">
+                    02 / VISÃO GERAL
+                </span>
+
+                <h2 id="overview-title">
+                    Além dos números.
+                    <span>Uma leitura conjunta.</span>
+                </h2>
+
+                <p>
+                    As dimensões não existem isoladamente.
+                    Aqui vamos relacionar algumas tendências
+                    identificadas nas respostas, sem atribuir
+                    rótulos fixos.
+                </p>
+
+            </div>
+
+            <div class="result-grid">
+
+                <!-- LEITURA INTEGRADA -->
+
+                <article class="result-card">
+
+                    <span class="result-number">
+                        LEITURA INTEGRADA
+                    </span>
+
+                    <h3>
+                        Como suas tendências se relacionam
+                    </h3>
+
+                    <p class="result-description"
+                       id="overview-combination"
+                       aria-live="polite">
+
+                        Estamos preparando uma leitura
+                        baseada nas pontuações do seu
+                        questionário. Os cinco indicadores
+                        acima continuam funcionando
+                        normalmente.
+
+                    </p>
+
+                </article>
+
+                <!-- INTERPRETAÇÃO RESPONSÁVEL -->
+
+                <article class="result-card">
+
+                    <span class="result-number">
+                        INTERPRETAÇÃO RESPONSÁVEL
+                    </span>
+
+                    <h3>
+                        O que esses números não dizem
+                    </h3>
+
+                    <p class="result-description"
+                       id="overview-guidance">
+
+                        Uma pontuação próxima do centro
+                        não significa necessariamente
+                        equilíbrio. Ela pode resultar de
+                        respostas diferentes para
+                        situações diferentes.
+
+                        Nenhum indicador, isoladamente,
+                        define quem você é.
+
+                    </p>
+
+                </article>
+
+            </div>
+
+        </section>
+
+        <!-- =====================================
+             SEÇÃO 03 — REFLEXÃO FINAL
+        ====================================== -->
+
+        <section class="result-reflection"
+                 aria-labelledby="reflection-title">
 
             <span class="result-tag">
-                02 / SUA JORNADA
+                03 / SUA JORNADA
             </span>
 
-            <h2>
+            <h2 id="reflection-title">
                 Você é mais do que
                 <span>um resultado.</span>
             </h2>
@@ -285,6 +393,7 @@
             <p>
                 A personalidade não precisa ser entendida
                 como uma definição imutável.
+
                 Suas respostas representam percepções
                 sobre você neste momento e podem
                 variar conforme suas experiências.
@@ -292,32 +401,50 @@
 
             <a href="quiz.html" class="primary-button">
                 Refazer questionário
-                <span>→</span>
+                <span aria-hidden="true">→</span>
             </a>
 
         </section>
 
-        <!-- AVISO -->
+        <!-- =====================================
+             AVISO INFORMATIVO
+        ====================================== -->
 
         <div class="result-disclaimer">
+
             O PERSONA é uma ferramenta experimental
-            de autoconhecimento. Seus indicadores
-            não constituem diagnóstico psicológico
-            nem avaliação psicométrica validada.
+            de autoconhecimento.
+
+            Seus indicadores não constituem diagnóstico
+            psicológico nem avaliação psicométrica validada.
+
         </div>
 
     </main>
 
+    <!-- =====================================
+         RODAPÉ
+    ====================================== -->
+
     <footer class="footer">
 
-        <a href="index.html" class="logo">
+        <a href="index.html"
+           class="logo"
+           aria-label="PERSONA — Página inicial">
+
             <span class="logo-symbol">P.</span>
             PERSONA
+
         </a>
 
-        <p>Além da superfície, existe muito mais para descobrir.</p>
+        <p>
+            Além da superfície, existe muito
+            mais para descobrir.
+        </p>
 
-        <span>© <span id="current-year"></span> PERSONA.</span>
+        <span>
+            © <span id="current-year"></span> PERSONA.
+        </span>
 
     </footer>
 
