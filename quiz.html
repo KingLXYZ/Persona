@@ -1,130 +1,89 @@
-
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <meta name="description"
-          content="Explore sua personalidade através do questionário PERSONA.">
-
+    <meta name="description" content="Explore preferências de pensamento, decisão e comportamento em 30 afirmações do PERSONA.">
     <title>Questionário — PERSONA</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap"
-          rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="quiz.css">
+    <script src="quiz-v3.js?v=3" defer></script>
 
-<script src="quiz-v3.js?v=3" defer></script>
+    <style>
+        /* Orientação breve, sem interferir nas alternativas ou nos cálculos. */
+        .quiz-orientation {
+            max-width: 760px;
+            margin-bottom: 24px;
+            padding: 14px 18px;
+            border-left: 2px solid var(--purple);
+            border-radius: 0 8px 8px 0;
+            background: var(--surface);
+        }
+        .quiz-orientation p {
+            color: var(--muted);
+            font-size: 12px;
+            line-height: 1.8;
+        }
+        .quiz-orientation strong { color: var(--text); }
+        @media (max-width: 600px) {
+            .quiz-orientation { padding: 12px 14px; margin-bottom: 20px; }
+        }
+    </style>
 </head>
-
 <body>
-
     <header class="header">
-
-        <a href="index.html" class="logo">
+        <a href="index.html" class="logo" aria-label="PERSONA — Página inicial">
             <span class="logo-symbol">P.</span>
             PERSONA
         </a>
-
-        <a href="index.html" class="header-link">
-            ← Voltar ao início
-        </a>
-
+        <a href="index.html" class="header-link">← Voltar ao início</a>
     </header>
 
     <main class="quiz-layout">
-
-        <section class="quiz-container"
-                 aria-labelledby="quiz-question">
-
+        <section class="quiz-container" aria-labelledby="quiz-question">
             <div class="quiz-top">
-
-                <span class="quiz-category">
-                    EXPLORAÇÃO PESSOAL
-                </span>
-
-                <span class="quiz-counter" id="quiz-counter">
-                    Pergunta 1 de 3
-                </span>
-
+                <span class="quiz-category">EXPLORAÇÃO PESSOAL</span>
+                <span class="quiz-counter" id="quiz-counter">Pergunta 1 de 30</span>
             </div>
 
-            <div class="quiz-progress"
-                 role="progressbar"
+            <div class="quiz-progress" role="progressbar"
                  aria-label="Progresso do questionário"
-                 aria-valuemin="0"
-                 aria-valuemax="100"
-                 aria-valuenow="0">
-
-                <div class="quiz-progress-fill"
-                     id="quiz-progress-fill">
-                </div>
-
+                 aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+                <div class="quiz-progress-fill" id="quiz-progress-fill"></div>
             </div>
 
             <div class="quiz-content">
-
-                <p class="quiz-instruction">
-                    Escolha a alternativa que mais se aproxima
-                    da sua maneira de pensar ou agir.
-                </p>
-
-                <h1 id="quiz-question" aria-live="polite">
-                    Quando você precisa tomar uma decisão
-                    importante, o que costuma fazer primeiro?
-                </h1>
-
-                <div class="quiz-options" id="quiz-options">
-
-                    <button type="button" class="quiz-option">
-                        Analiso as possibilidades e consequências.
-                    </button>
-
-                    <button type="button" class="quiz-option">
-                        Considero como a decisão afetará as pessoas.
-                    </button>
-
-                    <button type="button" class="quiz-option">
-                        Procuro equilibrar os dois aspectos.
-                    </button>
-
+                <div class="quiz-orientation" role="note">
+                    <p>
+                        <strong>30 afirmações, sem respostas certas ou erradas.</strong>
+                        Considere como você costuma pensar ou agir, não como gostaria de ser.
+                    </p>
                 </div>
-
+                <p class="quiz-instruction">
+                    Escolha a alternativa que mais se aproxima da sua maneira de pensar ou agir.
+                </p>
+                <h1 id="quiz-question" aria-live="polite">Carregando a primeira pergunta...</h1>
+                <div class="quiz-options" id="quiz-options"></div>
             </div>
 
             <div class="quiz-navigation">
-
-                <button type="button"
-                        id="quiz-back"
-                        class="quiz-back"
-                        disabled>
-                    Voltar
-                </button>
-
-                <button type="button"
-                        id="quiz-next"
-                        class="quiz-next"
-                        disabled>
-                    Continuar →
-                </button>
-
+                <button type="button" id="quiz-back" class="quiz-back" disabled>Voltar</button>
+                <button type="button" id="quiz-next" class="quiz-next" disabled>Continuar →</button>
             </div>
 
             <p class="quiz-disclaimer">
-                O PERSONA é uma ferramenta de exploração pessoal.
-                Seus resultados não constituem diagnóstico
-                ou avaliação psicológica profissional.
+                O PERSONA é uma ferramenta experimental de exploração pessoal.
+                Seus resultados não constituem diagnóstico ou avaliação psicológica profissional.
             </p>
-
+            <noscript>
+                <p class="quiz-disclaimer">Para responder ao questionário, ative o JavaScript no navegador.</p>
+            </noscript>
         </section>
-
     </main>
-
 </body>
 </html>
