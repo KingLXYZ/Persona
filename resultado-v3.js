@@ -154,6 +154,171 @@
         "Estes indicadores são experimentais e não foram validados cientificamente.";
   }
 
+
+  /* =====================================================
+     SEU PERFIL NO COTIDIANO
+     Leitura complementar, sem alterar os cálculos.
+     Usa somente pontuações já calculadas e não salva dados.
+     ===================================================== */
+  const COTIDIANO = {
+    social: {
+      nome: "Social", titulo: "Conversas e grupos",
+      baixo: {
+        texto: "Nas situações apresentadas, suas respostas se aproximaram da preferência por observar antes de participar. Em um grupo novo, isso pode aparecer como a escolha de conhecer o ambiente antes de entrar na conversa.",
+        pergunta: "Em quais ambientes você prefere ouvir primeiro? Há situações em que toma a iniciativa?"
+      },
+      medio: {
+        texto: "As respostas não indicaram uma preferência uniforme entre observar e iniciar interações. Talvez a familiaridade com as pessoas ou o assunto da conversa faça diferença.",
+        pergunta: "O que costuma mudar sua disposição para começar uma conversa?"
+      },
+      alto: {
+        texto: "Nas situações apresentadas, suas respostas se aproximaram da iniciativa social. Isso pode aparecer ao começar conversas ou compartilhar ideias em grupos, dependendo do contexto.",
+        pergunta: "Em quais situações você gosta de iniciar o contato? Quando prefere apenas observar?"
+      }
+    },
+    cognitiva: {
+      nome: "Cognitiva", titulo: "Aprendizado e ideias",
+      baixo: {
+        texto: "Suas respostas se aproximaram da preferência por exemplos concretos. Ao conhecer um assunto, pode fazer sentido para você procurar situações práticas antes de explorar conceitos mais gerais.",
+        pergunta: "Que tipo de exemplo costuma ajudar você a compreender uma ideia nova?"
+      },
+      medio: {
+        texto: "As respostas ficaram na faixa central entre exemplos concretos e possibilidades abstratas. Isso pode refletir formas diferentes de abordar assuntos conforme a tarefa.",
+        pergunta: "Quando você prefere um exemplo prático e quando gosta de discutir possibilidades?"
+      },
+      alto: {
+        texto: "Suas respostas se aproximaram do interesse por conceitos, relações e hipóteses. Em alguns assuntos, explorar uma ideia geral antes de examinar os detalhes pode parecer mais interessante.",
+        pergunta: "Que temas despertam sua curiosidade por hipóteses? Quando você busca exemplos concretos?"
+      }
+    },
+    decisoria: {
+      nome: "Decisória", titulo: "Escolhas e alternativas",
+      baixo: {
+        texto: "Suas respostas se aproximaram da preferência por usar uma impressão inicial em certas escolhas. Em situações familiares, essa primeira avaliação pode ajudar a orientar os próximos passos.",
+        pergunta: "Que decisões você costuma tomar pela impressão inicial? Quais exigem uma comparação mais cuidadosa?"
+      },
+      medio: {
+        texto: "As respostas não apontaram uma preferência constante entre impressão inicial e análise estruturada. A importância da escolha ou o tempo disponível podem influenciar sua abordagem.",
+        pergunta: "O que faz você mudar de uma decisão mais imediata para uma análise detalhada?"
+      },
+      alto: {
+        texto: "Suas respostas se aproximaram da preferência por comparar opções e consequências. Em algumas escolhas, organizar critérios pode ajudar você a compreender melhor as alternativas disponíveis.",
+        pergunta: "Em quais escolhas você gosta de estabelecer critérios? Quando decide de maneira mais espontânea?"
+      }
+    },
+    organizacional: {
+      nome: "Organizacional", titulo: "Rotina e projetos",
+      baixo: {
+        texto: "Suas respostas se aproximaram da preferência por manter possibilidades abertas. Em atividades pessoais, pode ser mais confortável ajustar a sequência das etapas conforme elas acontecem.",
+        pergunta: "Em que atividades a liberdade de mudar os planos funciona melhor para você?"
+      },
+      medio: {
+        texto: "As respostas ficaram próximas do centro entre flexibilidade e planejamento. Você pode preferir organizar certas tarefas com antecedência e deixar outras mais abertas.",
+        pergunta: "Quais compromissos você gosta de planejar e quais prefere decidir na hora?"
+      },
+      alto: {
+        texto: "Suas respostas se aproximaram da preferência por preparar etapas antecipadamente. Ao iniciar uma tarefa ou projeto, estabelecer uma sequência pode ser uma forma confortável de se organizar.",
+        pergunta: "Quando o planejamento ajuda você? Em quais momentos prefere deixar espaço para mudanças?"
+      }
+    },
+    comportamental: {
+      nome: "Comportamental", titulo: "Imprevistos e respostas",
+      baixo: {
+        texto: "Nas situações descritas, suas respostas se aproximaram da tendência a agir prontamente diante de imprevistos. Isso pode envolver experimentar uma resposta inicial e ajustá-la ao longo da situação.",
+        pergunta: "Quando agir logo costuma ser sua preferência? Em quais situações você decide fazer uma pausa?"
+      },
+      medio: {
+        texto: "As respostas ficaram próximas do centro entre ação imediata e pausa para avaliação. O tipo de imprevisto pode influenciar a forma como você prefere responder.",
+        pergunta: "Que situações levam você a responder rapidamente e quais pedem mais tempo?"
+      },
+      alto: {
+        texto: "Nas situações descritas, suas respostas se aproximaram da preferência por fazer uma pausa antes de agir. Em alguns imprevistos, compreender o que mudou pode vir antes de escolher uma resposta.",
+        pergunta: "Quando observar antes de agir parece mais útil para você? Em que momentos prefere agir logo?"
+      }
+    }
+  };
+
+  function mostrarCotidiano(scores, versao, demonstracao) {
+    // O questionário mais antigo avaliava polos diferentes em certas dimensões.
+    // Não atribuiremos a ele interpretações baseadas nos itens posteriores.
+    if (versao === 1) return;
+    const reflexao = document.querySelector(".result-reflection");
+    if (!reflexao || document.getElementById("perfil-cotidiano")) return;
+
+    const estilos = document.createElement("style");
+    estilos.id = "estilos-perfil-cotidiano";
+    estilos.textContent = `
+      .cotidiano-section { scroll-margin-top: 24px; }
+      .cotidiano-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; margin-top: 42px; }
+      .cotidiano-card { display: flex; flex-direction: column; gap: 0; min-width: 0; padding: 30px; border: 1px solid var(--border); border-radius: 12px; background: var(--surface); }
+      .cotidiano-card h3 { margin: 18px 0 12px; color: var(--text); font: 700 21px/1.35 "Manrope", sans-serif; }
+      .cotidiano-text { color: var(--muted); font-size: 14px; line-height: 1.85; }
+      .cotidiano-question { margin-top: 23px; padding-top: 18px; border-top: 1px solid var(--border); color: var(--text); font-size: 13px; line-height: 1.8; }
+      .cotidiano-question strong { display: block; margin-bottom: 7px; color: var(--purple-light); font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase; }
+      @media (max-width: 900px) { .cotidiano-card { padding: 24px; } }
+      @media (max-width: 600px) {
+        .cotidiano-grid { grid-template-columns: 1fr; gap: 14px; margin-top: 34px; }
+        .cotidiano-card h3 { font-size: 19px; }
+        .cotidiano-text { font-size: 13px; }
+        .cotidiano-question { font-size: 13px; }
+      }
+    `;
+    document.head.appendChild(estilos);
+
+    const secao = document.createElement("section");
+    secao.className = "result-section cotidiano-section";
+    secao.id = "perfil-cotidiano";
+    secao.setAttribute("aria-labelledby", "cotidiano-titulo");
+
+    const cabecalho = document.createElement("div");
+    cabecalho.className = "result-heading";
+    const tag = document.createElement("span");
+    tag.className = "result-tag";
+    tag.textContent = "03 / SEU PERFIL NO COTIDIANO";
+    const titulo = document.createElement("h2");
+    titulo.id = "cotidiano-titulo";
+    titulo.appendChild(document.createTextNode("Além das respostas. "));
+    const destaque = document.createElement("span");
+    destaque.textContent = "Situações para refletir.";
+    titulo.appendChild(destaque);
+    const introducao = document.createElement("p");
+    introducao.textContent = demonstracao
+      ? "Exemplo fictício de como os indicadores podem orientar perguntas sobre o cotidiano. Estas descrições não pertencem a uma pessoa real."
+      : "Estes exemplos relacionam suas respostas a situações possíveis. São convites à reflexão, não previsões ou definições sobre seu comportamento.";
+    cabecalho.append(tag, titulo, introducao);
+    secao.appendChild(cabecalho);
+
+    const grade = document.createElement("div");
+    grade.className = "cotidiano-grid";
+    ORDEM.forEach((chave, indice) => {
+      const info = COTIDIANO[chave];
+      const valor = scores[chave];
+      const faixa = valor < 35 ? "baixo" : valor > 65 ? "alto" : "medio";
+      const leitura = info[faixa];
+      const cartao = document.createElement("article");
+      cartao.className = "cotidiano-card";
+      const numero = document.createElement("span");
+      numero.className = "result-number";
+      numero.textContent = `${String(indice + 1).padStart(2, "0")} / ${info.nome.toUpperCase()}`;
+      const subtitulo = document.createElement("h3");
+      subtitulo.textContent = info.titulo;
+      const texto = document.createElement("p");
+      texto.className = "cotidiano-text";
+      texto.textContent = leitura.texto;
+      const pergunta = document.createElement("p");
+      pergunta.className = "cotidiano-question";
+      const chamada = document.createElement("strong");
+      chamada.textContent = "Para refletir";
+      pergunta.append(chamada, document.createTextNode(leitura.pergunta));
+      cartao.append(numero, subtitulo, texto, pergunta);
+      grade.appendChild(cartao);
+    });
+    secao.appendChild(grade);
+    reflexao.parentNode.insertBefore(secao, reflexao);
+    const etiquetaFinal = reflexao.querySelector(".result-tag");
+    if (etiquetaFinal) etiquetaFinal.textContent = "04 / SUA JORNADA";
+  }
+
   function mostrarResultados(resultado, demonstracao = false) {
     const { versao, pontuacoes: scores } = resultado;
     for (const chave of ORDEM) {
@@ -182,6 +347,7 @@
       }
     }
     mostrarVisaoGeral(scores, versao, demonstracao);
+    mostrarCotidiano(scores, versao, demonstracao);
     if (demonstracao) {
       statusEl.textContent = "DEMONSTRAÇÃO — Exemplo fictício com pontuações possíveis. Não é seu perfil.";
     } else {
