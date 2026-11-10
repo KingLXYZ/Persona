@@ -1,8 +1,8 @@
 /* =====================================================
-   PERSONA — Resultados V3, compatível com V1 e V2.
-   ATENÇÃO: arquivo preparado para teste. A publicação
-   só acontecerá quando resultado.html apontar para ele.
-   Indicadores exploratórios; não é teste validado.
+   PERSONA — Resultados
+   Controle interno de formatos anteriores preservado.
+   Comunicação pública sem números de versão.
+   Indicadores exploratórios; questionário não validado.
    ===================================================== */
 (() => {
   "use strict";
@@ -40,9 +40,9 @@
   };
   const socialV1 = {
     nome: "Social", esquerda: "Reserva", direita: "Expansividade",
-    baixo: "Na versão 1, suas respostas se aproximaram de preferências por interações mais reservadas.",
-    medio: "Na versão 1, suas respostas ficaram próximas do centro da escala social utilizada na época.",
-    alto: "Na versão 1, suas respostas se aproximaram de preferências por interações mais expansivas."
+    baixo: "Neste perfil, suas respostas se aproximaram de preferências por interações mais reservadas.",
+    medio: "Neste perfil, suas respostas ficaram próximas do centro da escala social apresentada.",
+    alto: "Neste perfil, suas respostas se aproximaram de preferências por interações mais expansivas."
   };
   const socialRecente = {
     nome: "Social", esquerda: "Observação inicial", direita: "Iniciativa social",
@@ -52,9 +52,9 @@
   };
   const decisoriaV1 = {
     nome: "Decisória", esquerda: "Valores e relações", direita: "Análise de argumentos",
-    baixo: "Na versão 1, suas respostas deram mais peso a valores e relações. Isso não significa ausência de análise.",
-    medio: "Na versão 1, suas respostas ficaram próximas do centro da escala antiga.",
-    alto: "Na versão 1, suas respostas deram mais peso a argumentos e evidências. Isso não significa menor consideração pelas pessoas."
+    baixo: "Neste perfil, suas respostas deram mais peso a valores e relações. Isso não significa ausência de análise.",
+    medio: "Neste perfil, suas respostas ficaram próximas do centro da escala apresentada.",
+    alto: "Neste perfil, suas respostas deram mais peso a argumentos e evidências. Isso não significa menor consideração pelas pessoas."
   };
   const decisoriaRecente = {
     nome: "Decisória", esquerda: "Impressão inicial", direita: "Análise estruturada",
@@ -185,12 +185,12 @@
     if (demonstracao) {
       statusEl.textContent = "DEMONSTRAÇÃO — Exemplo fictício com pontuações possíveis. Não é seu perfil.";
     } else {
-      statusEl.textContent = `Resultado experimental da versão ${versao} (${versao === 1 ? 20 : 30} perguntas).`;
+      statusEl.textContent = "Resultado da sua exploração. Indicadores experimentais de autoconhecimento.";
       if (resultado.origem === "salvo") {
-        statusEl.textContent += " Recuperado do armazenamento deste navegador.";
+        statusEl.textContent += " Perfil recuperado deste navegador.";
       }
       if (versao === 1) {
-        statusEl.textContent += " As escalas antigas podem ter significados diferentes das versões atuais.";
+        statusEl.textContent += " Este perfil foi criado com perguntas anteriores. Não compare diretamente suas pontuações com resultados mais recentes.";
       }
     }
   }
@@ -211,14 +211,14 @@
       borderRadius: "10px", background: "var(--surface)"
     });
     const titulo = document.createElement("h2");
-    titulo.textContent = versao === 3 ? "Guardar meu perfil V3" : "Guardar meu perfil";
+    titulo.textContent = "Salvar meu perfil";
     Object.assign(titulo.style, { fontSize: "18px", letterSpacing: "-0.02em", lineHeight: "1.4" });
     painel.appendChild(titulo);
 
     const descricao = document.createElement("p");
-    descricao.textContent = "O salvamento é opcional e local a este navegador. " +
-      "Guardamos apenas cinco pontuações, a versão e a data, sem conta ou sincronização. " +
-      "A V3 é guardada separadamente dos perfis anteriores.";
+    descricao.textContent = "O salvamento é opcional e fica apenas neste navegador. " +
+      "São guardadas cinco pontuações, a data e informações técnicas para recuperar o perfil. " +
+      "Não há cadastro nem sincronização entre dispositivos. Perfis anteriores permanecem separados.";
     Object.assign(descricao.style, { color: "var(--muted)", fontSize: "13px", lineHeight: "1.8", marginTop: "10px" });
     painel.appendChild(descricao);
 
@@ -227,8 +227,8 @@
     mensagem.setAttribute("aria-live", "polite");
     Object.assign(mensagem.style, { color: "var(--purple-light)", fontSize: "12px", marginTop: "14px", lineHeight: "1.7" });
     mensagem.textContent = salvoDaVersao
-      ? `Já existe um perfil salvo desta família de versões desde ${textoData(salvoDaVersao.salvoEm)}.`
-      : "Este perfil ainda não foi salvo permanentemente.";
+      ? `Perfil salvo neste navegador em ${textoData(salvoDaVersao.salvoEm)}.`
+      : "Este perfil ainda não foi salvo neste navegador.";
     painel.appendChild(mensagem);
 
     const acoes = document.createElement("div");
@@ -246,9 +246,9 @@
       excluir = document.createElement("button");
       excluir.type = "button";
       excluir.className = "secondary-button";
-      excluir.textContent = versao === 3 ? "Excluir perfil V3 salvo" : "Excluir perfil antigo salvo";
+      excluir.textContent = versao === 3 ? "Excluir perfil salvo" : "Excluir perfil anterior";
       excluir.addEventListener("click", () => {
-        if (!window.confirm("Excluir apenas este perfil salvo? O outro conjunto de versões será preservado.")) return;
+        if (!window.confirm("Deseja excluir este perfil salvo? Outros perfis armazenados não serão afetados.")) return;
         try {
           localStorage.removeItem(chave);
           sessionStorage.removeItem(CHAVES_SESSAO[versao]);
@@ -262,13 +262,13 @@
 
     salvar.addEventListener("click", () => {
       const anterior = carregarSalvo(chave, versao === 3 ? [3] : [1, 2]);
-      if (anterior && !window.confirm("Já existe um perfil salvo desta versão. Deseja substituí-lo por este resultado?")) return;
+      if (anterior && !window.confirm("Já existe um perfil salvo para este questionário. Deseja substituí-lo por este resultado?")) return;
       try {
         localStorage.setItem(chave, JSON.stringify({
           formato: 1, version: versao, totalPerguntas: versao === 1 ? 20 : 30,
           scores: resultado.pontuacoes, salvoEm: new Date().toISOString()
         }));
-        mensagem.textContent = "Perfil salvo neste navegador. Perfis de outras versões permanecem intactos.";
+        mensagem.textContent = "Perfil salvo neste navegador. Outros perfis foram preservados.";
         salvar.textContent = "Atualizar perfil salvo";
         atualizarExcluir();
       } catch {
@@ -289,7 +289,7 @@
       const link = document.createElement("a");
       link.className = "secondary-button";
       link.href = "resultado.html?versao=3";
-      link.textContent = "Ver perfil V3";
+      link.textContent = "Ver perfil mais recente";
       acoes.appendChild(link);
     }
     painel.appendChild(acoes);
@@ -322,7 +322,7 @@
   }
 
   if (!resultado) {
-    statusEl.textContent = "Nenhum resultado disponível para esta versão. Conclua o questionário ou abra um perfil salvo neste navegador.";
+    statusEl.textContent = "Nenhum resultado disponível. Conclua o questionário ou abra um perfil salvo neste navegador.";
     const leitura = document.getElementById("overview-combination");
     if (leitura) leitura.textContent = "Conclua o questionário para visualizar a leitura das dimensões.";
     const orientacao = document.getElementById("overview-guidance");
