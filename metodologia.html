@@ -1,883 +1,423 @@
 
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
-
-    <meta name="description"
-          content="Conheça a metodologia experimental do PERSONA: perguntas, dimensões, pontuação, limitações e privacidade.">
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Conheça a metodologia do PERSONA: dimensões exploradas, elaboração das perguntas, cálculo dos indicadores, limitações e privacidade.">
+    <meta name="theme-color" content="#09090d">
     <title>Metodologia — PERSONA</title>
 
-    <!-- Fontes do projeto -->
-    <link rel="preconnect"
-          href="https://fonts.googleapis.com">
-
-    <link rel="preconnect"
-          href="https://fonts.gstatic.com"
-          crossorigin>
-
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap"
-          rel="stylesheet">
-
-    <!-- CSS principal -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 
-    <!-- Estilos específicos da Metodologia -->
     <style>
-
-        .method-main {
-            width: min(1080px, 86%);
-            margin: 0 auto;
-        }
-
-        .method-hero {
-            padding: 96px 0 85px;
-        }
-
+        /* Estilos próprios da página; preservam a identidade visual do PERSONA. */
+        .method-main { width: min(1080px, 86%); margin: 0 auto; }
+        .method-hero { padding: 96px 0 85px; }
         .method-tag {
-            display: inline-block;
-            color: var(--purple);
-            font-size: 11px;
-            font-weight: 700;
-            letter-spacing: 2px;
-            text-transform: uppercase;
+            display: inline-block; color: var(--purple); font-size: 11px;
+            font-weight: 700; letter-spacing: 2px; text-transform: uppercase;
         }
-
         .method-hero h1 {
-            max-width: 850px;
-            margin: 25px 0;
-            font-size: clamp(38px, 5vw, 68px);
-            line-height: 1.15;
+            max-width: 850px; margin: 25px 0;
+            font-size: clamp(38px, 5vw, 68px); line-height: 1.15;
         }
-
-        .method-hero h1 span,
-        .method-section h2 span {
-            color: var(--purple);
-        }
-
+        .method-hero h1 span, .method-section h2 span { color: var(--purple); }
         .method-lead {
-            max-width: 680px;
-            color: var(--muted);
-            font-size: 16px;
-            line-height: 1.9;
+            max-width: 680px; color: var(--muted);
+            font-size: 16px; line-height: 1.9;
         }
-
         .method-notice {
-            max-width: 700px;
-            margin-top: 35px;
-            padding: 18px 22px;
-            border-left: 2px solid var(--purple);
-            background: var(--surface);
-            color: var(--muted);
-            font-size: 13px;
-            line-height: 1.8;
+            max-width: 700px; margin-top: 35px; padding: 18px 22px;
+            border-left: 2px solid var(--purple); background: var(--surface);
+            color: var(--muted); font-size: 13px; line-height: 1.8;
         }
-
+        .method-notice strong { color: var(--text); }
         .method-nav {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 12px 25px;
-            padding: 20px 0 25px;
-            border-top: 1px solid var(--border);
+            display: flex; flex-wrap: wrap; gap: 12px 25px;
+            padding: 20px 0 25px; border-top: 1px solid var(--border);
         }
-
         .method-nav a {
-            font-size: 12px;
-            color: var(--muted);
-            transition: color .2s ease;
+            font-size: 12px; color: var(--muted); transition: color .2s ease;
         }
-
-        .method-nav a:hover,
-        .method-reference a:hover {
-            color: var(--purple-light);
-        }
-
+        .method-nav a:hover, .method-reference a:hover { color: var(--purple-light); }
         .method-section {
-            padding: 75px 0;
-            border-top: 1px solid var(--border);
+            padding: 75px 0; border-top: 1px solid var(--border);
             scroll-margin-top: 24px;
         }
-
         .method-section h2 {
-            max-width: 820px;
-            margin: 17px 0 24px;
-            font-size: clamp(30px, 4vw, 47px);
-            line-height: 1.18;
+            max-width: 820px; margin: 17px 0 24px;
+            font-size: clamp(30px, 4vw, 47px); line-height: 1.18;
         }
-
-        .method-text {
-            max-width: 770px;
+        .method-text { max-width: 770px; }
+        .method-text p, .method-text li {
+            margin: 0 0 18px; color: var(--muted);
+            font-size: 15px; line-height: 1.9;
         }
-
-        .method-text p,
-        .method-text li {
-            margin: 0 0 18px;
-            color: var(--muted);
-            font-size: 15px;
-            line-height: 1.9;
-        }
-
-        .method-text strong,
-        .method-card strong {
-            color: var(--text);
-        }
-
+        .method-text strong, .method-card strong { color: var(--text); }
         .method-grid {
-            display: grid;
-            grid-template-columns: repeat(2, minmax(0, 1fr));
-            gap: 16px;
-            margin-top: 34px;
+            display: grid; grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 16px; margin-top: 34px;
         }
-
         .method-card {
-            padding: 28px;
-            border: 1px solid var(--border);
-            border-radius: 9px;
-            background: var(--surface);
+            min-width: 0; padding: 28px; border: 1px solid var(--border);
+            border-radius: 9px; background: var(--surface);
         }
-
-        .method-card .method-number {
-            color: var(--purple);
-            font-size: 11px;
-            letter-spacing: 2px;
-            font-weight: 700;
+        .method-number {
+            color: var(--purple); font-size: 11px;
+            letter-spacing: 2px; font-weight: 700;
         }
-
         .method-card h3 {
-            margin: 18px 0 10px;
-            font-family: "Manrope", sans-serif;
-            font-size: 20px;
+            margin: 18px 0 10px; font-family: "Manrope", sans-serif;
+            font-size: 20px; overflow-wrap: break-word;
         }
-
-        .method-card p {
-            color: var(--muted);
-            font-size: 14px;
-            line-height: 1.8;
-        }
-
+        .method-card p { color: var(--muted); font-size: 14px; line-height: 1.8; }
         .method-scale {
-            display: grid;
-            grid-template-columns: repeat(5, minmax(0, 1fr));
-            gap: 8px;
-            margin: 30px 0;
+            display: grid; grid-template-columns: repeat(5, minmax(0, 1fr));
+            gap: 8px; margin: 30px 0;
         }
-
         .method-scale-item {
-            min-height: 100px;
-            padding: 14px 10px;
-            border: 1px solid var(--border);
-            border-radius: 7px;
+            min-width: 0; min-height: 100px; padding: 14px 10px;
+            border: 1px solid var(--border); border-radius: 7px;
             background: var(--surface);
         }
-
         .method-scale-item b {
-            display: block;
-            margin-bottom: 8px;
-            color: var(--purple-light);
-            font-size: 20px;
+            display: block; margin-bottom: 8px;
+            color: var(--purple-light); font-size: 20px;
         }
-
         .method-scale-item span {
-            display: block;
-            color: var(--muted);
-            font-size: 12px;
-            line-height: 1.5;
+            display: block; color: var(--muted);
+            font-size: 12px; line-height: 1.5;
         }
-
         .method-example {
-            max-width: 770px;
-            padding: 24px;
-            margin-top: 22px;
+            max-width: 770px; padding: 24px; margin-top: 22px;
             border: 1px solid rgba(167, 139, 250, .35);
-            background: rgba(167, 139, 250, .055);
-            border-radius: 9px;
+            background: rgba(167, 139, 250, .055); border-radius: 9px;
         }
-
-        .method-example p {
-            color: var(--muted);
-            font-size: 14px;
-            line-height: 1.8;
-        }
-
-        .method-example p + p {
-            margin-top: 10px;
-        }
-
-        .method-list {
-            padding-left: 20px;
-        }
-
+        .method-example p { color: var(--muted); font-size: 14px; line-height: 1.8; }
+        .method-example p + p { margin-top: 10px; }
+        .method-example strong { color: var(--text); }
+        .method-list { padding-left: 20px; }
         .method-reference {
-            margin-top: 18px;
-            padding: 20px 0;
+            margin-top: 18px; padding: 20px 0;
             border-bottom: 1px solid var(--border);
         }
-
         .method-reference a {
-            color: var(--purple-light);
-            font-weight: 700;
-            text-decoration: underline;
-            text-underline-offset: 4px;
+            color: var(--purple-light); font-weight: 700;
+            text-decoration: underline; text-underline-offset: 4px;
+            overflow-wrap: anywhere;
         }
-
         .method-reference p {
-            margin-top: 8px;
-            color: var(--muted);
-            font-size: 14px;
-            line-height: 1.8;
+            margin-top: 8px; color: var(--muted);
+            font-size: 14px; line-height: 1.8;
         }
-
         .method-footer-actions {
-            padding: 48px 0 90px;
-            display: flex;
-            flex-wrap: wrap;
-            gap: 14px;
+            padding: 48px 0 90px; display: flex;
+            flex-wrap: wrap; gap: 14px;
         }
-
-        /* CELULARES */
-
         @media (max-width: 700px) {
-
-            .method-main {
-                width: 86%;
-            }
-
-            .method-hero {
-                padding: 75px 0 65px;
-            }
-
-            .method-section {
-                padding: 60px 0;
-            }
-
-            .method-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .method-scale {
-                grid-template-columns: repeat(2, minmax(0, 1fr));
-            }
-
-            .method-scale-item:last-child {
-                grid-column: 1 / -1;
-            }
-
-            .method-card {
-                padding: 24px;
-            }
-
-            .method-lead {
-                font-size: 15px;
-            }
+            .method-main { width: 86%; }
+            .method-hero { padding: 75px 0 65px; }
+            .method-section { padding: 60px 0; }
+            .method-grid { grid-template-columns: 1fr; }
+            .method-scale { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+            .method-scale-item:last-child { grid-column: 1 / -1; }
+            .method-card { padding: 24px; }
+            .method-lead { font-size: 15px; }
         }
-
         @media (prefers-reduced-motion: reduce) {
-            .method-nav a {
-                transition: none;
-            }
+            .method-nav a { transition: none; }
         }
-
     </style>
 </head>
-
 <body>
-
-    <!-- CABEÇALHO -->
-
     <header class="header">
-
-        <a href="index.html"
-           class="logo"
-           aria-label="PERSONA — Página inicial">
-
-            <span class="logo-symbol">P.</span>
-            PERSONA
+        <a href="index.html" class="logo" aria-label="PERSONA — Página inicial">
+            <span class="logo-symbol">P.</span> PERSONA
         </a>
-
-        <a href="index.html" class="header-link">
-            ← Voltar ao início
-        </a>
-
+        <a href="index.html" class="header-link">← Voltar ao início</a>
     </header>
 
-    <!-- CONTEÚDO PRINCIPAL -->
-
     <main class="method-main">
-
-        <!-- APRESENTAÇÃO -->
-
-        <section class="method-hero"
-                 aria-labelledby="method-title">
-
-            <span class="method-tag">
-                PERSONA / METODOLOGIA
-            </span>
-
-            <h1 id="method-title">
-                Por trás de cada resultado,
-                <span>uma explicação.</span>
-            </h1>
-
+        <section class="method-hero" aria-labelledby="method-title">
+            <span class="method-tag">PERSONA / METODOLOGIA</span>
+            <h1 id="method-title">Por trás de cada resultado, <span>uma explicação.</span></h1>
             <p class="method-lead">
-                Queremos que você entenda o que nossas perguntas
-                exploram, como os indicadores são calculados e,
-                principalmente, o que eles não permitem concluir.
+                Entenda o que o PERSONA explora, como seus indicadores são calculados
+                e quais são os limites das interpretações apresentadas.
             </p>
-
             <div class="method-notice">
-                <strong>Versão experimental:</strong>
-                o PERSONA é uma ferramenta autoral de reflexão e
-                autoconhecimento. Não é um teste psicológico validado,
-                nem substitui avaliação realizada por profissional
-                habilitado.
+                <strong>Ferramenta experimental:</strong> o PERSONA é um projeto autoral
+                de reflexão e autoconhecimento. Seu questionário ainda não passou
+                por validação científica. Não é um teste psicológico validado,
+                não realiza diagnósticos e não substitui a avaliação de um
+                profissional habilitado.
             </div>
-
         </section>
 
-        <!-- NAVEGAÇÃO INTERNA -->
-
-        <nav class="method-nav"
-             aria-label="Seções da metodologia">
-
+        <nav class="method-nav" aria-label="Seções da metodologia">
             <a href="#proposta">Proposta</a>
             <a href="#dimensoes">Dimensões</a>
             <a href="#pontuacao">Pontuação</a>
             <a href="#limites">Limitações</a>
             <a href="#privacidade">Privacidade</a>
             <a href="#referencias">Referências</a>
-
         </nav>
 
-        <!-- SEÇÃO 01 — PROPOSTA -->
-
-        <section class="method-section"
-                 id="proposta"
-                 aria-labelledby="proposta-title">
-
-            <span class="method-tag">
-                01 / A PROPOSTA
-            </span>
-
-            <h2 id="proposta-title">
-                Uma ferramenta para
-                <span>refletir.</span>
-            </h2>
-
+        <section class="method-section" id="proposta" aria-labelledby="proposta-title">
+            <span class="method-tag">01 / A PROPOSTA</span>
+            <h2 id="proposta-title">Uma ferramenta para <span>refletir.</span></h2>
             <div class="method-text">
-
                 <p>
-                    O questionário atual apresenta
-                    <strong>30 afirmações originais</strong>,
-                    com cinco opções de concordância.
-                    Cada pessoa responde com base na maneira
-                    como percebe suas próprias preferências
-                    e reações.
+                    O questionário reúne <strong>30 afirmações originais</strong>,
+                    distribuídas em cinco dimensões. Cada afirmação apresenta
+                    cinco opções de concordância, para que você responda com base
+                    na forma como percebe suas preferências e reações no cotidiano.
                 </p>
-
                 <p>
-                    O objetivo não é atribuir um tipo fixo de
-                    personalidade, diagnosticar condições ou
-                    estabelecer quem é "melhor" em alguma
-                    característica. O resultado é um resumo
-                    das respostas dadas a um conjunto limitado
-                    de situações.
+                    As perguntas foram elaboradas e revisadas para explorar
+                    diferentes situações de maneira clara. Ainda assim, sua
+                    compreensão e seu funcionamento precisam ser investigados
+                    em estudos sistemáticos com participantes.
                 </p>
-
                 <p>
-                    As cinco dimensões foram definidas para
-                    este projeto. Elas
-                    <strong>não equivalem às cinco dimensões
-                    do modelo Big Five</strong> e não constituem,
-                    por si sós, escalas psicométricas validadas.
+                    A proposta não é atribuir um tipo fixo de personalidade,
+                    classificar pessoas ou definir quem é melhor em determinada
+                    característica. Os resultados oferecem um <strong>ponto de
+                    partida para a autorreflexão</strong>, limitado às situações
+                    descritas nas afirmações.
                 </p>
-
+                <p>
+                    As cinco dimensões são definições próprias do projeto.
+                    <strong>Elas não equivalem às cinco dimensões do modelo Big Five</strong>
+                    e não devem ser tratadas como escalas psicométricas validadas.
+                </p>
             </div>
-
         </section>
 
-        <!-- SEÇÃO 02 — DIMENSÕES -->
-
-        <section class="method-section"
-                 id="dimensoes"
-                 aria-labelledby="dimensoes-title">
-
-            <span class="method-tag">
-                02 / O QUE EXPLORAMOS
-            </span>
-
-            <h2 id="dimensoes-title">
-                Cinco dimensões.
-                <span>Diferentes perspectivas.</span>
-            </h2>
-
+        <section class="method-section" id="dimensoes" aria-labelledby="dimensoes-title">
+            <span class="method-tag">02 / O QUE EXPLORAMOS</span>
+            <h2 id="dimensoes-title">Cinco dimensões. <span>Diferentes perspectivas.</span></h2>
             <div class="method-text">
                 <p>
-                    São seis afirmações por dimensão.
-                    Os extremos indicam a direção da escala
-                    utilizada no PERSONA, não qualidades
-                    melhores ou piores.
+                    Cada dimensão contém seis afirmações. Seus dois extremos
+                    representam direções de preferência dentro do questionário,
+                    não características positivas ou negativas. Uma mesma pessoa
+                    pode apresentar preferências diferentes conforme a situação.
                 </p>
             </div>
-
             <div class="method-grid">
-
                 <article class="method-card">
                     <span class="method-number">01 / SOCIAL</span>
-
-                    <h3>
-                        Observação inicial ↔ Iniciativa social
-                    </h3>
-
+                    <h3>Observação inicial ↔ Iniciativa social</h3>
                     <p>
-                        Explora a preferência por observar antes
-                        de participar ou por iniciar conversas
-                        e interações espontaneamente.
-                        Não mede valor pessoal, timidez ou
-                        habilidade social.
+                        Explora a preferência por observar antes de participar
+                        ou por iniciar conversas e contribuir espontaneamente
+                        em interações sociais. Não mede timidez, valor pessoal
+                        nem habilidade social.
                     </p>
                 </article>
-
                 <article class="method-card">
                     <span class="method-number">02 / COGNITIVA</span>
-
                     <h3>Concreta ↔ Abstrata</h3>
-
                     <p>
-                        Explora a preferência inicial por exemplos
-                        observáveis e aplicações práticas ou por
-                        hipóteses, cenários e possibilidades.
-                        Não mede inteligência.
+                        Explora a preferência por exemplos e aplicações práticas
+                        ou por conceitos gerais, relações entre ideias e hipóteses.
+                        Não mede inteligência, criatividade nem capacidade de aprender.
                     </p>
                 </article>
-
                 <article class="method-card">
                     <span class="method-number">03 / DECISÓRIA</span>
-
-                    <h3>
-                        Impressão inicial ↔ Análise estruturada
-                    </h3>
-
+                    <h3>Impressão inicial ↔ Análise estruturada</h3>
                     <p>
-                        Explora a preferência declarada por uma
-                        avaliação inicial mais intuitiva ou por
-                        comparar critérios, evidências e consequências.
-                        Não mede qualidade das decisões.
+                        Explora a preferência por impressões e experiências
+                        anteriores ou pela comparação de critérios, alternativas
+                        e consequências. Não avalia a qualidade das decisões.
                     </p>
                 </article>
-
                 <article class="method-card">
-                    <span class="method-number">
-                        04 / ORGANIZACIONAL
-                    </span>
-
-                    <h3>
-                        Flexibilidade ↔ Planejamento
-                    </h3>
-
+                    <span class="method-number">04 / ORGANIZACIONAL</span>
+                    <h3>Flexibilidade ↔ Planejamento</h3>
                     <p>
-                        Explora preferências por manter opções
-                        abertas ou estabelecer etapas e prazos
-                        com antecedência.
-                        Não mede produtividade ou responsabilidade.
+                        Explora a preferência por manter os próximos passos
+                        em aberto ou por organizar tarefas, compromissos e
+                        recursos antecipadamente. Não mede produtividade,
+                        disciplina ou responsabilidade.
                     </p>
                 </article>
-
                 <article class="method-card">
-                    <span class="method-number">
-                        05 / COMPORTAMENTAL
-                    </span>
-
-                    <h3>
-                        Reação imediata ↔ Pausa para avaliar
-                    </h3>
-
+                    <span class="method-number">05 / COMPORTAMENTAL</span>
+                    <h3>Reação imediata ↔ Pausa para avaliar</h3>
                     <p>
-                        Explora a forma como a pessoa relata
-                        responder inicialmente a mudanças e
-                        imprevistos. Não mede estabilidade emocional
-                        nem diagnostica dificuldades psicológicas.
+                        Explora a preferência por agir prontamente ou fazer
+                        uma pausa para compreender a situação antes de responder
+                        a imprevistos. Não mede autocontrole ou estabilidade emocional.
                     </p>
                 </article>
-
             </div>
-
         </section>
 
-        <!-- SEÇÃO 03 — PONTUAÇÃO -->
-
-        <section class="method-section"
-                 id="pontuacao"
-                 aria-labelledby="pontuacao-title">
-
-            <span class="method-tag">
-                03 / COMO CALCULAMOS
-            </span>
-
-            <h2 id="pontuacao-title">
-                Uma escala transparente,
-                <span>não uma nota.</span>
-            </h2>
-
+        <section class="method-section" id="pontuacao" aria-labelledby="pontuacao-title">
+            <span class="method-tag">03 / COMO CALCULAMOS</span>
+            <h2 id="pontuacao-title">Uma escala transparente, <span>não uma nota.</span></h2>
+            <div class="method-text">
+                <p>Cada afirmação pode receber uma das cinco respostas:</p>
+            </div>
+            <div class="method-scale" aria-label="Escala de concordância, de um a cinco">
+                <div class="method-scale-item"><b>1</b><span>Discordo totalmente</span></div>
+                <div class="method-scale-item"><b>2</b><span>Discordo parcialmente</span></div>
+                <div class="method-scale-item"><b>3</b><span>Nem concordo nem discordo</span></div>
+                <div class="method-scale-item"><b>4</b><span>Concordo parcialmente</span></div>
+                <div class="method-scale-item"><b>5</b><span>Concordo totalmente</span></div>
+            </div>
             <div class="method-text">
                 <p>
-                    Cada afirmação utiliza cinco respostas:
+                    Em cada dimensão, três afirmações apontam para um extremo
+                    e três para o outro. Para manter a mesma direção de leitura,
+                    as respostas a algumas afirmações são invertidas:
+                    <strong>valor ajustado = 6 − resposta original</strong>.
+                    Assim, a resposta 1 equivale a 5 após o ajuste, e vice-versa.
                 </p>
-            </div>
-
-            <div class="method-scale"
-                 aria-label="Escala de respostas de um a cinco">
-
-                <div class="method-scale-item">
-                    <b>1</b>
-                    <span>Discordo totalmente</span>
-                </div>
-
-                <div class="method-scale-item">
-                    <b>2</b>
-                    <span>Discordo parcialmente</span>
-                </div>
-
-                <div class="method-scale-item">
-                    <b>3</b>
-                    <span>Nem concordo nem discordo</span>
-                </div>
-
-                <div class="method-scale-item">
-                    <b>4</b>
-                    <span>Concordo parcialmente</span>
-                </div>
-
-                <div class="method-scale-item">
-                    <b>5</b>
-                    <span>Concordo totalmente</span>
-                </div>
-
-            </div>
-
-            <div class="method-text">
-
                 <p>
-                    Em cada dimensão, três afirmações apontam
-                    para um extremo e três para o outro.
-                    Nas afirmações de direção invertida, usamos
-                    <strong>6 menos o valor da resposta</strong>:
-                    uma resposta 1 passa a 5, e uma resposta 5
-                    passa a 1.
+                    Em seguida, calculamos a média dos seis valores ajustados
+                    e a convertemos para uma escala de 0 a 100 por meio da fórmula
+                    <strong>(média − 1) ÷ 4 × 100</strong>. O resultado exibido
+                    é arredondado para o inteiro mais próximo.
                 </p>
-
-                <p>
-                    Calculamos a média das seis pontuações ajustadas
-                    e a convertemos para uma escala de 0 a 100
-                    pela expressão
-                    <strong>(média − 1) ÷ 4 × 100</strong>,
-                    arredondada ao inteiro mais próximo.
-                </p>
-
             </div>
-
             <div class="method-example">
-
                 <p>
-                    <strong>Exemplo:</strong> se as seis respostas
-                    ajustadas de uma dimensão forem iguais a 4,
-                    a média será 4 e o indicador exibirá
-                    <strong>75/100</strong>.
+                    <strong>Exemplo:</strong> se os seis valores ajustados de
+                    uma dimensão forem iguais a 4, a média será 4 e o indicador
+                    mostrará <strong>75/100</strong>.
                 </p>
-
                 <p>
-                    Isso não significa "75% de personalidade",
-                    percentil 75 nem desempenho superior.
-                    É somente uma posição na escala criada
-                    para resumir essas respostas.
+                    Isso não significa 75% de uma característica, percentil 75
+                    ou desempenho superior. É apenas uma posição na escala
+                    construída para resumir as respostas.
                 </p>
-
             </div>
-
-            <div class="method-text" style="margin-top:25px;">
-
+            <div class="method-text" style="margin-top: 25px;">
                 <p>
-                    Para produzir textos resumidos, o sistema usa
-                    faixas descritivas:
-                    <strong>0–34</strong>,
-                    <strong>35–65</strong> e
-                    <strong>66–100</strong>.
-                    Esses limites foram escolhidos para organizar
-                    a interface; não são pontos de corte validados
-                    em pesquisas com usuários.
+                    Para apresentar descrições resumidas, o PERSONA utiliza
+                    três faixas: <strong>0–34</strong>, <strong>35–65</strong>
+                    e <strong>66–100</strong>. Esses limites são critérios
+                    internos de apresentação, não pontos de corte estabelecidos
+                    por estudos científicos.
                 </p>
-
                 <p>
-                    A visão geral destaca até duas dimensões
-                    fora da faixa central que estejam mais
-                    afastadas do ponto 50.
-                    Ela <strong>não demonstra relações de causa
-                    e efeito</strong> entre as dimensões.
+                    Na visão geral, o sistema pode destacar até duas dimensões
+                    fora da faixa central, priorizando as pontuações mais distantes
+                    de 50. Essa leitura não comprova relações de causa e efeito
+                    entre dimensões nem descreve a personalidade inteira de alguém.
                 </p>
-
             </div>
-
         </section>
 
-        <!-- SEÇÃO 04 — LIMITAÇÕES -->
-
-        <section class="method-section"
-                 id="limites"
-                 aria-labelledby="limites-title">
-
-            <span class="method-tag">
-                04 / INTERPRETAÇÃO RESPONSÁVEL
-            </span>
-
-            <h2 id="limites-title">
-                O que os resultados
-                <span>não dizem.</span>
-            </h2>
-
+        <section class="method-section" id="limites" aria-labelledby="limites-title">
+            <span class="method-tag">04 / INTERPRETAÇÃO RESPONSÁVEL</span>
+            <h2 id="limites-title">O que os resultados <span>não dizem.</span></h2>
             <div class="method-text">
-
                 <p>
-                    O PERSONA ainda não passou por estudos
-                    próprios de consistência, estabilidade,
-                    validade ou comparação com amostras
-                    representativas. Por isso, seus indicadores
-                    não devem ser interpretados como medidas
-                    científicas estabelecidas da personalidade.
+                    O PERSONA ainda não dispõe de estudos próprios suficientes
+                    de consistência interna, estabilidade das respostas, validade
+                    e comparação com amostras representativas. Portanto, seus
+                    indicadores não são medidas científicas estabelecidas da personalidade.
                 </p>
-
                 <ul class="method-list">
-
-                    <li>
-                        Uma pontuação próxima de 50 pode
-                        representar respostas diferentes entre
-                        situações; não prova equilíbrio.
-                    </li>
-
-                    <li>
-                        Uma pontuação mais alta não significa
-                        que a pessoa seja melhor, mais capaz
-                        ou mais saudável.
-                    </li>
-
-                    <li>
-                        As respostas são autorrelatos e podem
-                        variar com contexto, compreensão das
-                        perguntas e momento de vida.
-                    </li>
-
-                    <li>
-                        O resultado não deve ser usado para
-                        diagnóstico, seleção profissional ou
-                        outras decisões de alto impacto.
-                    </li>
-
+                    <li>Uma pontuação próxima de 50 pode resultar de respostas variadas entre situações; não comprova equilíbrio.</li>
+                    <li>Uma pontuação alta ou baixa não significa que alguém seja melhor, mais capaz ou mais saudável.</li>
+                    <li>Preferências diferentes podem coexistir. A representação em uma escala única é uma simplificação experimental.</li>
+                    <li>As respostas são autorrelatos e podem variar com o contexto, o entendimento das frases e o momento de vida.</li>
+                    <li>Os resultados não devem fundamentar diagnósticos, seleção profissional ou outras decisões de alto impacto.</li>
                 </ul>
-
                 <p>
-                    Referências sobre construção de testes nos
-                    ajudam a formular boas perguntas, mas
-                    <strong>não transferem validade científica</strong>
-                    automaticamente ao nosso questionário.
+                    Consultar estudos e orientações de psicometria ajuda a aprimorar
+                    o desenvolvimento do projeto, mas <strong>não confere validade
+                    científica automaticamente</strong> ao questionário.
                 </p>
-
             </div>
-
         </section>
 
-        <!-- SEÇÃO 05 — PRIVACIDADE -->
-
-        <section class="method-section"
-                 id="privacidade"
-                 aria-labelledby="privacidade-title">
-
-            <span class="method-tag">
-                05 / SEUS DADOS
-            </span>
-
-            <h2 id="privacidade-title">
-                Seu perfil,
-                <span>sua escolha.</span>
-            </h2>
-
+        <section class="method-section" id="privacidade" aria-labelledby="privacidade-title">
+            <span class="method-tag">05 / SEUS DADOS</span>
+            <h2 id="privacidade-title">Seu perfil, <span>sua escolha.</span></h2>
             <div class="method-text">
-
                 <p>
-                    Na versão atual, as respostas são processadas
-                    no navegador. Após a conclusão, o sistema
-                    guarda temporariamente as
-                    <strong>cinco pontuações</strong>
-                    e a versão do questionário na sessão da aba,
-                    para apresentar os resultados.
+                    As respostas são processadas diretamente no navegador.
+                    Ao concluir o questionário, as <strong>cinco pontuações</strong>
+                    são guardadas temporariamente na sessão para que a página
+                    de resultados possa apresentá-las.
                 </p>
-
                 <p>
-                    Se você escolher
-                    <strong>"Salvar neste navegador"</strong>,
-                    o PERSONA armazena localmente as cinco
-                    pontuações, a versão, a quantidade de
-                    perguntas e a data de salvamento.
-                    Não há cadastro nem sincronização automática
-                    com outros dispositivos.
+                    Se você selecionar <strong>“Salvar neste navegador”</strong>,
+                    o PERSONA armazenará localmente as pontuações e os dados
+                    técnicos necessários para recuperar o perfil, incluindo
+                    a data do salvamento. O salvamento é opcional.
                 </p>
-
                 <p>
-                    É possível excluir o perfil salvo na página
-                    de resultados. O armazenamento local pode
-                    desaparecer se você limpar os dados do site
-                    ou utilizar navegação privada.
-
-                    O código atual do questionário não envia
-                    as pontuações a um servidor próprio; o site,
-                    porém, é hospedado pelo GitHub Pages
-                    e utiliza fontes externas.
+                    Você pode consultar e excluir perfis salvos nos controles
+                    da página de resultados. Não existe cadastro nem sincronização
+                    automática entre dispositivos. Os dados locais podem desaparecer
+                    se você limpar o armazenamento do site ou navegar em modo privado.
                 </p>
-
+                <p>
+                    O código do questionário não envia suas pontuações a um servidor
+                    próprio do PERSONA. O site é publicado no GitHub Pages e utiliza
+                    fontes externas, cujos serviços podem processar informações
+                    técnicas de acesso de acordo com suas próprias políticas.
+                </p>
             </div>
-
         </section>
 
-        <!-- SEÇÃO 06 — REFERÊNCIAS -->
-
-        <section class="method-section"
-                 id="referencias"
-                 aria-labelledby="referencias-title">
-
-            <span class="method-tag">
-                06 / FONTES E TRANSPARÊNCIA
-            </span>
-
-            <h2 id="referencias-title">
-                Referências para
-                <span>aprender e melhorar.</span>
-            </h2>
-
+        <section class="method-section" id="referencias" aria-labelledby="referencias-title">
+            <span class="method-tag">06 / FONTES E TRANSPARÊNCIA</span>
+            <h2 id="referencias-title">Referências para <span>aprender e melhorar.</span></h2>
             <div class="method-text">
-
                 <p>
-                    Estas fontes orientam nossa preocupação com
-                    construção e interpretação responsável de
-                    instrumentos.
-
-                    <strong>As perguntas do PERSONA são originais</strong>
-                    e não reproduzem as escalas citadas abaixo.
+                    As referências abaixo orientam a preocupação com a elaboração,
+                    a avaliação e a interpretação responsável de instrumentos.
+                    <strong>As afirmações do PERSONA são autorais</strong> e não
+                    reproduzem as escalas mencionadas.
                 </p>
-
             </div>
-
             <div class="method-reference">
-
-                <a href="https://ipip.ori.org/"
-                   target="_blank"
-                   rel="noopener noreferrer">
-                    International Personality Item Pool (IPIP) ↗
-                </a>
-
-                <p>
-                    Repositório público de itens e escalas
-                    de diferenças individuais; referência
-                    para o estudo da elaboração de afirmações.
-                </p>
-
+                <a href="https://ipip.ori.org/" target="_blank" rel="noopener noreferrer">International Personality Item Pool (IPIP) ↗</a>
+                <p>Repositório de itens e escalas usado como referência para conhecer diferentes abordagens de construção de questionários.</p>
             </div>
-
             <div class="method-reference">
-
-                <a href="https://www.sciencedirect.com/science/article/pii/S0092656616301325"
-                   target="_blank"
-                   rel="noopener noreferrer">
-                    Soto &amp; John (2017) — BFI-2-S ↗
-                </a>
-
-                <p>
-                    Pesquisa sobre versões abreviadas de instrumentos
-                    e compromissos entre extensão, confiabilidade e
-                    validade. O PERSONA não é uma versão do BFI-2.
-                </p>
-
+                <a href="https://www.sciencedirect.com/science/article/pii/S0092656616301325" target="_blank" rel="noopener noreferrer">Soto &amp; John (2017) — BFI-2-S ↗</a>
+                <p>Estudo sobre instrumentos breves de personalidade e desafios de mensuração. O PERSONA não é uma adaptação do BFI-2.</p>
             </div>
-
             <div class="method-reference">
-
-                <a href="https://www.testingstandards.net/"
-                   target="_blank"
-                   rel="noopener noreferrer">
-                    Standards for Educational and Psychological Testing ↗
-                </a>
-
-                <p>
-                    Referência de AERA, APA e NCME sobre evidências
-                    necessárias para sustentar interpretações de
-                    resultados e usos de instrumentos.
-                </p>
-
+                <a href="https://www.testingstandards.net/" target="_blank" rel="noopener noreferrer">Standards for Educational and Psychological Testing ↗</a>
+                <p>Diretrizes da AERA, APA e NCME sobre evidências necessárias para sustentar interpretações e usos de resultados de testes.</p>
             </div>
-
             <div class="method-reference">
-
-                <a href="https://satepsi.cfp.org.br/"
-                   target="_blank"
-                   rel="noopener noreferrer">
-                    SATEPSI — Conselho Federal de Psicologia ↗
-                </a>
-
-                <p>
-                    Informações oficiais brasileiras sobre a
-                    avaliação técnico-científica e o uso profissional
-                    de testes psicológicos. O PERSONA não se apresenta
-                    como teste aprovado pelo SATEPSI.
-                </p>
-
+                <a href="https://satepsi.cfp.org.br/" target="_blank" rel="noopener noreferrer">SATEPSI — Conselho Federal de Psicologia ↗</a>
+                <p>Informações oficiais sobre avaliação técnico-científica e uso profissional de testes psicológicos no Brasil. O PERSONA não é um teste aprovado pelo SATEPSI.</p>
             </div>
-
         </section>
-
-        <!-- BOTÕES FINAIS -->
 
         <div class="method-footer-actions">
-
-            <a href="quiz.html" class="primary-button">
-                Iniciar exploração
-                <span aria-hidden="true">→</span>
-            </a>
-
-            <a href="index.html" class="secondary-button">
-                Voltar ao início
-            </a>
-
+            <a href="quiz.html" class="primary-button">Iniciar exploração <span aria-hidden="true">→</span></a>
+            <a href="index.html" class="secondary-button">Voltar ao início</a>
         </div>
-
     </main>
 
-    <!-- RODAPÉ -->
-
     <footer class="footer">
-
-        <a href="index.html"
-           class="logo"
-           aria-label="PERSONA — Página inicial">
-
-            <span class="logo-symbol">P.</span>
-            PERSONA
+        <a href="index.html" class="logo" aria-label="PERSONA — Página inicial">
+            <span class="logo-symbol">P.</span> PERSONA
         </a>
-
-        <p>
-            Além da superfície, existe muito mais
-            para descobrir.
-        </p>
-
-        <span>
-            © <span id="current-year"></span> PERSONA.
-        </span>
-
+        <p>Além da superfície, existe muito mais para descobrir.</p>
+        <span>© <span id="current-year"></span> PERSONA.</span>
     </footer>
 
     <script>
-        document.getElementById("current-year").textContent =
-            new Date().getFullYear();
+        document.getElementById("current-year").textContent = new Date().getFullYear();
     </script>
-
 </body>
 </html>
