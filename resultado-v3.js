@@ -90,11 +90,29 @@
     }
   }
 
+  // Cada conclusão recebe um identificador interno. Ao terminar outra vez,
+  // o questionário substitui os dados da sessão, gerando um identificador novo.
+  // Isso evita duplicatas sem confundir duas explorações com notas iguais.
+  function criarIdExploracao() {
+    if (typeof crypto !== "undefined" && typeof crypto.randomUUID === "function") {
+      return `exploracao-${crypto.randomUUID()}`;
+    }
+    return `exploracao-${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 12)}`;
+  }
+
   function carregarSessao(versao) {
     const dados = lerJSON(sessionStorage, CHAVES_SESSAO[versao]);
     if (!dados || dados.version !== versao || !pontuacoesValidas(dados.scores)) return null;
     if (versao > 1 && dados.totalPerguntas !== 30) return null;
-    return { versao, pontuacoes: dados.scores, origem: "sessao" };
+    if (!dados.historicoId || typeof dados.historicoId !== "string") {
+      dados.historicoId = criarIdExploracao();
+      try {
+        sessionStorage.setItem(CHAVES_SESSAO[versao], JSON.stringify(dados));
+      } catch {
+        // A ausência de armazenamento impede salvar o histórico, mas não ler o resultado.
+      }
+    }
+    return { versao, pontuacoes: dados.scores, origem: "sessao", historicoId: dados.historicoId };
   }
 
   function carregarSalvo(chave, versoes) {
@@ -102,7 +120,13 @@
     if (!dados || dados.formato !== 1 || !versoes.includes(dados.version) || !pontuacoesValidas(dados.scores)) return null;
     if (dados.version > 1 && dados.totalPerguntas !== 30) return null;
     if (typeof dados.salvoEm !== "string" || !Number.isFinite(Date.parse(dados.salvoEm))) return null;
-    return { versao: dados.version, pontuacoes: dados.scores, origem: "salvo", salvoEm: dados.salvoEm };
+    const historicoId = typeof dados.historicoId === "string" && dados.historicoId.length >= 4
+      ? dados.historicoId
+      : `exploracao-importada-${dados.version}-${Date.parse(dados.salvoEm)}`;
+    return {
+      versao: dados.version, pontuacoes: dados.scores,
+      origem: "salvo", salvoEm: dados.salvoEm, historicoId
+    };
   }
 
   function interpretar(config, valor) {
@@ -383,8 +407,8 @@
 
     const descricao = document.createElement("p");
     descricao.textContent = "O salvamento é opcional e fica apenas neste navegador. " +
-      "São guardadas cinco pontuações, a data e informações técnicas para recuperar o perfil. " +
-      "Não há cadastro nem sincronização entre dispositivos. Perfis anteriores permanecem separados.";
+      "Ao salvar, guardamos seu perfil mais recente e uma entrada no histórico com cinco pontuações e a data. " +
+      "Não há cadastro nem sincronização entre dispositivos. O histórico preserva explorações anteriores.";
     Object.assign(descricao.style, { color: "var(--muted)", fontSize: "13px", lineHeight: "1.8", marginTop: "10px" });
     painel.appendChild(descricao);
 
@@ -414,7 +438,7 @@
       excluir.className = "secondary-button";
       excluir.textContent = versao === 3 ? "Excluir perfil salvo" : "Excluir perfil anterior";
       excluir.addEventListener("click", () => {
-        if (!window.confirm("Deseja excluir este perfil salvo? Outros perfis armazenados não serão afetados.")) return;
+        if (!window.confirm("Deseja excluir o perfil principal salvo? As explorações guardadas no histórico não serão apagadas.")) return;
         try {
           localStorage.removeItem(chave);
           sessionStorage.removeItem(CHAVES_SESSAO[versao]);
@@ -427,18 +451,58 @@
     }
 
     salvar.addEventListener("click", () => {
+      const historico = window.PersonaHistorico;
+      if (!historico || typeof historico.adicionar !== "function") {
+        mensagem.textContent = "O histórico ainda não foi carregado. Atualize a página e tente novamente.";
+        return;
+      }
+
       const anterior = carregarSalvo(chave, versao === 3 ? [3] : [1, 2]);
-      if (anterior && !window.confirm("Já existe um perfil salvo para este questionário. Deseja substituí-lo por este resultado?")) return;
+      const mesmaExploracao = anterior &&
+        anterior.historicoId === resultado.historicoId &&
+        ORDEM.every(dim => anterior.pontuacoes[dim] === resultado.pontuacoes[dim]);
+      if (anterior && !mesmaExploracao &&
+          !window.confirm("Deseja tornar esta exploração seu perfil mais recente? A exploração anterior continuará no histórico, caso tenha sido salva nele.")) {
+        return;
+      }
+
+      const id = resultado.historicoId || criarIdExploracao();
+      let registroExistente;
+      let salvoEm;
+      let gravacao;
+      try {
+        registroExistente = historico.obter(id);
+        salvoEm = registroExistente
+          ? registroExistente.salvoEm
+          : (resultado.origem === "salvo" && resultado.salvoEm
+            ? new Date(resultado.salvoEm).toISOString()
+            : new Date().toISOString());
+        gravacao = historico.adicionar({
+          id, versao, pontuacoes: resultado.pontuacoes,
+          salvoEm, origem: resultado.origem
+        });
+      } catch (erro) {
+        mensagem.textContent = "Não foi possível guardar esta exploração no histórico. " +
+          "Seu perfil anterior não foi alterado. " + (erro && erro.message ? erro.message : "");
+        return;
+      }
+
       try {
         localStorage.setItem(chave, JSON.stringify({
           formato: 1, version: versao, totalPerguntas: versao === 1 ? 20 : 30,
-          scores: resultado.pontuacoes, salvoEm: new Date().toISOString()
+          scores: resultado.pontuacoes, salvoEm, historicoId: id
         }));
-        mensagem.textContent = "Perfil salvo neste navegador. Outros perfis foram preservados.";
+        resultado.historicoId = id;
+        resultado.salvoEm = salvoEm;
+        const quantidade = historico.listar().length;
+        mensagem.textContent = gravacao.criado
+          ? `Perfil salvo! Você tem ${quantidade} ${quantidade === 1 ? "exploração guardada" : "explorações guardadas"} no histórico.`
+          : `Perfil preservado. Esta exploração já estava no histórico (${quantidade} ${quantidade === 1 ? "registro" : "registros"}).`;
         salvar.textContent = "Atualizar perfil salvo";
         atualizarExcluir();
       } catch {
-        mensagem.textContent = "Não foi possível salvar. Verifique as permissões de armazenamento do navegador.";
+        mensagem.textContent = "A exploração foi guardada no histórico, mas não foi possível atualizar " +
+          "seu perfil principal. Verifique as permissões de armazenamento.";
       }
     });
     acoes.appendChild(salvar);
