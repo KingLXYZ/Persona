@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#09090d">
+  <meta name="description" content="Revisite suas explorações salvas no PERSONA. Consulte as pontuações, as datas e gerencie seu histórico local.">
+  <title>Minha jornada — PERSONA</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+
+  <style>
+    /* A página utiliza a identidade global já existente no PERSONA. */
+    .journey-main { width: min(1100px, 86%); margin: 0 auto; }
+    .journey-hero { padding: 100px 0 70px; }
+    .journey-label { display: inline-block; color: var(--purple); font-size: 11px; font-weight: 700; letter-spacing: 2.3px; text-transform: uppercase; }
+    .journey-hero h1 { margin: 24px 0; font-size: clamp(40px, 5.5vw, 68px); line-height: 1.16; max-width: 790px; }
+    .journey-hero h1 span, .journey-section h2 span { color: var(--purple); }
+    .journey-intro { max-width: 690px; color: var(--muted); font-size: 16px; line-height: 1.9; }
+    .journey-notice { max-width: 790px; margin-top: 30px; padding: 20px 24px; background: var(--surface); border-left: 2px solid var(--purple); color: var(--muted); font-size: 13px; line-height: 1.8; }
+    .journey-notice strong { color: var(--text); }
+    .journey-section { padding: 72px 0 90px; border-top: 1px solid var(--border); }
+    .journey-section-header { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: end; gap: 20px; margin-bottom: 35px; }
+    .journey-section h2 { font-size: clamp(29px, 3.6vw, 45px); margin-top: 19px; line-height: 1.2; }
+    .journey-count { color: var(--muted); font-size: 13px; }
+    .journey-list { display: grid; gap: 18px; }
+    .journey-card { min-width: 0; padding: 28px; background: var(--surface); border: 1px solid var(--border); border-radius: 12px; }
+    .journey-card-header { display: flex; align-items: center; justify-content: space-between; gap: 20px; flex-wrap: wrap; }
+    .journey-index { display: block; color: var(--purple); font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; }
+    .journey-card h3 { margin: 12px 0 8px; font-family: 'Manrope', sans-serif; font-size: 22px; font-weight: 750; line-height: 1.35; }
+    .journey-date { color: var(--muted); font-size: 13px; line-height: 1.65; }
+    .journey-details { border-top: 1px solid var(--border); margin-top: 25px; padding-top: 20px; }
+    .journey-details summary { display: flex; align-items: center; justify-content: space-between; cursor: pointer; list-style: none; color: var(--purple-light); font-size: 13px; font-weight: 700; gap: 18px; padding: 8px 0; }
+    .journey-details summary::-webkit-details-marker { display: none; }
+    .journey-details summary::after { content: '+'; font-size: 23px; font-weight: 400; line-height: 1; }
+    .journey-details[open] summary::after { content: '−'; }
+    .journey-details summary:focus-visible, .journey-delete:focus-visible { outline: 2px solid var(--purple-light); outline-offset: 5px; }
+    .journey-score-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; padding: 24px 0 8px; }
+    .journey-score { min-width: 0; padding: 20px; border: 1px solid var(--border); border-radius: 9px; background: var(--background); }
+    .journey-score-line { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; margin-bottom: 13px; }
+    .journey-score-name { font-family: 'Manrope', sans-serif; font-weight: 700; font-size: 15px; }
+    .journey-score-value { color: var(--text); font-weight: 700; font-size: 17px; white-space: nowrap; }
+    .journey-score-value small { font-size: 11px; font-weight: 400; color: var(--muted); }
+    .journey-meter { height: 7px; border-radius: 20px; background: #302838; overflow: hidden; }
+    .journey-fill { height: 100%; border-radius: inherit; background: var(--purple); }
+    .journey-extremes { display: flex; justify-content: space-between; gap: 16px; margin-top: 12px; color: var(--muted); font-size: 11px; line-height: 1.5; }
+    .journey-extremes span:last-child { text-align: right; }
+    .journey-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 15px; margin-top: 20px; padding-top: 22px; border-top: 1px solid var(--border); }
+    .journey-delete { cursor: pointer; border: 1px solid rgba(255, 255, 255, .18); background: transparent; padding: 12px 18px; color: var(--text); font: inherit; font-size: 12px; font-weight: 700; border-radius: 3px; transition: border-color .2s; }
+    .journey-delete:hover { border-color: #d59aa8; }
+    .journey-action-note { color: var(--muted); font-size: 12px; line-height: 1.6; }
+    .journey-empty { border: 1px solid var(--border); border-radius: 12px; background: var(--surface); padding: 40px; }
+    .journey-empty h3 { font-family: 'Manrope', sans-serif; font-size: 23px; margin-bottom: 14px; }
+    .journey-empty p { color: var(--muted); font-size: 14px; line-height: 1.9; margin-bottom: 25px; max-width: 580px; }
+    .journey-message { color: var(--purple-light); font-size: 13px; line-height: 1.8; margin-bottom: 22px; }
+    .journey-bottom { display: flex; flex-wrap: wrap; gap: 15px; margin-top: 50px; }
+    .journey-disclaimer { padding: 35px 0 75px; border-top: 1px solid var(--border); color: var(--muted); font-size: 12px; line-height: 1.9; max-width: 850px; }
+    @media (max-width: 700px) {
+      .journey-main { width: 86%; }
+      .journey-hero { padding: 76px 0 60px; }
+      .journey-intro { font-size: 15px; }
+      .journey-section { padding: 65px 0 75px; }
+      .journey-card { padding: 22px; }
+      .journey-score-grid { grid-template-columns: 1fr; }
+      .journey-card h3 { font-size: 19px; }
+      .journey-empty { padding: 25px; }
+      .journey-bottom a { width: 100%; }
+    }
+    @media (prefers-reduced-motion: reduce) { .journey-delete { transition: none; } }
+  </style>
+  <script src="persona-historico.js?v=1" defer></script>
+</head>
+<body>
+  <header class="header">
+    <a class="logo" href="index.html" aria-label="PERSONA — Página inicial"><span class="logo-symbol">P.</span> PERSONA</a>
+    <a class="header-link" href="resultado.html">← Voltar ao meu perfil</a>
+  </header>
+
+  <main class="journey-main">
+    <section class="journey-hero" aria-labelledby="journey-title">
+      <span class="journey-label">PERSONA / MINHA JORNADA</span>
+      <h1 id="journey-title">Suas explorações. <span>Novas perspectivas.</span></h1>
+      <p class="journey-intro">Revisite os resultados que escolheu guardar e reflita sobre as diferentes situações em que respondeu ao questionário.</p>
+      <div class="journey-notice">
+        <strong>Seus dados ficam neste navegador.</strong> O histórico é salvo somente quando você escolhe guardar uma exploração. Não existe sincronização automática entre dispositivos. Resultados obtidos com perguntas diferentes não devem ser comparados diretamente.
+      </div>
+    </section>
+
+    <section class="journey-section" aria-labelledby="journey-section-title">
+      <div class="journey-section-header">
+        <div>
+          <span class="journey-label">01 / HISTÓRICO LOCAL</span>
+          <h2 id="journey-section-title">Momentos para <span>revisitar.</span></h2>
+        </div>
+        <p class="journey-count" id="journey-count" aria-live="polite">Carregando histórico...</p>
+      </div>
+      <p class="journey-message" id="journey-message" role="status" aria-live="polite"></p>
+      <div class="journey-list" id="journey-list" aria-label="Explorações salvas"></div>
+      <div class="journey-bottom">
+        <a href="quiz.html" class="primary-button">Nova exploração <span aria-hidden="true">→</span></a>
+        <a href="resultado.html" class="secondary-button">Meu perfil</a>
+      </div>
+    </section>
+
+    <p class="journey-disclaimer">O PERSONA é uma ferramenta experimental de autoconhecimento. Os indicadores não constituem diagnóstico psicológico nem avaliação psicométrica validada. Excluir um registro do histórico não exclui automaticamente o perfil salvo na página de resultados.</p>
+  </main>
+
+  <footer class="footer">
+    <a href="index.html" class="logo" aria-label="PERSONA — Página inicial"><span class="logo-symbol">P.</span> PERSONA</a>
+    <p>Além da superfície, existe muito mais para descobrir.</p>
+    <span>© <span id="current-year"></span> PERSONA.</span>
+  </footer>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      "use strict";
+      const lista = document.getElementById("journey-list");
+      const contador = document.getElementById("journey-count");
+      const mensagem = document.getElementById("journey-message");
+      document.getElementById("current-year").textContent = String(new Date().getFullYear());
+      const dimensoes = [
+        { chave: "social", nome: "Social" },
+        { chave: "cognitiva", nome: "Cognitiva" },
+        { chave: "decisoria", nome: "Decisória" },
+        { chave: "organizacional", nome: "Organizacional" },
+        { chave: "comportamental", nome: "Comportamental" }
+      ];
+      const rotulosAtuais = {
+        social: ["Observação inicial", "Iniciativa social"],
+        cognitiva: ["Concreta", "Abstrata"],
+        decisoria: ["Impressão inicial", "Análise estruturada"],
+        organizacional: ["Flexibilidade", "Planejamento"],
+        comportamental: ["Reação imediata", "Pausa para avaliar"]
+      };
+      const rotulosAnteriores = {
+        social: ["Reserva", "Expansividade"],
+        decisoria: ["Valores e relações", "Análise de argumentos"]
+      };
+      const dataFormatador = new Intl.DateTimeFormat("pt-BR", { dateStyle: "long", timeStyle: "short" });
+      function elemento(tag, classe, texto) {
+        const no = document.createElement(tag);
+        if (classe) no.className = classe;
+        if (texto !== undefined) no.textContent = texto;
+        return no;
+      }
+      function formatarData(iso) { return dataFormatador.format(new Date(iso)); }
+      function montarDimensao(info, registro) {
+        const pontuacao = registro.pontuacoes[info.chave];
+        const extremos = (registro.versao === 1 && rotulosAnteriores[info.chave])
+          ? rotulosAnteriores[info.chave] : rotulosAtuais[info.chave];
+        const bloco = elemento("div", "journey-score");
+        const linha = elemento("div", "journey-score-line");
+        const nome = elemento("span", "journey-score-name", info.nome);
+        const numero = elemento("span", "journey-score-value", String(pontuacao));
+        numero.appendChild(elemento("small", "", " / 100"));
+        linha.append(nome, numero);
+        const medidor = elemento("div", "journey-meter");
+        medidor.setAttribute("role", "meter");
+        medidor.setAttribute("aria-label", `Indicador exploratório ${info.nome}`);
+        medidor.setAttribute("aria-valuemin", "0");
+        medidor.setAttribute("aria-valuemax", "100");
+        medidor.setAttribute("aria-valuenow", String(pontuacao));
+        const preenchimento = elemento("div", "journey-fill");
+        preenchimento.style.width = `${pontuacao}%`;
+        medidor.appendChild(preenchimento);
+        const extremosLinha = elemento("div", "journey-extremes");
+        extremosLinha.append(elemento("span", "", extremos[0]), elemento("span", "", extremos[1]));
+        bloco.append(linha, medidor, extremosLinha);
+        return bloco;
+      }
+      function montarRegistro(registro, indice) {
+        const data = formatarData(registro.salvoEm);
+        const cartao = elemento("article", "journey-card");
+        const cabecalho = elemento("div", "journey-card-header");
+        const info = elemento("div");
+        info.append(
+          elemento("span", "journey-index", `EXPLORAÇÃO ${String(indice + 1).padStart(2, "0")}`),
+          elemento("h3", "", indice === 0 ? "Exploração mais recente" : "Exploração salva"),
+          elemento("p", "journey-date", `Salva em ${data}`)
+        );
+        cabecalho.appendChild(info);
+        const detalhes = elemento("details", "journey-details");
+        const sumario = elemento("summary", "", "Consultar cinco dimensões");
+        detalhes.appendChild(sumario);
+        const grade = elemento("div", "journey-score-grid");
+        dimensoes.forEach(dim => grade.appendChild(montarDimensao(dim, registro)));
+        detalhes.appendChild(grade);
+        const acoes = elemento("div", "journey-actions");
+        const excluir = elemento("button", "journey-delete", "Excluir esta exploração");
+        excluir.type = "button";
+        excluir.setAttribute("aria-label", `Excluir exploração salva em ${data}`);
+        excluir.addEventListener("click", () => {
+          if (!window.confirm(`Excluir do histórico a exploração salva em ${data}?\n\nEsta ação não pode ser desfeita. O perfil salvo na página de resultados não será apagado.`)) return;
+          try {
+            const removido = window.PersonaHistorico.excluir(registro.id);
+            if (removido) {
+              atualizarLista(`A exploração de ${data} foi excluída do histórico.`);
+            } else {
+              atualizarLista("Esta exploração não estava mais no histórico.");
+            }
+          } catch (erro) {
+            mensagem.textContent = "Não foi possível excluir o registro. O histórico não foi modificado.";
+          }
+        });
+        acoes.append(excluir, elemento("p", "journey-action-note", "A exclusão afeta apenas este registro do histórico."));
+        detalhes.appendChild(acoes);
+        cartao.append(cabecalho, detalhes);
+        return cartao;
+      }
+      function atualizarLista(aviso = "") {
+        mensagem.textContent = aviso;
+        lista.replaceChildren();
+        if (!window.PersonaHistorico || typeof window.PersonaHistorico.listar !== "function") {
+          contador.textContent = "Histórico indisponível";
+          mensagem.textContent = "Não foi possível carregar o histórico. Confira se o módulo persona-historico.js está publicado.";
+          return;
+        }
+        try {
+          const registros = window.PersonaHistorico.listar();
+          contador.textContent = registros.length === 1 ? "1 exploração salva" : `${registros.length} explorações salvas`;
+          if (registros.length === 0) {
+            const vazio = elemento("div", "journey-empty");
+            vazio.append(
+              elemento("h3", "", "Sua jornada começa com uma exploração."),
+              elemento("p", "", "Você ainda não tem explorações neste histórico. Responda ao questionário e escolha salvar o resultado na página do seu perfil.")
+            );
+            lista.appendChild(vazio);
+            return;
+          }
+          registros.forEach((registro, indice) => lista.appendChild(montarRegistro(registro, indice)));
+        } catch (erro) {
+          contador.textContent = "Histórico indisponível";
+          mensagem.textContent = "Não foi possível ler os registros salvos. Por segurança, nenhum dado foi alterado ou excluído.";
+        }
+      }
+      atualizarLista();
+    });
+  </script>
+</body>
+</html>
