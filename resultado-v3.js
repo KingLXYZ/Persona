@@ -47,7 +47,7 @@
   const socialRecente = {
     nome: "Social", esquerda: "Observação inicial", direita: "Iniciativa social",
     baixo: "Nas situações propostas, suas respostas se aproximaram da preferência por observar antes de iniciar interações.",
-    medio: "Suas respostas ficaram próximas do centro desta escala. Isso pode refletir preferências diferentes conforme o contexto.",
+    medio: "Sua pontuação ficou na faixa central desta escala. Esse valor, por si só, não mostra se suas respostas foram semelhantes ou diferentes entre as situações.",
     alto: "Nas situações propostas, suas respostas se aproximaram da preferência por iniciar conversas e participar espontaneamente."
   };
   const decisoriaV1 = {
@@ -192,7 +192,7 @@
         pergunta: "Em quais ambientes você prefere ouvir primeiro? Há situações em que toma a iniciativa?"
       },
       medio: {
-        texto: "As respostas não indicaram uma preferência uniforme entre observar e iniciar interações. Talvez a familiaridade com as pessoas ou o assunto da conversa faça diferença.",
+        texto: "Sua pontuação ficou na faixa central da escala Social. Isso não permite concluir se suas respostas foram semelhantes ou variadas. A familiaridade com as pessoas e o assunto da conversa podem influenciar como você prefere participar.",
         pergunta: "O que costuma mudar sua disposição para começar uma conversa?"
       },
       alto: {
@@ -356,6 +356,9 @@
       numero.textContent = String(scores[chave]);
       preenchimento.style.width = `${scores[chave]}%`;
       descricao.textContent = interpretar(config, scores[chave]);
+      if (chave === "social") {
+        descricao.textContent += " Esta pontuação resume preferências em situações sociais específicas. Ela não define se você é antissocial, tímido ou introvertido.";
+      }
       const rotulos = card.querySelectorAll(".result-scale span");
       if (rotulos.length === 2) {
         rotulos[0].textContent = config.esquerda;
