@@ -62,10 +62,37 @@
     medio: "Suas respostas ficaram próximas do centro desta escala. Isso não define uma preferência constante em todas as situações.",
     alto: "Nas situações apresentadas, suas respostas se aproximaram da preferência por comparar critérios, alternativas e consequências."
   };
+  // Os textos revisados são usados nos resultados do questionário atual.
+  // Os anteriores continuam interpretados pelo conjunto com que foram criados.
+  const cognitivaAtual = {
+    ...comum.cognitiva,
+    baixo: "Nas situações apresentadas, suas respostas se aproximaram da preferência por exemplos práticos e aplicações concretas. Isso descreve uma preferência de abordagem, não sua capacidade de compreender ideias abstratas.",
+    medio: "Sua pontuação ficou na faixa central entre as abordagens concreta e abstrata. Esse resultado, isoladamente, não permite identificar como suas preferências variaram entre as situações apresentadas.",
+    alto: "Nas situações apresentadas, suas respostas se aproximaram da preferência por explorar conceitos gerais, hipóteses e relações entre ideias. Isso não representa uma medida de inteligência, criatividade ou capacidade de aprendizagem."
+  };
+  const decisoriaAtual = {
+    ...decisoriaRecente,
+    baixo: "Nas situações apresentadas, suas respostas se aproximaram da preferência por utilizar impressões iniciais e experiências anteriores ao escolher. Isso não significa ausência de reflexão ou incapacidade de analisar alternativas.",
+    medio: "Sua pontuação ficou na faixa central entre impressão inicial e análise estruturada. Esse valor não permite concluir, isoladamente, como você utiliza cada abordagem nas diferentes situações.",
+    alto: "Nas situações apresentadas, suas respostas se aproximaram da preferência por comparar critérios, alternativas e consequências antes de decidir. Isso não significa que suas decisões sejam necessariamente melhores ou mais corretas."
+  };
+  const organizacionalAtual = {
+    ...comum.organizacional,
+    baixo: "Nas situações apresentadas, suas respostas se aproximaram da preferência por manter alternativas abertas e definir etapas conforme as atividades avançam. Isso não significa falta de organização, disciplina ou comprometimento.",
+    medio: "Sua pontuação ficou na faixa central entre flexibilidade e planejamento. Esse resultado não permite determinar, isoladamente, como você organiza diferentes atividades ou em quais situações prefere cada abordagem.",
+    alto: "Nas situações apresentadas, suas respostas se aproximaram da preferência por organizar atividades e preparar etapas antecipadamente. Isso não significa necessariamente maior produtividade, responsabilidade ou capacidade de alcançar objetivos."
+  };
+  const comportamentalAtual = {
+    ...comum.comportamental,
+    baixo: "Nas situações apresentadas, suas respostas se aproximaram da preferência por agir ou responder prontamente diante de acontecimentos inesperados. Isso não significa impulsividade, agressividade ou falta de autocontrole.",
+    medio: "Sua pontuação ficou na faixa central entre reação imediata e pausa para avaliar. Esse resultado resume suas respostas, mas não permite determinar, isoladamente, como você reage em cada situação ou se suas preferências variam conforme o contexto.",
+    alto: "Nas situações apresentadas, suas respostas se aproximaram da preferência por compreender o que está acontecendo antes de responder ou agir. Isso não significa necessariamente maior equilíbrio emocional, maturidade ou capacidade de lidar com dificuldades."
+  };
+
   const DIMENSOES = {
     1: { social: socialV1, cognitiva: comum.cognitiva, decisoria: decisoriaV1, organizacional: comum.organizacional, comportamental: comum.comportamental },
     2: { social: socialRecente, cognitiva: comum.cognitiva, decisoria: decisoriaRecente, organizacional: comum.organizacional, comportamental: comum.comportamental },
-    3: { social: socialRecente, cognitiva: comum.cognitiva, decisoria: decisoriaRecente, organizacional: comum.organizacional, comportamental: comum.comportamental }
+    3: { social: socialRecente, cognitiva: cognitivaAtual, decisoria: decisoriaAtual, organizacional: organizacionalAtual, comportamental: comportamentalAtual }
   };
 
   const statusEl = document.getElementById("result-status");
@@ -203,61 +230,61 @@
     cognitiva: {
       nome: "Cognitiva", titulo: "Aprendizado e ideias",
       baixo: {
-        texto: "Suas respostas se aproximaram da preferência por exemplos concretos. Ao conhecer um assunto, pode fazer sentido para você procurar situações práticas antes de explorar conceitos mais gerais.",
-        pergunta: "Que tipo de exemplo costuma ajudar você a compreender uma ideia nova?"
+        texto: "Nas situações propostas, suas respostas se aproximaram da preferência por exemplos e aplicações concretas. Isso não significa maior ou menor capacidade de lidar com conceitos abstratos.",
+        pergunta: "Quando aprende algo novo, que exemplos práticos costuma buscar? Em quais assuntos prefere começar pela ideia geral?"
       },
       medio: {
-        texto: "As respostas ficaram na faixa central entre exemplos concretos e possibilidades abstratas. Isso pode refletir formas diferentes de abordar assuntos conforme a tarefa.",
-        pergunta: "Quando você prefere um exemplo prático e quando gosta de discutir possibilidades?"
+        texto: "Sua pontuação ficou na faixa central da escala Cognitiva. Esse resultado resume suas respostas, mas não revela, por si só, quais situações favoreceram exemplos concretos ou possibilidades abstratas.",
+        pergunta: "Quando você está aprendendo algo novo, prefere começar por exemplos práticos ou por uma explicação mais geral? Isso muda conforme o assunto?"
       },
       alto: {
-        texto: "Suas respostas se aproximaram do interesse por conceitos, relações e hipóteses. Em alguns assuntos, explorar uma ideia geral antes de examinar os detalhes pode parecer mais interessante.",
-        pergunta: "Que temas despertam sua curiosidade por hipóteses? Quando você busca exemplos concretos?"
+        texto: "Nas situações propostas, suas respostas se aproximaram da preferência por conceitos, hipóteses e relações entre ideias. Essa preferência não define inteligência ou capacidade de aprendizagem.",
+        pergunta: "Quais assuntos despertam sua curiosidade por possibilidades e hipóteses? Quando exemplos concretos são mais úteis para você?"
       }
     },
     decisoria: {
       nome: "Decisória", titulo: "Escolhas e alternativas",
       baixo: {
-        texto: "Suas respostas se aproximaram da preferência por usar uma impressão inicial em certas escolhas. Em situações familiares, essa primeira avaliação pode ajudar a orientar os próximos passos.",
-        pergunta: "Que decisões você costuma tomar pela impressão inicial? Quais exigem uma comparação mais cuidadosa?"
+        texto: "Suas respostas se aproximaram da preferência por impressões iniciais e experiências anteriores em certas escolhas. Isso não significa que você deixe de analisar alternativas quando necessário.",
+        pergunta: "Em quais decisões costuma confiar na primeira impressão? Quando prefere examinar critérios e consequências?"
       },
       medio: {
-        texto: "As respostas não apontaram uma preferência constante entre impressão inicial e análise estruturada. A importância da escolha ou o tempo disponível podem influenciar sua abordagem.",
-        pergunta: "O que faz você mudar de uma decisão mais imediata para uma análise detalhada?"
+        texto: "Sua pontuação ficou na faixa central da escala Decisória. Esse valor, sozinho, não permite determinar como você utiliza impressão inicial e análise estruturada em cada contexto.",
+        pergunta: "Em quais situações você compara alternativas cuidadosamente? Quando costuma se apoiar mais na experiência?"
       },
       alto: {
-        texto: "Suas respostas se aproximaram da preferência por comparar opções e consequências. Em algumas escolhas, organizar critérios pode ajudar você a compreender melhor as alternativas disponíveis.",
-        pergunta: "Em quais escolhas você gosta de estabelecer critérios? Quando decide de maneira mais espontânea?"
+        texto: "Suas respostas se aproximaram da preferência por examinar alternativas antes de decidir. Em algumas situações, comparar critérios e consequências pode ser uma abordagem com a qual você se identifica. Isso não determina a qualidade das suas decisões.",
+        pergunta: "Em quais situações você prefere comparar alternativas detalhadamente? Quando costuma confiar mais em sua experiência ou impressão inicial?"
       }
     },
     organizacional: {
       nome: "Organizacional", titulo: "Rotina e projetos",
       baixo: {
-        texto: "Suas respostas se aproximaram da preferência por manter possibilidades abertas. Em atividades pessoais, pode ser mais confortável ajustar a sequência das etapas conforme elas acontecem.",
-        pergunta: "Em que atividades a liberdade de mudar os planos funciona melhor para você?"
+        texto: "Suas respostas se aproximaram da preferência por manter opções abertas e definir etapas durante as atividades. Isso não significa falta de organização ou comprometimento.",
+        pergunta: "Em quais atividades você prefere decidir os próximos passos durante o processo? Quando gosta de planejar antes?"
       },
       medio: {
-        texto: "As respostas ficaram próximas do centro entre flexibilidade e planejamento. Você pode preferir organizar certas tarefas com antecedência e deixar outras mais abertas.",
-        pergunta: "Quais compromissos você gosta de planejar e quais prefere decidir na hora?"
+        texto: "Sua pontuação ficou na faixa central da escala Organizacional. Isso resume suas respostas às situações apresentadas, mas não determina como você planeja ou adapta suas atividades em diferentes contextos.",
+        pergunta: "Em quais atividades você prefere estabelecer etapas antecipadamente? Em quais situações gosta de manter liberdade para decidir durante o processo?"
       },
       alto: {
-        texto: "Suas respostas se aproximaram da preferência por preparar etapas antecipadamente. Ao iniciar uma tarefa ou projeto, estabelecer uma sequência pode ser uma forma confortável de se organizar.",
-        pergunta: "Quando o planejamento ajuda você? Em quais momentos prefere deixar espaço para mudanças?"
+        texto: "Suas respostas se aproximaram da preferência por preparar atividades e definir etapas antecipadamente. Essa preferência não é uma medida de produtividade, disciplina ou responsabilidade.",
+        pergunta: "Quais tarefas você gosta de planejar com antecedência? Em que situações prefere deixar os próximos passos em aberto?"
       }
     },
     comportamental: {
       nome: "Comportamental", titulo: "Imprevistos e respostas",
       baixo: {
-        texto: "Nas situações descritas, suas respostas se aproximaram da tendência a agir prontamente diante de imprevistos. Isso pode envolver experimentar uma resposta inicial e ajustá-la ao longo da situação.",
-        pergunta: "Quando agir logo costuma ser sua preferência? Em quais situações você decide fazer uma pausa?"
+        texto: "Nas situações apresentadas, suas respostas se aproximaram da preferência por agir prontamente diante de imprevistos. Isso não significa impulsividade, agressividade ou falta de autocontrole.",
+        pergunta: "Quando algo inesperado acontece, em quais situações você prefere agir imediatamente? Quando costuma fazer uma pausa?"
       },
       medio: {
-        texto: "As respostas ficaram próximas do centro entre ação imediata e pausa para avaliação. O tipo de imprevisto pode influenciar a forma como você prefere responder.",
-        pergunta: "Que situações levam você a responder rapidamente e quais pedem mais tempo?"
+        texto: "Sua pontuação ficou na faixa central da escala Comportamental. Esse valor não permite concluir, por si só, se você costuma agir imediatamente ou fazer uma pausa em situações específicas.",
+        pergunta: "Quando algo inesperado acontece, em quais situações você prefere agir imediatamente? Em quais costuma reservar um momento para compreender melhor o que aconteceu?"
       },
       alto: {
-        texto: "Nas situações descritas, suas respostas se aproximaram da preferência por fazer uma pausa antes de agir. Em alguns imprevistos, compreender o que mudou pode vir antes de escolher uma resposta.",
-        pergunta: "Quando observar antes de agir parece mais útil para você? Em que momentos prefere agir logo?"
+        texto: "Nas situações apresentadas, suas respostas se aproximaram da preferência por fazer uma pausa antes de agir. Isso não comprova maior equilíbrio emocional ou maturidade.",
+        pergunta: "Em quais situações prefere entender o que aconteceu antes de agir? Quando opta por responder prontamente?"
       }
     }
   };
