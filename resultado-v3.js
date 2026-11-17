@@ -427,6 +427,8 @@
       statusEl.textContent = "Resultado da sua exploração. Indicadores experimentais de autoconhecimento.";
       if (resultado.origem === "salvo") {
         statusEl.textContent += " Perfil recuperado deste navegador.";
+      } else if (resultado.origem === "transferencia-temporaria") {
+        statusEl.textContent += " Resultado recuperado temporariamente porque o navegador restringiu o armazenamento. Você poderá visualizá-lo, mas talvez não consiga salvá-lo neste dispositivo.";
       }
       if (versao === 1) {
         statusEl.textContent += " Este perfil foi criado com perguntas anteriores. Não compare diretamente suas pontuações com resultados mais recentes.";
