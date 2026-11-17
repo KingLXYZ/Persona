@@ -130,7 +130,7 @@
     } catch {
       // A leitura continua possível mesmo que uma extensão bloqueie a limpeza.
     }
-    if (!/^(?:0|[1-9]\\d?|100)(?:\\.(?:0|[1-9]\\d?|100)){4}$/.test(valor)) return null;
+    if (!/^(?:0|[1-9]\d?|100)(?:\.(?:0|[1-9]\d?|100)){4}$/.test(valor)) return null;
     const pontuacoes = Object.fromEntries(ORDEM.map((chave, i) => [chave, Number(valor.split(".")[i])]));
     if (!pontuacoesValidas(pontuacoes)) return null;
     return { versao: 3, pontuacoes, origem: "transferencia-temporaria", historicoId: criarIdExploracao() };
