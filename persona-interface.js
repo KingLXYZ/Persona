@@ -261,6 +261,8 @@
   }
 
   function iniciar() {
+    const ano = document.getElementById('current-year');
+    if (ano) ano.textContent = String(new Date().getFullYear());
     adicionarEstilos();
     transformarCotidiano();
     adicionarAssinatura();
