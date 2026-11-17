@@ -3,6 +3,8 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'; object-src 'none'; frame-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests">
+    <meta name="referrer" content="no-referrer">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Conheça a metodologia do PERSONA: dimensões exploradas, elaboração das perguntas, cálculo dos indicadores, limitações e privacidade.">
     <meta name="theme-color" content="#09090d">
@@ -346,30 +348,12 @@
             <span class="method-tag">05 / SEUS DADOS</span>
             <h2 id="privacidade-title">Seu perfil, <span>sua escolha.</span></h2>
             <div class="method-text">
-                <p>
-                    As respostas são processadas diretamente no navegador.
-                    Ao concluir o questionário, as <strong>cinco pontuações</strong>
-                    são guardadas temporariamente na sessão para que a página
-                    de resultados possa apresentá-las.
-                </p>
-                <p>
-                    Se você selecionar <strong>“Salvar neste navegador”</strong>,
-                    o PERSONA armazenará localmente as pontuações e os dados
-                    técnicos necessários para recuperar o perfil, incluindo
-                    a data do salvamento. O salvamento é opcional.
-                </p>
-                <p>
-                    Você pode consultar e excluir perfis salvos nos controles
-                    da página de resultados. Não existe cadastro nem sincronização
-                    automática entre dispositivos. Os dados locais podem desaparecer
-                    se você limpar o armazenamento do site ou navegar em modo privado.
-                </p>
-                <p>
-                    O código do questionário não envia suas pontuações a um servidor
-                    próprio do PERSONA. O site é publicado no GitHub Pages e utiliza
-                    fontes externas, cujos serviços podem processar informações
-                    técnicas de acesso de acordo com suas próprias políticas.
-                </p>
+                <p>As respostas são processadas diretamente no navegador. Ao concluir o questionário, as <strong>cinco pontuações</strong> ficam temporariamente na sessão, para exibir o perfil.</p>
+                <p>O salvamento é <strong>opcional</strong>. Se você escolher “Salvar neste navegador”, o PERSONA guarda as cinco pontuações, a data, a versão técnica do resultado e seu identificador local. Não existe cadastro nem sincronização automática entre dispositivos.</p>
+                <p>Em <strong>Minha jornada</strong>, “Gerar QR Code” produz um link com suas cinco pontuações, a data e um identificador. Essas informações são <strong>codificadas, mas não criptografadas</strong>. Qualquer pessoa com acesso ao QR Code ou ao link pode ler os dados. Compartilhe-o somente de maneira privada. A geração não utiliza um serviço externo de QR Code.</p>
+                <p>O recebimento pelo QR Code exige confirmação para salvar. É possível excluir uma exploração individualmente ou usar <a href="minha-jornada.html#privacidade-local">“Apagar todos os dados deste navegador”</a> para remover perfis salvos, histórico e resultados temporários conhecidos pelo PERSONA. Isso <strong>não apaga</strong> dados em outros dispositivos ou cópias já compartilhadas.</p>
+                <p>Os resultados podem desaparecer ao limpar o armazenamento do site ou usar navegação privada. Projetos hospedados sob a mesma origem do navegador (mesmo protocolo, domínio e porta) podem acessar o mesmo armazenamento local por meio de scripts executados nessa origem.</p>
+                <p>O site é hospedado no GitHub Pages e utiliza fontes externas do Google. Esses serviços podem receber informações técnicas de acesso conforme suas políticas. O código do questionário não envia pontuações para um servidor próprio do PERSONA. O fragmento (#) do link de transferência normalmente não é enviado ao servidor HTTP ao acessar a página.</p>
             </div>
         </section>
 
@@ -416,9 +400,7 @@
         <span>© <span id="current-year"></span> PERSONA.</span>
     </footer>
 
-    <script>
-        document.getElementById("current-year").textContent = new Date().getFullYear();
-    </script>
+    <!-- Ano do rodapé atualizado pelo módulo persona-interface.js -->
     <script src="persona-interface.js?v=1" defer></script>
 </body>
 </html>
