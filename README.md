@@ -16,6 +16,14 @@ As cinco páginas principais usam Content Security Policy (CSP) declarada via me
 
 A CSP declarada como meta-tag tem limitações: por exemplo, a proteção `frame-ancestors` exige cabeçalhos HTTP, que não são controlados diretamente por arquivos HTML estáticos do GitHub Pages.
 
+## Compatibilidade com navegadores restritivos
+
+O questionário mantém o fluxo normal por `sessionStorage`. Se esse armazenamento estiver indisponível, a página de resultados recebe as cinco pontuações temporariamente no fragmento (`#`) do endereço, que é validado e removido após a leitura. O recurso não é criptografado e pode ser observado por extensões com acesso à página. A recuperação não garante salvamento, caso o `localStorage` também esteja bloqueado.
+
+O QR Code também tem alternativa **Receber por link** na Minha jornada. Ela extrai somente os dados do fragmento, valida as pontuações e exige confirmação antes de importar; não abre o endereço colado. O fluxo original de QR e de detecção de duplicatas permanece.
+
+Erros de comunicação internos de extensões do Brave/Chromium não são causados nem controlados necessariamente pelo PERSONA. Não silenciar mensagens do Console e não enfraquecer a CSP para acomodar extensões: investigar somente quando uma funcionalidade real deixar de funcionar.
+
 ## Testes recomendados antes da nova rodada
 
 1. Na página inicial, clicar nos cinco cartões, testar botões e links.
