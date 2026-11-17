@@ -1466,16 +1466,22 @@ module.exports = QRCode;
     }
   }
   function irParaPerfil(registro) {
+    let destino = `resultado.html?versao=${registro.versao}`;
     try {
-      sessionStorage.setItem(ARQUIVO_SESSAO[registro.versao], JSON.stringify({
+      window.sessionStorage.setItem(ARQUIVO_SESSAO[registro.versao], JSON.stringify({
         version: registro.versao, totalPerguntas: registro.versao === 1 ? 20 : 30,
         scores: registro.pontuacoes, historicoId: registro.id
       }));
     } catch {
-      mensagem("O navegador bloqueou a visualização temporária deste perfil.");
-      return;
+      if (registro.versao !== 3) {
+        mensagem("Este navegador bloqueou os resultados temporários. O perfil histórico permanece na Minha jornada.");
+        return;
+      }
+      // Recuperação temporária quando sessionStorage está bloqueado.
+      destino += "#persona-resultado=" + CAMPOS.map(k => registro.pontuacoes[k]).join(".");
     }
-    location.assign(`resultado.html?versao=${registro.versao}`);
+    try { location.assign(destino); }
+    catch { mensagem("A navegação foi bloqueada pelo navegador. Abra o perfil novamente na Minha jornada."); }
   }
   function previsualizacao(registro) {
     const grid = el("div", "persona-qr-preview");
@@ -1484,15 +1490,16 @@ module.exports = QRCode;
     });
     return grid;
   }
-  function receberQR() {
-    if (!location.hash.startsWith(FRAGMENTO)) return;
-    const token = location.hash.slice(FRAGMENTO.length);
-    // Fragmentos não são enviados no HTTP, mas também evitamos
-    // deixá-los no histórico do navegador após sua leitura.
-    try { history.replaceState(history.state, "", location.pathname + location.search); } catch {}
+  function receberQR(tokenManual = null) {
+    if (tokenManual === null && !location.hash.startsWith(FRAGMENTO)) return false;
+    const token = tokenManual === null ? location.hash.slice(FRAGMENTO.length) : tokenManual;
+    // O código não permanece no endereço após a leitura automática.
+    if (tokenManual === null) {
+      try { history.replaceState(history.state, "", location.pathname + location.search); } catch {}
+    }
     let registro;
     try { registro = desempacotar(token); }
-    catch (e) { mensagem("Link de transferência inválido: " + e.message); return; }
+    catch (e) { mensagem("Link de transferência inválido: " + e.message); return false; }
     const d = dialogo("Receber perfil no PERSONA");
     d.appendChild(el("p", "", `Resultado de ${dataFormato.format(new Date(registro.salvoEm))}. Confira as pontuações antes de salvar neste dispositivo.`));
     d.appendChild(previsualizacao(registro));
@@ -1523,7 +1530,43 @@ module.exports = QRCode;
     acoes.append(confirmar, cancelar);
     d.append(status, acoes);
     d.addEventListener("close", () => { if (importado) location.reload(); });
+    return true;
   }
+
+  function colarLinkManual() {
+    const d = dialogo("Receber perfil por link");
+    d.appendChild(el("p", "", "Se a câmera ou uma extensão impedir a abertura do QR Code, cole aqui o link recebido. Os dados só serão salvos após sua confirmação."));
+    const campo = el("input", "persona-qr-link");
+    campo.type = "text";
+    campo.placeholder = "Cole o link do PERSONA";
+    campo.maxLength = 2500;
+    campo.setAttribute("aria-label", "Link de transferência recebido");
+    d.appendChild(campo);
+    const status = el("p", "persona-qr-status");
+    status.setAttribute("role", "status");
+    const acoes = el("div", "persona-qr-actions");
+    acoes.append(
+      botao("Conferir perfil", "persona-qr-btn", () => {
+        try {
+          const entrada = campo.value.trim();
+          if (entrada.length > 2500 || !entrada) throw new Error("Cole um link de transferência.");
+          // Não navegamos para o endereço fornecido: extraímos apenas o token.
+          const fragmento = new URL(entrada, location.href).hash;
+          if (!fragmento.startsWith(FRAGMENTO)) throw new Error("Link não contém um perfil do PERSONA.");
+          const token = fragmento.slice(FRAGMENTO.length);
+          // Validar antes de fechar o modal, sem salvar automaticamente.
+          desempacotar(token);
+          d.close();
+          if (!receberQR(token)) mensagem("O perfil recebido não pôde ser aberto.");
+        } catch (e) {
+          status.textContent = "Não foi possível ler o link: " + (e.message || "formato inválido");
+        }
+      }),
+      botao("Cancelar", "persona-qr-ghost", () => d.close())
+    );
+    d.append(status, acoes);
+  }
+
   function iniciar() {
     if (!document.querySelector("#journey-list")) return;
     adicionarEstilos();
@@ -1535,7 +1578,8 @@ module.exports = QRCode;
       box.append(
         el("h3", "", "Seu perfil, em outro dispositivo."),
         el("p", "", "Transfira a exploração salva mais recente para o celular ou computador. Sem cadastro e sem enviar seus dados a um servidor de transferência."),
-        botao("Gerar QR Code", "persona-qr-btn", mostrarQR)
+        botao("Gerar QR Code", "persona-qr-btn", mostrarQR),
+        botao("Receber por link", "persona-qr-ghost", colarLinkManual)
       );
       section.insertBefore(box, document.getElementById("journey-message"));
     }
