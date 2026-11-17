@@ -148,16 +148,29 @@
       mostrarErro("Ainda existem perguntas sem resposta. Reabra o questionário para responder a todas.");
       return;
     }
+    const pontuacoes = calcularPontuacoes();
+    const resultado = JSON.stringify({
+      version: VERSAO,
+      totalPerguntas: perguntas.length,
+      scores: pontuacoes
+    });
+    // Alguns navegadores bloqueiam até o acesso à propriedade sessionStorage.
+    // Quando isso acontece, preservamos as cinco pontuações em um fragmento
+    // temporário, que será removido imediatamente ao abrir o resultado.
+    let destino = "resultado.html?versao=3";
     try {
-      sessionStorage.setItem(CHAVE_RESULTADO, JSON.stringify({
-        version: VERSAO,
-        totalPerguntas: perguntas.length,
-        scores: calcularPontuacoes()
-      }));
-      window.location.assign("resultado.html?versao=3");
-    } catch (error) {
-      console.error("PERSONA: falha ao salvar o resultado.", error);
-      mostrarErro("O navegador não permitiu salvar o resultado nesta sessão. Verifique as permissões de armazenamento e tente novamente.");
+      const armazenamento = window.sessionStorage;
+      armazenamento.setItem(CHAVE_RESULTADO, resultado);
+      if (armazenamento.getItem(CHAVE_RESULTADO) !== resultado) {
+        throw new Error("Armazenamento da sessão não persistiu o resultado.");
+      }
+    } catch {
+      destino += "#persona-resultado=" + dimensoes.map(d => pontuacoes[d]).join(".");
+    }
+    try {
+      window.location.assign(destino);
+    } catch {
+      mostrarErro("O navegador impediu a abertura dos resultados. Você pode voltar e tentar novamente ou utilizar outro navegador.");
     }
   });
 
