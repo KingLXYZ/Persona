@@ -1,54 +1,49 @@
 
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
     <meta charset="UTF-8">
-
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
-
-    <meta name="description"
-          content="Explore suas tendências de personalidade e compreenda diferentes aspectos do seu perfil no PERSONA.">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#09090d">
+    <meta name="description" content="Explore suas tendências de personalidade e compreenda diferentes aspectos do seu perfil no PERSONA.">
 
     <title>Meu perfil — PERSONA</title>
 
-    <!-- Fontes -->
-    <link rel="preconnect"
-          href="https://fonts.googleapis.com">
+    <!-- FONTES -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-    <link rel="preconnect"
-          href="https://fonts.gstatic.com"
-          crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
 
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap"
-          rel="stylesheet">
-
-    <!-- Estilos -->
+    <!-- ESTILOS -->
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="resultado.css">
 
-    <!-- Sistema de resultados -->
+    <!-- SISTEMA DE HISTÓRICO -->
     <script src="persona-historico.js?v=1" defer></script>
-    <script src="persona-interface.js?v=1" defer></script>
 
+    <!-- RESULTADOS E INTERPRETAÇÕES -->
+    <script src="resultado-v3.js?v=7" defer></script>
+
+    <!-- PAINÉIS INTERATIVOS E KINGDOM STUDIOS -->
+    <script src="persona-interface.js?v=1" defer></script>
 </head>
 
 <body>
 
-    <!-- =====================================
-         CABEÇALHO
-    ====================================== -->
-
+    <!-- CABEÇALHO -->
     <header class="header">
 
-        <a href="index.html"
-           class="logo"
-           aria-label="PERSONA — Página inicial">
-
+        <a
+            href="index.html"
+            class="logo"
+            aria-label="PERSONA — Página inicial"
+        >
             <span class="logo-symbol">P.</span>
             PERSONA
-
         </a>
 
         <a href="index.html" class="header-link">
@@ -57,16 +52,15 @@
 
     </header>
 
-    <!-- =====================================
-         CONTEÚDO PRINCIPAL
-    ====================================== -->
 
+    <!-- CONTEÚDO PRINCIPAL -->
     <main class="result-layout">
 
-        <!-- APRESENTAÇÃO -->
-
-        <section class="result-intro"
-                 aria-labelledby="result-intro-title">
+        <!-- APRESENTAÇÃO DOS RESULTADOS -->
+        <section
+            class="result-intro"
+            aria-labelledby="result-intro-title"
+        >
 
             <span class="result-tag">
                 SUA EXPLORAÇÃO
@@ -83,32 +77,42 @@
                 e reage às situações do cotidiano.
             </p>
 
-            <div class="result-status"
-                 id="result-status"
-                 role="status"
-                 aria-live="polite">
+            <!-- MENSAGEM DO RESULTADO -->
+            <div
+                class="result-status"
+                id="result-status"
+                role="status"
+                aria-live="polite"
+            >
+                Carregando seus resultados...
+            </div>
 
-                Nenhum resultado carregado.
-                Conclua o questionário para visualizar
-                a análise do seu perfil.
+            <!--
+                O sistema de salvamento é inserido
+                automaticamente pelo resultado-v3.js.
+            -->
+
+            <!-- ACESSO AO HISTÓRICO -->
+            <div style="margin-top: 22px;">
+
+                <a
+                    href="minha-jornada.html"
+                    class="secondary-button"
+                >
+                    Minha jornada
+                    <span aria-hidden="true">→</span>
+                </a>
 
             </div>
 
-<div style="margin-top: 22px;">
-    <a href="minha-jornada.html" class="secondary-button">
-        Minha jornada
-        <span aria-hidden="true">→</span>
-    </a>
-</div>
-
         </section>
 
-        <!-- =====================================
-             SEÇÃO 01 — CINCO DIMENSÕES
-        ====================================== -->
 
-        <section class="result-section"
-                 aria-labelledby="result-title">
+        <!-- 01 / SUAS DIMENSÕES -->
+        <section
+            class="result-section"
+            aria-labelledby="result-title"
+        >
 
             <div class="result-heading">
 
@@ -122,28 +126,32 @@
                 </h2>
 
                 <p>
-                    Cada indicador representa a posição
-                    das suas respostas em uma escala
-                    experimental de tendências.
+                    Cada indicador representa a posição das
+                    suas respostas em uma escala experimental
+                    de tendências.
                 </p>
 
             </div>
 
+
             <div class="result-grid">
 
                 <!-- DIMENSÃO SOCIAL -->
-
-                <article class="result-card"
-                         data-dimension="social">
+                <article
+                    class="result-card"
+                    data-dimension="social"
+                >
 
                     <span class="result-number">01</span>
 
                     <h3>Social</h3>
 
-                    <p class="result-description"
-                       id="description-social">
-                        Sua maneira de interagir e
-                        estabelecer conexões.
+                    <p
+                        class="result-description"
+                        id="description-social"
+                    >
+                        Preferências de interação e
+                        participação social.
                     </p>
 
                     <div class="result-score">
@@ -152,8 +160,10 @@
                     </div>
 
                     <div class="result-meter">
-                        <div class="result-fill"
-                             id="fill-social"></div>
+                        <div
+                            class="result-fill"
+                            id="fill-social"
+                        ></div>
                     </div>
 
                     <div class="result-scale">
@@ -163,19 +173,23 @@
 
                 </article>
 
-                <!-- DIMENSÃO COGNITIVA -->
 
-                <article class="result-card"
-                         data-dimension="cognitiva">
+                <!-- DIMENSÃO COGNITIVA -->
+                <article
+                    class="result-card"
+                    data-dimension="cognitiva"
+                >
 
                     <span class="result-number">02</span>
 
                     <h3>Cognitiva</h3>
 
-                    <p class="result-description"
-                       id="description-cognitiva">
-                        Sua maneira de interpretar
-                        informações e possibilidades.
+                    <p
+                        class="result-description"
+                        id="description-cognitiva"
+                    >
+                        Preferências entre exemplos concretos
+                        e possibilidades abstratas.
                     </p>
 
                     <div class="result-score">
@@ -184,8 +198,10 @@
                     </div>
 
                     <div class="result-meter">
-                        <div class="result-fill"
-                             id="fill-cognitiva"></div>
+                        <div
+                            class="result-fill"
+                            id="fill-cognitiva"
+                        ></div>
                     </div>
 
                     <div class="result-scale">
@@ -195,19 +211,23 @@
 
                 </article>
 
-                <!-- DIMENSÃO DECISÓRIA -->
 
-                <article class="result-card"
-                         data-dimension="decisoria">
+                <!-- DIMENSÃO DECISÓRIA -->
+                <article
+                    class="result-card"
+                    data-dimension="decisoria"
+                >
 
                     <span class="result-number">03</span>
 
                     <h3>Decisória</h3>
 
-                    <p class="result-description"
-                       id="description-decisoria">
-                        Como você considera diferentes
-                        fatores ao tomar decisões.
+                    <p
+                        class="result-description"
+                        id="description-decisoria"
+                    >
+                        Preferências ao considerar
+                        alternativas antes de decidir.
                     </p>
 
                     <div class="result-score">
@@ -216,8 +236,10 @@
                     </div>
 
                     <div class="result-meter">
-                        <div class="result-fill"
-                             id="fill-decisoria"></div>
+                        <div
+                            class="result-fill"
+                            id="fill-decisoria"
+                        ></div>
                     </div>
 
                     <div class="result-scale">
@@ -227,19 +249,23 @@
 
                 </article>
 
-                <!-- DIMENSÃO ORGANIZACIONAL -->
 
-                <article class="result-card"
-                         data-dimension="organizacional">
+                <!-- DIMENSÃO ORGANIZACIONAL -->
+                <article
+                    class="result-card"
+                    data-dimension="organizacional"
+                >
 
                     <span class="result-number">04</span>
 
                     <h3>Organizacional</h3>
 
-                    <p class="result-description"
-                       id="description-organizacional">
-                        Sua relação com planejamento,
-                        flexibilidade e objetivos.
+                    <p
+                        class="result-description"
+                        id="description-organizacional"
+                    >
+                        Preferências por flexibilidade
+                        ou planejamento.
                     </p>
 
                     <div class="result-score">
@@ -248,8 +274,10 @@
                     </div>
 
                     <div class="result-meter">
-                        <div class="result-fill"
-                             id="fill-organizacional"></div>
+                        <div
+                            class="result-fill"
+                            id="fill-organizacional"
+                        ></div>
                     </div>
 
                     <div class="result-scale">
@@ -259,19 +287,23 @@
 
                 </article>
 
-                <!-- DIMENSÃO COMPORTAMENTAL -->
 
-                <article class="result-card"
-                         data-dimension="comportamental">
+                <!-- DIMENSÃO COMPORTAMENTAL -->
+                <article
+                    class="result-card"
+                    data-dimension="comportamental"
+                >
 
                     <span class="result-number">05</span>
 
                     <h3>Comportamental</h3>
 
-                    <p class="result-description"
-                       id="description-comportamental">
-                        Suas tendências diante de
-                        desafios e situações inesperadas.
+                    <p
+                        class="result-description"
+                        id="description-comportamental"
+                    >
+                        Preferências ao responder a imprevistos
+                        e situações inesperadas.
                     </p>
 
                     <div class="result-score">
@@ -280,8 +312,10 @@
                     </div>
 
                     <div class="result-meter">
-                        <div class="result-fill"
-                             id="fill-comportamental"></div>
+                        <div
+                            class="result-fill"
+                            id="fill-comportamental"
+                        ></div>
                     </div>
 
                     <div class="result-scale">
@@ -295,13 +329,13 @@
 
         </section>
 
-        <!-- =====================================
-             SEÇÃO 02 — VISÃO GERAL
-        ====================================== -->
 
-        <section class="result-section"
-                 id="visao-geral"
-                 aria-labelledby="overview-title">
+        <!-- 02 / VISÃO GERAL -->
+        <section
+            class="result-section"
+            id="visao-geral"
+            aria-labelledby="overview-title"
+        >
 
             <div class="result-heading">
 
@@ -315,18 +349,17 @@
                 </h2>
 
                 <p>
-                    As dimensões não existem isoladamente.
-                    Aqui vamos relacionar algumas tendências
-                    identificadas nas respostas, sem atribuir
-                    rótulos fixos.
+                    Os indicadores podem oferecer perspectivas
+                    complementares sobre suas respostas,
+                    sem atribuir rótulos fixos.
                 </p>
 
             </div>
 
+
             <div class="result-grid">
 
                 <!-- LEITURA INTEGRADA -->
-
                 <article class="result-card">
 
                     <span class="result-number">
@@ -337,22 +370,19 @@
                         Como suas tendências se relacionam
                     </h3>
 
-                    <p class="result-description"
-                       id="overview-combination"
-                       aria-live="polite">
-
-                        Estamos preparando uma leitura
-                        baseada nas pontuações do seu
-                        questionário. Os cinco indicadores
-                        acima continuam funcionando
-                        normalmente.
-
+                    <p
+                        class="result-description"
+                        id="overview-combination"
+                        aria-live="polite"
+                    >
+                        Conclua o questionário para visualizar
+                        uma leitura conjunta das dimensões.
                     </p>
 
                 </article>
 
-                <!-- INTERPRETAÇÃO RESPONSÁVEL -->
 
+                <!-- INTERPRETAÇÃO RESPONSÁVEL -->
                 <article class="result-card">
 
                     <span class="result-number">
@@ -363,18 +393,16 @@
                         O que esses números não dizem
                     </h3>
 
-                    <p class="result-description"
-                       id="overview-guidance">
-
+                    <p
+                        class="result-description"
+                        id="overview-guidance"
+                    >
                         Uma pontuação próxima do centro
                         não significa necessariamente
-                        equilíbrio. Ela pode resultar de
-                        respostas diferentes para
-                        situações diferentes.
+                        equilíbrio entre características.
 
-                        Nenhum indicador, isoladamente,
+                        Nenhum indicador isolado
                         define quem você é.
-
                     </p>
 
                 </article>
@@ -383,12 +411,26 @@
 
         </section>
 
-        <!-- =====================================
-             SEÇÃO 03 — REFLEXÃO FINAL
-        ====================================== -->
 
-        <section class="result-reflection"
-                 aria-labelledby="reflection-title">
+        <!--
+            03 / SEU PERFIL NO COTIDIANO
+
+            Esta seção é criada automaticamente
+            pelo resultado-v3.js.
+
+            O persona-interface.js transforma
+            seus cartões em painéis interativos.
+
+            Não é necessário duplicar os cartões
+            neste arquivo HTML.
+        -->
+
+
+        <!-- REFLEXÃO FINAL -->
+        <section
+            class="result-reflection"
+            aria-labelledby="reflection-title"
+        >
 
             <span class="result-tag">
                 03 / SUA JORNADA
@@ -404,8 +446,8 @@
                 como uma definição imutável.
 
                 Suas respostas representam percepções
-                sobre você neste momento e podem
-                variar conforme suas experiências.
+                sobre você neste momento e podem variar
+                conforme suas experiências.
             </p>
 
             <a href="quiz.html" class="primary-button">
@@ -415,35 +457,32 @@
 
         </section>
 
-        <!-- =====================================
-             AVISO INFORMATIVO
-        ====================================== -->
 
+        <!-- AVISO METODOLÓGICO -->
         <div class="result-disclaimer">
 
             O PERSONA é uma ferramenta experimental
             de autoconhecimento.
 
-            Seus indicadores não constituem diagnóstico
-            psicológico nem avaliação psicométrica validada.
+            Seus indicadores não constituem
+            diagnóstico psicológico nem avaliação
+            psicométrica validada.
 
         </div>
 
     </main>
 
-    <!-- =====================================
-         RODAPÉ
-    ====================================== -->
 
+    <!-- RODAPÉ -->
     <footer class="footer">
 
-        <a href="index.html"
-           class="logo"
-           aria-label="PERSONA — Página inicial">
-
+        <a
+            href="index.html"
+            class="logo"
+            aria-label="PERSONA — Página inicial"
+        >
             <span class="logo-symbol">P.</span>
             PERSONA
-
         </a>
 
         <p>
@@ -454,6 +493,12 @@
         <span>
             © <span id="current-year"></span> PERSONA.
         </span>
+
+        <!--
+            A assinatura KINGDOM STUDIOS
+            será adicionada automaticamente
+            pelo persona-interface.js.
+        -->
 
     </footer>
 
