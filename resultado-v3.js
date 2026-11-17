@@ -108,13 +108,32 @@
       ORDEM.every(chave => Number.isInteger(scores[chave]) && scores[chave] >= 0 && scores[chave] <= 100);
   }
 
-  function lerJSON(armazenamento, chave) {
+  function lerJSON(tipo, chave) {
+    // Alguns modos de privacidade bloqueiam o acesso à própria propriedade,
+    // não apenas aos métodos do Storage.
     try {
+      const armazenamento = tipo === "sessao" ? window.sessionStorage : window.localStorage;
       const bruto = armazenamento.getItem(chave);
       return bruto ? JSON.parse(bruto) : null;
-    } catch (erro) {
+    } catch {
       return null;
     }
+  }
+
+  function lerResultadoFragmento() {
+    const prefixo = "#persona-resultado=";
+    if (!window.location.hash.startsWith(prefixo)) return null;
+    const valor = window.location.hash.slice(prefixo.length);
+    // Retirar as pontuações da barra de endereço assim que forem recebidas.
+    try {
+      window.history.replaceState(window.history.state, "", window.location.pathname + window.location.search);
+    } catch {
+      // A leitura continua possível mesmo que uma extensão bloqueie a limpeza.
+    }
+    if (!/^(?:0|[1-9]\\d?|100)(?:\\.(?:0|[1-9]\\d?|100)){4}$/.test(valor)) return null;
+    const pontuacoes = Object.fromEntries(ORDEM.map((chave, i) => [chave, Number(valor.split(".")[i])]));
+    if (!pontuacoesValidas(pontuacoes)) return null;
+    return { versao: 3, pontuacoes, origem: "transferencia-temporaria", historicoId: criarIdExploracao() };
   }
 
   // Cada conclusão recebe um identificador interno. Ao terminar outra vez,
@@ -128,13 +147,13 @@
   }
 
   function carregarSessao(versao) {
-    const dados = lerJSON(sessionStorage, CHAVES_SESSAO[versao]);
+    const dados = lerJSON("sessao", CHAVES_SESSAO[versao]);
     if (!dados || dados.version !== versao || !pontuacoesValidas(dados.scores)) return null;
     if (versao > 1 && dados.totalPerguntas !== 30) return null;
     if (!dados.historicoId || typeof dados.historicoId !== "string") {
       dados.historicoId = criarIdExploracao();
       try {
-        sessionStorage.setItem(CHAVES_SESSAO[versao], JSON.stringify(dados));
+        window.sessionStorage.setItem(CHAVES_SESSAO[versao], JSON.stringify(dados));
       } catch {
         // A ausência de armazenamento impede salvar o histórico, mas não ler o resultado.
       }
@@ -143,7 +162,7 @@
   }
 
   function carregarSalvo(chave, versoes) {
-    const dados = lerJSON(localStorage, chave);
+    const dados = lerJSON("local", chave);
     if (!dados || dados.formato !== 1 || !versoes.includes(dados.version) || !pontuacoesValidas(dados.scores)) return null;
     if (dados.version > 1 && dados.totalPerguntas !== 30) return null;
     if (typeof dados.salvoEm !== "string" || !Number.isFinite(Date.parse(dados.salvoEm))) return null;
@@ -470,8 +489,8 @@
       excluir.addEventListener("click", () => {
         if (!window.confirm("Deseja excluir o perfil principal salvo? As explorações guardadas no histórico não serão apagadas.")) return;
         try {
-          localStorage.removeItem(chave);
-          sessionStorage.removeItem(CHAVES_SESSAO[versao]);
+          window.localStorage.removeItem(chave);
+          try { window.sessionStorage.removeItem(CHAVES_SESSAO[versao]); } catch {}
           window.location.reload();
         } catch {
           mensagem.textContent = "Não foi possível excluir os dados neste navegador.";
@@ -567,10 +586,11 @@
 
   const salvoAntigo = carregarSalvo(CHAVE_ANTIGA, [1, 2]);
   const salvoV3 = carregarSalvo(CHAVE_V3, [3]);
+  const recebidoTemporario = lerResultadoFragmento();
   const escolher = parametros.get("versao");
   let resultado;
   if (escolher === "3") {
-    resultado = carregarSessao(3) || salvoV3;
+    resultado = recebidoTemporario || carregarSessao(3) || salvoV3;
   } else if (escolher === "2") {
     resultado = carregarSessao(2) || (salvoAntigo && salvoAntigo.versao === 2 ? salvoAntigo : null);
   } else if (escolher === "1") {
@@ -578,7 +598,7 @@
   } else {
     // O quiz V2 usa resultado.html sem parâmetro. Preservamos esse comportamento.
     // O quiz V3 usará resultado.html?versao=3 quando for ativado.
-    resultado = carregarSessao(2) || carregarSessao(3) || salvoV3 || salvoAntigo || carregarSessao(1);
+    resultado = recebidoTemporario || carregarSessao(2) || carregarSessao(3) || salvoV3 || salvoAntigo || carregarSessao(1);
   }
 
   if (!resultado) {
