@@ -126,7 +126,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if (!window.confirm(aviso)) return;
         try {
           ["persona_historico_v1", "persona_perfil_salvo_v1", "persona_perfil_salvo_v3"].forEach(chave => localStorage.removeItem(chave));
-          ["persona_resultado_v1", "persona_resultado_v2", "persona_resultado_v3"].forEach(chave => sessionStorage.removeItem(chave));
+          ["persona_resultado_v1", "persona_resultado_v2", "persona_resultado_v3", "persona_progresso_v3"].forEach(chave => sessionStorage.removeItem(chave));
           atualizarLista("Todos os dados conhecidos do PERSONA foram excluídos deste navegador.");
         } catch {
           mensagem.textContent = "Não foi possível concluir a exclusão. Alguns dados podem ter sido removidos; confira as permissões de armazenamento.";
