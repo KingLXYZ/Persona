@@ -242,8 +242,40 @@
 
   let atual = 0;
   let respostas = Object.fromEntries(perguntas.map(pergunta => [pergunta.id, null]));
+  let ordem = perguntas.map(pergunta => pergunta.id);
+  const perguntasPorId = new Map(perguntas.map(pergunta => [pergunta.id, pergunta]));
+
+  // Sorteia a ordem evitando perguntas da mesma dimensão em sequência.
+  function sortearOrdem() {
+    const restantes = perguntas.slice();
+    const sorteadas = [];
+
+    while (restantes.length) {
+      const anterior = sorteadas.length
+        ? perguntasPorId.get(sorteadas[sorteadas.length - 1]).dimensao
+        : null;
+      const candidatas = restantes.filter(pergunta =>
+        pergunta.dimensao !== anterior
+      );
+      const opcoes = candidatas.length ? candidatas : restantes;
+      const escolhida = opcoes[Math.floor(Math.random() * opcoes.length)];
+      sorteadas.push(escolhida.id);
+      restantes.splice(restantes.indexOf(escolhida), 1);
+    }
+
+    return sorteadas;
+  }
+
+  function perguntaAtual() {
+    return perguntasPorId.get(ordem[atual]);
+  }
+
+  function primeiraPendente() {
+    return ordem.findIndex(id => respostas[id] === null);
+  }
   let erroAtivo = false;
   let armazenamentoDisponivel = true;
+  let progressoRestaurado = false;
 
   // Acessibilidade das alternativas.
   alternativasEl.setAttribute("role", "radiogroup");
@@ -339,6 +371,7 @@
           version: VERSAO,
           totalPerguntas: perguntas.length,
           atual,
+          ordem,
           respostas
         })
       );
@@ -405,6 +438,15 @@
           )
         ));
 
+      const ordemValida =
+        dados.ordem === undefined ||
+        (
+          Array.isArray(dados.ordem) &&
+          dados.ordem.length === perguntas.length &&
+          new Set(dados.ordem).size === perguntas.length &&
+          dados.ordem.every(id => ids.includes(id))
+        );
+
       const indiceValido =
         Number.isInteger(dados.atual) &&
         dados.atual >= 0 &&
@@ -414,6 +456,7 @@
         !versaoValida ||
         !tamanhoValido ||
         !respostasValidas ||
+        !ordemValida ||
         !indiceValido
       ) {
         throw new Error("Progresso incompatível.");
@@ -424,6 +467,9 @@
         ids.map((id, indice) => [id, valores[indice]])
       );
       atual = dados.atual;
+      // Tentativas antigas mantêm a ordem original até a conclusão.
+      ordem = dados.ordem ? dados.ordem.slice() : ids.slice();
+      progressoRestaurado = true;
 
     } catch (erro) {
       console.warn(
@@ -458,7 +504,7 @@
 
   // Mantém a seleção acessível pelo teclado.
   function atualizarRadios() {
-    const selecionado = respostas[perguntas[atual].id];
+    const selecionado = respostas[perguntaAtual().id];
 
     alternativasEl
       .querySelectorAll(".quiz-option")
@@ -480,7 +526,7 @@
   }
 
   function selecionarResposta(valor) {
-    respostas[perguntas[atual].id] = valor;
+    respostas[perguntaAtual().id] = valor;
 
     atualizarRadios();
     continuarEl.disabled = false;
@@ -499,7 +545,7 @@
   function mostrarPergunta(moverFoco = false) {
     erroAtivo = false;
 
-    perguntaEl.textContent = perguntas[atual].texto;
+    perguntaEl.textContent = perguntaAtual().texto;
 
     contadorEl.textContent =
       `Pergunta ${atual + 1} de ${perguntas.length}`;
@@ -548,7 +594,7 @@
     voltarEl.textContent = "Voltar";
     voltarEl.disabled = atual === 0;
 
-    continuarEl.disabled = respostas[perguntas[atual].id] === null;
+    continuarEl.disabled = respostas[perguntaAtual().id] === null;
 
     continuarEl.textContent =
       atual === perguntas.length - 1
@@ -597,12 +643,10 @@
 
   // Retorna à primeira pergunta sem resposta.
   function reverRespostas() {
-    const primeiraPendente = perguntas.findIndex(
-      pergunta => respostas[pergunta.id] === null
-    );
+    const pendente = primeiraPendente();
 
-    if (primeiraPendente !== -1) {
-      atual = primeiraPendente;
+    if (pendente !== -1) {
+      atual = pendente;
     }
 
     mostrarPergunta(true);
@@ -624,7 +668,7 @@
   });
 
   continuarEl.addEventListener("click", () => {
-    if (respostas[perguntas[atual].id] === null) return;
+    if (respostas[perguntaAtual().id] === null) return;
 
     if (atual < perguntas.length - 1) {
       atual++;
@@ -633,12 +677,10 @@
       return;
     }
 
-    const primeiraPendente = perguntas.findIndex(
-      pergunta => respostas[pergunta.id] === null
-    );
+    const pendente = primeiraPendente();
 
-    if (primeiraPendente !== -1) {
-      atual = primeiraPendente;
+    if (pendente !== -1) {
+      atual = pendente;
       mostrarPergunta(true);
       salvarProgresso();
       return;
@@ -687,6 +729,11 @@
   try {
     validarQuestionario();
     restaurarProgresso();
+    // Somente uma tentativa sem progresso anterior recebe novo sorteio.
+    if (!progressoRestaurado) {
+      ordem = sortearOrdem();
+      salvarProgresso();
+    }
     mostrarPergunta();
 
   } catch (erro) {
