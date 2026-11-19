@@ -296,26 +296,6 @@
     const reflexao = document.querySelector(".result-reflection");
     if (!reflexao || document.getElementById("perfil-cotidiano")) return;
 
-    const estilos = document.createElement("style");
-    estilos.id = "estilos-perfil-cotidiano";
-    estilos.textContent = `
-      .cotidiano-section { scroll-margin-top: 24px; }
-      .cotidiano-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; margin-top: 42px; }
-      .cotidiano-card { display: flex; flex-direction: column; gap: 0; min-width: 0; padding: 30px; border: 1px solid var(--border); border-radius: 12px; background: var(--surface); }
-      .cotidiano-card h3 { margin: 18px 0 12px; color: var(--text); font: 700 21px/1.35 "Manrope", sans-serif; }
-      .cotidiano-text { color: var(--muted); font-size: 14px; line-height: 1.85; }
-      .cotidiano-question { margin-top: 23px; padding-top: 18px; border-top: 1px solid var(--border); color: var(--text); font-size: 13px; line-height: 1.8; }
-      .cotidiano-question strong { display: block; margin-bottom: 7px; color: var(--purple-light); font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase; }
-      @media (max-width: 900px) { .cotidiano-card { padding: 24px; } }
-      @media (max-width: 600px) {
-        .cotidiano-grid { grid-template-columns: 1fr; gap: 14px; margin-top: 34px; }
-        .cotidiano-card h3 { font-size: 19px; }
-        .cotidiano-text { font-size: 13px; }
-        .cotidiano-question { font-size: 13px; }
-      }
-    `;
-    document.head.appendChild(estilos);
-
     const secao = document.createElement("section");
     secao.className = "result-section cotidiano-section";
     secao.id = "perfil-cotidiano";
@@ -426,33 +406,30 @@
     const salvoDaVersao = versao === 3 ? perfilV3 : perfilAntigo;
     const painel = document.createElement("section");
     painel.setAttribute("aria-label", "Salvar, consultar e excluir perfis");
-    Object.assign(painel.style, {
-      marginTop: "20px", padding: "22px", border: "1px solid var(--border)",
-      borderRadius: "10px", background: "var(--surface)"
-    });
+    painel.className = "result-save-panel";
     const titulo = document.createElement("h2");
     titulo.textContent = "Salvar meu perfil";
-    Object.assign(titulo.style, { fontSize: "18px", letterSpacing: "-0.02em", lineHeight: "1.4" });
+    titulo.className = "result-save-title";
     painel.appendChild(titulo);
 
     const descricao = document.createElement("p");
     descricao.textContent = "O salvamento é opcional e fica apenas neste navegador. " +
       "Ao salvar, guardamos seu perfil mais recente e uma entrada no histórico com cinco pontuações e a data. " +
       "Não há cadastro nem sincronização entre dispositivos. O histórico preserva explorações anteriores.";
-    Object.assign(descricao.style, { color: "var(--muted)", fontSize: "13px", lineHeight: "1.8", marginTop: "10px" });
+    descricao.className = "result-save-description";
     painel.appendChild(descricao);
 
     const mensagem = document.createElement("p");
     mensagem.setAttribute("role", "status");
     mensagem.setAttribute("aria-live", "polite");
-    Object.assign(mensagem.style, { color: "var(--purple-light)", fontSize: "12px", marginTop: "14px", lineHeight: "1.7" });
+    mensagem.className = "result-save-message";
     mensagem.textContent = salvoDaVersao
       ? `Perfil salvo neste navegador em ${textoData(salvoDaVersao.salvoEm)}.`
       : "Este perfil ainda não foi salvo neste navegador.";
     painel.appendChild(mensagem);
 
     const acoes = document.createElement("div");
-    Object.assign(acoes.style, { display: "flex", flexWrap: "wrap", gap: "12px", marginTop: "18px" });
+    acoes.className = "result-save-actions";
 
     const salvar = document.createElement("button");
     salvar.type = "button";
@@ -576,8 +553,8 @@
   } else if (escolher === "1") {
     resultado = carregarSessao(1) || (salvoAntigo && salvoAntigo.versao === 1 ? salvoAntigo : null);
   } else {
-    // O quiz V2 usa resultado.html sem parâmetro. Preservamos esse comportamento.
-    // O quiz V3 usará resultado.html?versao=3 quando for ativado.
+    // Mantém a compatibilidade com links antigos sem parâmetro.
+    // O questionário atual utiliza resultado.html?versao=3.
     resultado = carregarSessao(2) || carregarSessao(3) || salvoV3 || salvoAntigo || carregarSessao(1);
   }
 
