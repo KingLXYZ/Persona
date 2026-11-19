@@ -311,6 +311,7 @@
   let erroAtivo = false;
   let armazenamentoDisponivel = true;
   let progressoRestaurado = false;
+  let avisoMigracao = "";
 
   // Acessibilidade das alternativas.
   alternativasEl.setAttribute("role", "radiogroup");
@@ -428,112 +429,130 @@
     }
   }
 
-  // Recupera somente dados compatíveis.
+  // Migra apenas respostas com ID e revisão individual compatíveis.
+  // Revisões metodológicas diferentes exigem análise antes de qualquer migração.
   function restaurarProgresso() {
     let bruto;
-
     try {
       bruto = sessionStorage.getItem(CHAVE_PROGRESSO);
     } catch (erro) {
       armazenamentoDisponivel = false;
-      console.warn(
-        "PERSONA: armazenamento indisponível.",
-        erro
-      );
+      console.warn("PERSONA: armazenamento indisponível.", erro);
       return;
     }
-
     if (!bruto) return;
 
     try {
       const dados = JSON.parse(bruto);
-
-      const versaoValida = dados.version === VERSAO;
-
       const ids = perguntas.map(pergunta => pergunta.id);
-      const formatoAntigo = Array.isArray(dados.respostas);
-      const tamanhoValido =
-        dados.totalPerguntas === perguntas.length &&
-        (formatoAntigo
-          ? dados.respostas.length === perguntas.length
-          : dados.respostas !== null &&
-            typeof dados.respostas === "object" &&
-            !Array.isArray(dados.respostas) &&
-            Object.keys(dados.respostas).length === perguntas.length &&
-            ids.every(id => Object.hasOwn(dados.respostas, id)));
-
-      const valores = tamanhoValido
-        ? (formatoAntigo ? dados.respostas : ids.map(id => dados.respostas[id]))
-        : [];
-
-      const respostasValidas =
-        tamanhoValido &&
-        valores.every(resposta => (
-          resposta === null ||
-          (
-            Number.isInteger(resposta) &&
-            resposta >= 1 &&
-            resposta <= 5
-          )
-        ));
-
-      const ordemValida =
-        dados.ordem === undefined ||
-        (
-          Array.isArray(dados.ordem) &&
-          dados.ordem.length === perguntas.length &&
-          new Set(dados.ordem).size === perguntas.length &&
-          dados.ordem.every(id => ids.includes(id))
-        );
-
-      // Progressos anteriores à introdução dos metadados continuam válidos.
-      // Regras de migração entre revisões serão implementadas separadamente.
-      const metadadosAusentes =
-        dados.revisaoInstrumento === undefined &&
-        dados.revisoesPerguntas === undefined;
-      const metadadosValidos = metadadosAusentes || (
-        dados.revisaoInstrumento === REVISAO_INSTRUMENTO &&
-        dados.revisoesPerguntas !== null &&
+      const legado = Array.isArray(dados.respostas);
+      const respostasObjeto = dados.respostas !== null &&
+        typeof dados.respostas === "object" &&
+        !Array.isArray(dados.respostas);
+      const revisoesObjeto = dados.revisoesPerguntas !== null &&
         typeof dados.revisoesPerguntas === "object" &&
-        !Array.isArray(dados.revisoesPerguntas) &&
-        Object.keys(dados.revisoesPerguntas).length === ids.length &&
-        ids.every(id =>
-          Object.hasOwn(dados.revisoesPerguntas, id) &&
-          dados.revisoesPerguntas[id] === revisoesPerguntas[id]
-        )
-      );
-
-      const indiceValido =
-        Number.isInteger(dados.atual) &&
+        !Array.isArray(dados.revisoesPerguntas);
+      const semMetadados = dados.revisaoInstrumento === undefined &&
+        dados.revisoesPerguntas === undefined;
+      const indiceValido = Number.isInteger(dados.atual) &&
         dados.atual >= 0 &&
-        dados.atual < perguntas.length;
+        dados.atual < dados.totalPerguntas;
 
       if (
-        !versaoValida ||
-        !tamanhoValido ||
-        !respostasValidas ||
-        !ordemValida ||
-        !metadadosValidos ||
-        !indiceValido
+        dados.version !== VERSAO ||
+        !Number.isInteger(dados.totalPerguntas) ||
+        dados.totalPerguntas < 1 ||
+        !indiceValido ||
+        (!legado && !respostasObjeto) ||
+        (!semMetadados && (
+          dados.revisaoInstrumento !== REVISAO_INSTRUMENTO ||
+          !revisoesObjeto
+        ))
       ) {
-        throw new Error("Progresso incompatível.");
+        throw new Error("Progresso incompatível com a revisão do instrumento.");
       }
 
-      // Converte o progresso antigo por posição para o formato por ID.
-      respostas = Object.fromEntries(
-        ids.map((id, indice) => [id, valores[indice]])
-      );
-      atual = dados.atual;
-      // Tentativas antigas mantêm a ordem original até a conclusão.
-      ordem = dados.ordem ? dados.ordem.slice() : ids.slice();
+      // Sem metadados, somente o formato integral conhecido pode ser recuperado.
+      if (semMetadados && (
+        dados.totalPerguntas !== perguntas.length ||
+        (legado && dados.respostas.length !== perguntas.length) ||
+        (!legado && (
+          Object.keys(dados.respostas).length !== ids.length ||
+          !ids.every(id => Object.hasOwn(dados.respostas, id))
+        ))
+      )) {
+        throw new Error("Progresso legado incompatível.");
+      }
+
+      if (legado && !semMetadados) {
+        throw new Error("Respostas posicionais sem garantia de correspondência.");
+      }
+
+      const idsAnteriores = semMetadados
+        ? ids
+        : Object.keys(dados.revisoesPerguntas);
+      const ordemAnterior = dados.ordem === undefined
+        ? idsAnteriores.slice()
+        : dados.ordem;
+
+      if (
+        !Array.isArray(ordemAnterior) ||
+        ordemAnterior.length !== dados.totalPerguntas ||
+        new Set(ordemAnterior).size !== ordemAnterior.length ||
+        !ordemAnterior.every(id => idsAnteriores.includes(id)) ||
+        (!semMetadados && (
+          idsAnteriores.length !== dados.totalPerguntas ||
+          !idsAnteriores.every(id =>
+            Number.isInteger(dados.revisoesPerguntas[id]) &&
+            dados.revisoesPerguntas[id] >= 1 &&
+            Object.hasOwn(dados.respostas, id)
+          )
+        ))
+      ) {
+        throw new Error("Ordem ou identificadores incompatíveis.");
+      }
+
+      const anteriores = legado
+        ? Object.fromEntries(ids.map((id, i) => [id, dados.respostas[i]]))
+        : dados.respostas;
+      if (!idsAnteriores.every(id => (
+        anteriores[id] === null ||
+        (Number.isInteger(anteriores[id]) &&
+          anteriores[id] >= 1 && anteriores[id] <= 5)
+      ))) {
+        throw new Error("Respostas armazenadas inválidas.");
+      }
+
+      let respostasRevisadas = 0;
+      respostas = Object.fromEntries(ids.map(id => {
+        const compativel = Object.hasOwn(anteriores, id) &&
+          (semMetadados || dados.revisoesPerguntas[id] === revisoesPerguntas[id]);
+        if (!compativel && Object.hasOwn(anteriores, id) &&
+            anteriores[id] !== null) respostasRevisadas++;
+        return [id, compativel ? anteriores[id] : null];
+      }));
+
+      // Preserva a sequência existente e insere novas perguntas ao final.
+      ordem = ordemAnterior.filter(id => perguntasPorId.has(id));
+      ids.forEach(id => {
+        if (!ordem.includes(id)) ordem.push(id);
+      });
+
+      const idAtualAnterior = ordemAnterior[dados.atual];
+      atual = ordem.indexOf(idAtualAnterior);
+      if (atual < 0) atual = 0;
+
+      if (respostasRevisadas > 0) {
+        const pendente = ordem.findIndex(id => respostas[id] === null);
+        if (pendente !== -1) atual = pendente;
+        avisoMigracao = `O questionário foi atualizado. ${respostasRevisadas} resposta(s) precisam ser refeitas; as demais foram preservadas.`;
+      }
+
       progressoRestaurado = true;
-
+      // Atualiza os metadados da tentativa após recuperar o progresso.
+      salvarProgresso();
     } catch (erro) {
-      console.warn(
-        "PERSONA: progresso anterior ignorado.",
-        erro
-      );
-
+      console.warn("PERSONA: progresso anterior ignorado.", erro);
       try {
         sessionStorage.removeItem(CHAVE_PROGRESSO);
       } catch {
@@ -542,7 +561,7 @@
     }
   }
 
-  function atualizarProgresso() {
+    function atualizarProgresso() {
     const respondidas = Object.values(respostas).filter(
       resposta => resposta !== null
     ).length;
@@ -608,7 +627,8 @@
       `Pergunta ${atual + 1} de ${perguntas.length}`;
 
     instrucaoEl.textContent =
-      "Escolha a alternativa que mais se aproxima da sua maneira de pensar ou agir.";
+      "Escolha a alternativa que mais se aproxima da sua maneira de pensar ou agir." +
+      (avisoMigracao ? " " + avisoMigracao : "");
 
     alternativasEl.replaceChildren();
 
