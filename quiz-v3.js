@@ -241,7 +241,7 @@
   }
 
   let atual = 0;
-  let respostas = Array(perguntas.length).fill(null);
+  let respostas = Object.fromEntries(perguntas.map(pergunta => [pergunta.id, null]));
   let erroAtivo = false;
   let armazenamentoDisponivel = true;
 
@@ -378,14 +378,25 @@
 
       const versaoValida = dados.version === VERSAO;
 
+      const ids = perguntas.map(pergunta => pergunta.id);
+      const formatoAntigo = Array.isArray(dados.respostas);
       const tamanhoValido =
         dados.totalPerguntas === perguntas.length &&
-        Array.isArray(dados.respostas) &&
-        dados.respostas.length === perguntas.length;
+        (formatoAntigo
+          ? dados.respostas.length === perguntas.length
+          : dados.respostas !== null &&
+            typeof dados.respostas === "object" &&
+            !Array.isArray(dados.respostas) &&
+            Object.keys(dados.respostas).length === perguntas.length &&
+            ids.every(id => Object.hasOwn(dados.respostas, id)));
+
+      const valores = tamanhoValido
+        ? (formatoAntigo ? dados.respostas : ids.map(id => dados.respostas[id]))
+        : [];
 
       const respostasValidas =
         tamanhoValido &&
-        dados.respostas.every(resposta => (
+        valores.every(resposta => (
           resposta === null ||
           (
             Number.isInteger(resposta) &&
@@ -408,7 +419,10 @@
         throw new Error("Progresso incompatível.");
       }
 
-      respostas = dados.respostas.slice();
+      // Converte o progresso antigo por posição para o formato por ID.
+      respostas = Object.fromEntries(
+        ids.map((id, indice) => [id, valores[indice]])
+      );
       atual = dados.atual;
 
     } catch (erro) {
@@ -426,7 +440,7 @@
   }
 
   function atualizarProgresso() {
-    const respondidas = respostas.filter(
+    const respondidas = Object.values(respostas).filter(
       resposta => resposta !== null
     ).length;
 
@@ -444,7 +458,7 @@
 
   // Mantém a seleção acessível pelo teclado.
   function atualizarRadios() {
-    const selecionado = respostas[atual];
+    const selecionado = respostas[perguntas[atual].id];
 
     alternativasEl
       .querySelectorAll(".quiz-option")
@@ -466,7 +480,7 @@
   }
 
   function selecionarResposta(valor) {
-    respostas[atual] = valor;
+    respostas[perguntas[atual].id] = valor;
 
     atualizarRadios();
     continuarEl.disabled = false;
@@ -534,7 +548,7 @@
     voltarEl.textContent = "Voltar";
     voltarEl.disabled = atual === 0;
 
-    continuarEl.disabled = respostas[atual] === null;
+    continuarEl.disabled = respostas[perguntas[atual].id] === null;
 
     continuarEl.textContent =
       atual === perguntas.length - 1
@@ -557,7 +571,7 @@
     );
 
     perguntas.forEach((pergunta, indice) => {
-      const resposta = respostas[indice];
+      const resposta = respostas[pergunta.id];
 
       const valor = pergunta.invertida
         ? 6 - resposta
@@ -583,8 +597,8 @@
 
   // Retorna à primeira pergunta sem resposta.
   function reverRespostas() {
-    const primeiraPendente = respostas.findIndex(
-      resposta => resposta === null
+    const primeiraPendente = perguntas.findIndex(
+      pergunta => respostas[pergunta.id] === null
     );
 
     if (primeiraPendente !== -1) {
@@ -610,7 +624,7 @@
   });
 
   continuarEl.addEventListener("click", () => {
-    if (respostas[atual] === null) return;
+    if (respostas[perguntas[atual].id] === null) return;
 
     if (atual < perguntas.length - 1) {
       atual++;
@@ -619,8 +633,8 @@
       return;
     }
 
-    const primeiraPendente = respostas.findIndex(
-      resposta => resposta === null
+    const primeiraPendente = perguntas.findIndex(
+      pergunta => respostas[pergunta.id] === null
     );
 
     if (primeiraPendente !== -1) {
