@@ -128,9 +128,11 @@ document.addEventListener("DOMContentLoaded", () => {
         const aviso = "Apagar TODOS os dados do PERSONA neste navegador?\n\nSerão excluídos o histórico, os perfis salvos e os resultados temporários. Esta ação não pode ser desfeita e não afeta outros dispositivos.";
         if (!window.confirm(aviso)) return;
         try {
-          ["persona_historico_v1", "persona_perfil_salvo_v1", "persona_perfil_salvo_v3"].forEach(chave => localStorage.removeItem(chave));
-          ["persona_resultado_v1", "persona_resultado_v2", "persona_resultado_v3", "persona_progresso_v3"].forEach(chave => sessionStorage.removeItem(chave));
-          atualizarLista("Todos os dados conhecidos do PERSONA foram excluídos deste navegador.");
+          for (const armazenamento of [localStorage, sessionStorage]) {
+            const chaves = Object.keys(armazenamento).filter(chave => chave.startsWith("persona_"));
+            chaves.forEach(chave => armazenamento.removeItem(chave));
+          }
+          atualizarLista("Os dados com prefixo persona_ foram excluídos dos armazenamentos deste navegador.");
         } catch {
           mensagem.textContent = "Não foi possível concluir a exclusão. Alguns dados podem ter sido removidos; confira as permissões de armazenamento.";
         }
