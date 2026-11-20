@@ -455,39 +455,6 @@
     }
   }
 
-  function calcularPontuacoes() {
-    const totais = Object.fromEntries(
-      dimensoes.map(d => [
-        d,
-        { soma: 0, quantidade: 0 }
-      ])
-    );
-
-    perguntas.forEach(pergunta => {
-      const resposta = respostas[pergunta.id];
-
-      const valor = pergunta.invertida
-        ? 6 - resposta
-        : resposta;
-
-      totais[pergunta.dimensao].soma += valor;
-      totais[pergunta.dimensao].quantidade++;
-    });
-
-    return Object.fromEntries(
-      dimensoes.map(d => {
-        const media =
-          totais[d].soma / totais[d].quantidade;
-
-        const pontuacao = Math.round(
-          ((media - 1) / 4) * 100
-        );
-
-        return [d, pontuacao];
-      })
-    );
-  }
-
   // Retorna à primeira pergunta sem resposta.
   function reverRespostas() {
     const pendente = primeiraPendente();
@@ -555,7 +522,7 @@
       const resultado = {
         version: VERSAO,
         totalPerguntas: perguntas.length,
-        scores: calcularPontuacoes()
+        scores: window.PersonaQuizPontuacao.calcularPontuacoes(dimensoes, perguntas, respostas)
       };
 
       sessionStorage.setItem(
