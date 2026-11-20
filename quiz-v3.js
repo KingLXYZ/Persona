@@ -311,6 +311,7 @@
   let erroAtivo = false;
   let armazenamentoDisponivel = true;
   let progressoRestaurado = false;
+  let progressoIncompativel = false;
   let avisoMigracao = "";
 
   // Acessibilidade das alternativas.
@@ -552,12 +553,9 @@
       // Atualiza os metadados da tentativa após recuperar o progresso.
       salvarProgresso();
     } catch (erro) {
-      console.warn("PERSONA: progresso anterior ignorado.", erro);
-      try {
-        sessionStorage.removeItem(CHAVE_PROGRESSO);
-      } catch {
-        armazenamentoDisponivel = false;
-      }
+      // Preserva a tentativa incompatível em vez de apagá-la.
+      console.warn("PERSONA: progresso preservado, mas incompatível.", erro);
+      progressoIncompativel = true;
     }
   }
 
@@ -806,12 +804,19 @@
   try {
     validarQuestionario();
     restaurarProgresso();
-    // Somente uma tentativa sem progresso anterior recebe novo sorteio.
-    if (!progressoRestaurado) {
-      ordem = sortearOrdem();
-      salvarProgresso();
+    if (progressoIncompativel) {
+      mostrarErro(
+        "Existe uma tentativa salva incompatível com esta revisão do questionário. Seus dados foram preservados neste navegador e não serão substituídos automaticamente.",
+        false
+      );
+    } else {
+      // Somente uma tentativa sem progresso anterior recebe novo sorteio.
+      if (!progressoRestaurado) {
+        ordem = sortearOrdem();
+        salvarProgresso();
+      }
+      mostrarPergunta();
     }
-    mostrarPergunta();
 
   } catch (erro) {
     console.error(
