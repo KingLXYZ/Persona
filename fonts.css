@@ -1,0 +1,16 @@
+/* Fontes locais do Persona — licenças em /fonts */
+@font-face {
+  font-family: "DM Sans";
+  src: url("./fonts/DMSans%5Bopsz%2Cwght%5D.ttf") format("truetype");
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Manrope";
+  src: url("./fonts/Manrope%5Bwght%5D.ttf") format("truetype");
+  font-style: normal;
+  font-weight: 400 800;
+  font-display: swap;
+}
