@@ -742,6 +742,24 @@
     salvarProgresso();
   });
 
+  const reiniciarEl = document.getElementById("quiz-restart");
+  if (reiniciarEl) {
+    reiniciarEl.addEventListener("click", () => {
+      if (!window.confirm(
+        "Começar de novo? As respostas desta tentativa serão apagadas. Os resultados já salvos em Minha Jornada não serão afetados."
+      )) return;
+
+      try {
+        sessionStorage.removeItem(CHAVE_PROGRESSO);
+        window.location.reload();
+      } catch (erro) {
+        console.error("PERSONA: não foi possível reiniciar a tentativa.", erro);
+        instrucaoEl.textContent =
+          "Não foi possível apagar a tentativa. Verifique as permissões de armazenamento do navegador.";
+      }
+    });
+  }
+
   continuarEl.addEventListener("click", () => {
     if (respostas[perguntaAtual().id] === null) return;
 
@@ -809,6 +827,7 @@
         "Existe uma tentativa salva incompatível com esta revisão do questionário. Seus dados foram preservados neste navegador e não serão substituídos automaticamente.",
         false
       );
+      if (reiniciarEl) reiniciarEl.hidden = false;
     } else {
       // Somente uma tentativa sem progresso anterior recebe novo sorteio.
       if (!progressoRestaurado) {
