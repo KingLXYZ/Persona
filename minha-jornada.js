@@ -4,7 +4,8 @@ document.addEventListener("DOMContentLoaded", () => {
       const lista = document.getElementById("journey-list");
       const contador = document.getElementById("journey-count");
       const mensagem = document.getElementById("journey-message");
-      document.getElementById("current-year").textContent = String(new Date().getFullYear());
+      const anoAtualEl = document.getElementById("current-year");
+      if (anoAtualEl) anoAtualEl.textContent = String(new Date().getFullYear());
       const dimensoes = [
         { chave: "social", nome: "Social" },
         { chave: "cognitiva", nome: "Cognitiva" },
