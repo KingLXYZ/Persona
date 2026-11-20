@@ -26,8 +26,8 @@ const { dimensoes, perguntas } = contexto.quizTeste;
 const nomes = Array.from(dimensoes);
 
 function pontuar(respostaPorPergunta) {
-  vm.runInContext('globalThis.respostas = globalThis.respostasTeste;', contexto);
   contexto.respostasTeste = respostaPorPergunta;
+  vm.runInContext('globalThis.respostas = globalThis.respostasTeste;', contexto);
   return JSON.parse(JSON.stringify(contexto.quizTeste.calcularPontuacoes()));
 }
 
@@ -39,7 +39,7 @@ test('30 perguntas com IDs únicos e revisão válida', () => {
   assert.equal(perguntas.length, 30);
   assert.equal(new Set(Array.from(perguntas, p => p.id)).size, 30);
   for (const p of perguntas) {
-    assert.match(p.id, /^(SOC|COG|DEC|ORG|COM)-\\d{3}$/);
+    assert.match(p.id, /^(SOC|COG|DEC|ORG|COM)-\d{3}$/);
     assert.ok(Number.isInteger(p.revisao) && p.revisao >= 1);
     assert.ok(typeof p.texto === 'string' && p.texto.trim());
     assert.equal(typeof p.invertida, 'boolean');
