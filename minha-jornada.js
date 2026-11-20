@@ -116,6 +116,8 @@ document.addEventListener("DOMContentLoaded", () => {
             return;
           }
           registros.forEach((registro, indice) => lista.appendChild(montarRegistro(registro, indice)));
+          const ignorados = window.PersonaHistorico.quantidadeIgnorada?.() || 0;
+          if (ignorados > 0) mensagem.textContent = `${ignorados} registro(s) inválido(s) não foram exibidos. Os dados originais foram preservados; evite salvar ou excluir registros até recuperar o histórico.`;
         } catch (erro) {
           contador.textContent = "Histórico indisponível";
           mensagem.textContent = "Não foi possível ler os registros salvos. Por segurança, nenhum dado foi alterado ou excluído.";
