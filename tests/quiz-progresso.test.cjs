@@ -6,12 +6,8 @@ const fs = require('node:fs');
 const path = require('node:path');
 const vm = require('node:vm');
 
-const quiz = fs.readFileSync(path.join(__dirname, '..', 'quiz-v3.js'), 'utf8');
 const dados = fs.readFileSync(path.join(__dirname, '..', 'quiz-perguntas.js'), 'utf8');
-const inicio = quiz.indexOf('  // Salva as respostas durante a sessão.');
-const fim = quiz.indexOf('    function atualizarProgresso()', inicio);
-assert.ok(inicio >= 0 && fim > inicio, 'Não foi possível localizar as funções de progresso.');
-const funcoes = quiz.slice(inicio, fim);
+const modulo = fs.readFileSync(path.join(__dirname, '..', 'quiz-progresso.js'), 'utf8');
 
 function ambiente() {
   const armazenado = new Map();
@@ -20,28 +16,38 @@ function ambiente() {
     setItem: (chave, valor) => armazenado.set(chave, String(valor)),
     removeItem: chave => armazenado.delete(chave)
   };
-  const contexto = vm.createContext({ window: {}, sessionStorage: armazenamento,
-    console: { warn() {} } });
+  const contexto = vm.createContext({ window: {}, console: { warn() {} } });
   vm.runInContext(dados, contexto);
-  vm.runInContext(`const perguntas = window.PersonaQuizDados.perguntas;
-    const VERSAO = 3, REVISAO_INSTRUMENTO = 1;
-    const CHAVE_PROGRESSO = 'persona_progresso_v3';
-    const perguntasPorId = new Map(perguntas.map(p => [p.id, p]));
-    const revisoesPerguntas = Object.fromEntries(perguntas.map(p => [p.id, p.revisao]));
-    let atual = 0;
-    let ordem = perguntas.map(p => p.id);
-    let respostas = Object.fromEntries(perguntas.map(p => [p.id, null]));
-    let armazenamentoDisponivel = true, progressoRestaurado = false;
-    let progressoIncompativel = false, avisoMigracao = '';
-    ${funcoes}
-    globalThis.api = {
-      salvarProgresso, restaurarProgresso,
-      estado: () => ({ atual, ordem, respostas, progressoRestaurado, progressoIncompativel, avisoMigracao }),
-      definir: (novo) => { atual = novo.atual; ordem = novo.ordem; respostas = novo.respostas; }
-    };`, contexto);
-  const ids = Array.from(contexto.window.PersonaQuizDados.perguntas, p => p.id);
+  vm.runInContext(modulo, contexto);
+  const perguntas = Array.from(contexto.window.PersonaQuizDados.perguntas);
+  const ids = perguntas.map(p => p.id);
+  let estado = {
+    atual: 0,
+    ordem: ids.slice(),
+    respostas: Object.fromEntries(ids.map(id => [id, null])),
+    armazenamentoDisponivel: true,
+    progressoRestaurado: false,
+    progressoIncompativel: false,
+    avisoMigracao: ''
+  };
+  const apiModulo = contexto.window.PersonaQuizProgresso.criar({
+    perguntas,
+    perguntasPorId: new Map(perguntas.map(p => [p.id, p])),
+    revisoesPerguntas: Object.fromEntries(perguntas.map(p => [p.id, p.revisao])),
+    versao: 3,
+    revisaoInstrumento: 1,
+    chaveProgresso: 'persona_progresso_v3',
+    armazenamento,
+    obterEstado: () => estado,
+    atualizarEstado: alteracoes => { estado = { ...estado, ...alteracoes }; }
+  });
+  const api = {
+    ...apiModulo,
+    estado: () => estado,
+    definir: novo => { estado = { ...estado, ...novo }; }
+  };
   const normalizar = valor => JSON.parse(JSON.stringify(valor));
-  return { armazenamento, ids, api: contexto.api, normalizar };
+  return { armazenamento, ids, api, normalizar };
 }
 
 test('salva progresso com IDs, revisões, ordem e posição atual', () => {
