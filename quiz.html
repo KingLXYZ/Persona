@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="quiz.css">
     <link rel="stylesheet" href="persona-interface.css?v=1">
-    <script src="quiz-v3.js?v=3" defer></script>
+    <script src="quiz-v3.js?v=4" defer></script>
 
     <style>
         /* Orientação breve, sem interferir nas alternativas ou nos cálculos. */
@@ -70,13 +70,14 @@
                 <p class="quiz-instruction">
                     Escolha a alternativa que mais se aproxima da sua maneira de pensar ou agir.
                 </p>
-                <h1 id="quiz-question" aria-live="polite">Carregando a primeira pergunta...</h1>
+                <h1 id="quiz-question">Carregando a primeira pergunta...</h1>
                 <div class="quiz-options" id="quiz-options"></div>
             </div>
 
             <div class="quiz-navigation">
                 <button type="button" id="quiz-back" class="quiz-back" disabled>Voltar</button>
                 <button type="button" id="quiz-next" class="quiz-next" disabled>Continuar →</button>
+                <button type="button" id="quiz-restart" class="quiz-back" hidden>Começar de novo</button>
             </div>
 
             <p class="quiz-disclaimer">
