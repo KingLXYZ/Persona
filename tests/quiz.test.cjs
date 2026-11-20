@@ -17,10 +17,12 @@ function trechoEntre(inicio, fim) {
 
 // Executa as definições e a função ORIGINAL de cálculo, isoladas do DOM.
 // Esta extração temporária será substituída por imports após a modularização.
-const definicoes = trechoEntre('  const dimensoes = [', '  // Elementos da interface.');
+const definicoes = fs.readFileSync(path.join(__dirname, '..', 'quiz-perguntas.js'), 'utf8');
 const calculo = trechoEntre('  function calcularPontuacoes() {', '  // Retorna à primeira pergunta sem resposta.');
 const contexto = vm.createContext({});
-vm.runInContext(definicoes + '\n' + calculo + '\n' +
+contexto.window = {};
+vm.runInContext(definicoes, contexto);
+vm.runInContext('const { dimensoes, perguntas } = window.PersonaQuizDados;\n' + calculo + '\n' +
   'globalThis.quizTeste = { dimensoes, perguntas, calcularPontuacoes };', contexto);
 const { dimensoes, perguntas } = contexto.quizTeste;
 const nomes = Array.from(dimensoes);
