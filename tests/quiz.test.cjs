@@ -18,19 +18,18 @@ function trechoEntre(inicio, fim) {
 // Executa as definições e a função ORIGINAL de cálculo, isoladas do DOM.
 // Esta extração temporária será substituída por imports após a modularização.
 const definicoes = fs.readFileSync(path.join(__dirname, '..', 'quiz-perguntas.js'), 'utf8');
-const calculo = trechoEntre('  function calcularPontuacoes() {', '  // Retorna à primeira pergunta sem resposta.');
+const calculo = fs.readFileSync(path.join(__dirname, '..', 'quiz-pontuacao.js'), 'utf8');
 const contexto = vm.createContext({});
 contexto.window = {};
 vm.runInContext(definicoes, contexto);
-vm.runInContext('const { dimensoes, perguntas } = window.PersonaQuizDados;\n' + calculo + '\n' +
-  'globalThis.quizTeste = { dimensoes, perguntas, calcularPontuacoes };', contexto);
+vm.runInContext(calculo, contexto);
+vm.runInContext('globalThis.quizTeste = window.PersonaQuizDados;', contexto);
 const { dimensoes, perguntas } = contexto.quizTeste;
 const nomes = Array.from(dimensoes);
 
 function pontuar(respostaPorPergunta) {
   contexto.respostasTeste = respostaPorPergunta;
-  vm.runInContext('globalThis.respostas = globalThis.respostasTeste;', contexto);
-  return JSON.parse(JSON.stringify(contexto.quizTeste.calcularPontuacoes()));
+  return JSON.parse(JSON.stringify(contexto.window.PersonaQuizPontuacao.calcularPontuacoes(dimensoes, perguntas, contexto.respostasTeste)));
 }
 
 function todasCom(valor) {
