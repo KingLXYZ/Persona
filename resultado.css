@@ -564,3 +564,6 @@
     }
 }
 
+
+/* Espaçamento do acesso ao histórico na introdução do perfil. */
+.result-journey-link { margin-top: 22px; }
