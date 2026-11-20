@@ -96,8 +96,33 @@
    * Não modifica o armazenamento.
    */
   function listar() {
-    return lerDocumento().registros.map(copiarRegistro)
+    // A leitura tolera registros isolados inválidos, sem regravar o arquivo.
+    const bruto = localStorage.getItem(CHAVE);
+    if (bruto === null) return [];
+    let dados;
+    try {
+      dados = JSON.parse(bruto);
+    } catch {
+      throw new Error("O histórico local não pôde ser interpretado.");
+    }
+    if (!dados || dados.formato !== FORMATO || !Array.isArray(dados.registros)) {
+      throw new Error("O formato do histórico é incompatível.");
+    }
+    const ids = new Set();
+    return dados.registros.filter(registro => {
+      if (!registroValido(registro) || ids.has(registro.id)) return false;
+      ids.add(registro.id);
+      return true;
+    }).map(copiarRegistro)
       .sort((a, b) => Date.parse(b.salvoEm) - Date.parse(a.salvoEm));
+  }
+
+  function quantidadeIgnorada() {
+    const bruto = localStorage.getItem(CHAVE);
+    if (bruto === null) return 0;
+    const dados = JSON.parse(bruto);
+    if (!dados || dados.formato !== FORMATO || !Array.isArray(dados.registros)) return 0;
+    return dados.registros.length - listar().length;
   }
 
   /** Busca uma exploração pelo identificador interno. */
@@ -170,6 +195,6 @@
   }
 
   window.PersonaHistorico = Object.freeze({
-    listar, obter, adicionar, excluir, excluirTudo
+    listar, quantidadeIgnorada, obter, adicionar, excluir, excluirTudo
   });
 })();
