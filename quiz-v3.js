@@ -691,7 +691,7 @@
       ])
     );
 
-    perguntas.forEach((pergunta, indice) => {
+    perguntas.forEach(pergunta => {
       const resposta = respostas[pergunta.id];
 
       const valor = pergunta.invertida
