@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-label="Persona — P ponto">
+<rect width="128" height="128" rx="28" fill="#100C18"/>
+<circle cx="64" cy="64" r="54" fill="none" stroke="#8E64CE" stroke-width="2.5"/>
+<text x="55" y="94" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="91" fill="#EEE7F6">P</text>
+<circle cx="92" cy="91" r="7" fill="#A77AE9"/>
+</svg>
