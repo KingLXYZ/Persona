@@ -388,3 +388,24 @@
     }
 
 }
+
+
+/* Orientação breve do questionário, migrada do HTML. */
+/* Orientação breve, sem interferir nas alternativas ou nos cálculos. */
+        .quiz-orientation {
+            max-width: 760px;
+            margin-bottom: 24px;
+            padding: 14px 18px;
+            border-left: 2px solid var(--purple);
+            border-radius: 0 8px 8px 0;
+            background: var(--surface);
+        }
+        .quiz-orientation p {
+            color: var(--muted);
+            font-size: 12px;
+            line-height: 1.8;
+        }
+        .quiz-orientation strong { color: var(--text); }
+        @media (max-width: 600px) {
+            .quiz-orientation { padding: 12px 14px; margin-bottom: 20px; }
+        }
