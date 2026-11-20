@@ -86,11 +86,6 @@
   let progressoIncompativel = false;
   let avisoMigracao = "";
 
-  // Acessibilidade das alternativas.
-  alternativasEl.setAttribute("role", "radiogroup");
-  alternativasEl.setAttribute("aria-labelledby", perguntaEl.id);
-  perguntaEl.setAttribute("tabindex", "-1");
-
   function mostrarErro(mensagem, recuperavel = true) {
     erroAtivo = true;
 
@@ -188,44 +183,17 @@
   });
   const { salvarProgresso, restaurarProgresso } = controleProgresso;
 
-    function atualizarProgresso() {
-    const respondidas = Object.values(respostas).filter(
-      resposta => resposta !== null
-    ).length;
+  const interfaceQuiz = window.PersonaQuizInterface.criar({
+    perguntaEl, alternativasEl, progressoEl, barraEl
+  });
 
-    const porcentagem = Math.round(
-      (respondidas / perguntas.length) * 100
-    );
-
-    progressoEl.style.width = `${porcentagem}%`;
-
-    barraEl.setAttribute(
-      "aria-valuenow",
-      String(porcentagem)
-    );
+  function atualizarProgresso() {
+    const respondidas = Object.values(respostas).filter(resposta => resposta !== null).length;
+    interfaceQuiz.atualizarProgresso(respondidas, perguntas.length);
   }
 
-  // Mantém a seleção acessível pelo teclado.
   function atualizarRadios() {
-    const selecionado = respostas[perguntaAtual().id];
-
-    alternativasEl
-      .querySelectorAll(".quiz-option")
-      .forEach((botao, indice) => {
-        const marcado = indice + 1 === selecionado;
-
-        botao.classList.toggle("selected", marcado);
-        botao.setAttribute(
-          "aria-checked",
-          String(marcado)
-        );
-
-        const entraNoTab = selecionado === null
-          ? indice === 0
-          : marcado;
-
-        botao.tabIndex = entraNoTab ? 0 : -1;
-      });
+    interfaceQuiz.atualizarRadios(respostas[perguntaAtual().id]);
   }
 
   function selecionarResposta(valor) {
