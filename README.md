@@ -4,7 +4,7 @@ Ferramenta **experimental** de autoconhecimento publicada no GitHub Pages. Os re
 
 ## Dados e privacidade
 
-As respostas são processadas no navegador. Os indicadores permanecem na sessão, salvo quando a pessoa decide guardar o perfil em armazenamento local. Em **Minha jornada → Apagar todos os dados deste navegador**, o visitante pode apagar os dados do PERSONA conhecidos pelo aplicativo (perfil principal, histórico e resultados temporários). Isso não remove cópias em outros dispositivos.
+As respostas são processadas no navegador. Durante o preenchimento, o `sessionStorage` guarda temporariamente as respostas individuais, a ordem das perguntas, a posição atual e metadados técnicos de revisão para permitir retomar a tentativa. Ao concluir o questionário, esse progresso é removido, e as cinco pontuações permanecem temporariamente na sessão para exibir o resultado. Os dados de sessão normalmente deixam de estar disponíveis quando a sessão da aba termina, mas o comportamento de restauração varia conforme o navegador. Salvar um perfil no `localStorage` é opcional e não inclui as respostas individuais. Em **Minha jornada → Apagar todos os dados deste navegador**, o visitante pode apagar os dados do PERSONA conhecidos pelo aplicativo (perfil principal, histórico e resultados temporários). Isso não remove cópias em outros dispositivos.
 
 A transferência por QR Code codifica as pontuações num link; **não há criptografia ou verificação criptográfica de autenticidade**. Links e imagens de QR devem ser compartilhados apenas de forma privada. A importação exige confirmação explícita.
 
