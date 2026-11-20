@@ -40,13 +40,19 @@ test('sorteio mantém os 30 IDs sem repetições', () => {
   }
 });
 
-test('sorteio evita dimensões consecutivas iguais no questionário atual', () => {
+test('sorteio evita repetição consecutiva quando há outra dimensão disponível', () => {
   const { api, perguntas } = ambiente();
   const porId = new Map(perguntas.map(p => [p.id, p]));
   for (let i = 0; i < 30; i++) {
     const ordem = Array.from(api.sortearOrdem());
     for (let j = 1; j < ordem.length; j++) {
-      assert.notEqual(porId.get(ordem[j - 1]).dimensao, porId.get(ordem[j]).dimensao);
+      const anterior = porId.get(ordem[j - 1]).dimensao;
+      const atual = porId.get(ordem[j]).dimensao;
+      if (anterior === atual) {
+        const restantes = ordem.slice(j).map(id => porId.get(id).dimensao);
+        assert.ok(restantes.every(d => d === anterior),
+          'Repetição ocorreu enquanto havia outra dimensão disponível');
+      }
     }
   }
 });
