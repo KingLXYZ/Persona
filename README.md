@@ -12,11 +12,23 @@ Projetos sob a mesma origem `kinglxyz.github.io` podem compartilhar o armazename
 
 ## Segurança técnica
 
-As cinco páginas principais usam Content Security Policy (CSP) declarada via meta-tag, restringindo scripts ao próprio site. Scripts HTML internos foram separados em `home-dimensoes.js` e `minha-jornada.js`. A diretiva `style-src 'unsafe-inline'` permanece temporariamente por causa dos estilos inline atuais. O navegador recebe `referrer=no-referrer` nas páginas principais.
+As cinco páginas principais usam Content Security Policy (CSP) declarada via meta-tag, restringindo scripts ao próprio site. Scripts HTML internos foram separados em `home-dimensoes.js` e `minha-jornada.js`. As páginas principais carregam estilos e fontes locais; a política atual restringe `style-src` e `font-src` a `'self'`. Mudanças nas políticas devem ser conferidas diretamente nas meta-tags das páginas. O navegador recebe `referrer=no-referrer` nas páginas principais.
 
 A CSP declarada como meta-tag tem limitações: por exemplo, a proteção `frame-ancestors` exige cabeçalhos HTTP, que não são controlados diretamente por arquivos HTML estáticos do GitHub Pages.
 
-## Testes recomendados antes da nova rodada
+## Arquitetura e testes automatizados
+
+A organização dos módulos do questionário, a ordem de carregamento, os contratos de compatibilidade e o procedimento de manutenção estão descritos em [`docs/arquitetura-questionario.md`](docs/arquitetura-questionario.md).
+
+Com Node.js instalado, execute na raiz do repositório:
+
+```powershell
+node --test tests/*.test.cjs
+```
+
+A suíte contém 14 testes de perguntas, pontuação, progresso e navegação lógica. Os testes de navegação extraem funções do controlador e podem precisar de atualização se essas funções forem movidas. Ainda não existe teste automatizado de ponta a ponta para a interface no navegador.
+
+## Testes manuais recomendados antes da publicação
 
 1. Na página inicial, clicar nos cinco cartões, testar botões e links.
 2. Responder às 30 perguntas, abrir resultado e salvar perfil.
@@ -24,4 +36,4 @@ A CSP declarada como meta-tag tem limitações: por exemplo, a proteção `frame
 4. Verificar o botão de exclusão completa **após preservar cópias dos perfis que deseja manter**; conferir ausência de dados em resultados e histórico.
 5. Examinar no navegador o Console e a aba Network para bloqueios CSP ou recursos inesperados, em celular e computador.
 
-Arquivos de teste e scripts anteriores não referenciados foram retirados da publicação nesta etapa. O histórico Git preserva seus conteúdos em commits anteriores.
+Scripts antigos não referenciados foram retirados em etapas anteriores; o histórico Git preserva esses conteúdos. Os testes automatizados atuais ficam na pasta `tests/`.
