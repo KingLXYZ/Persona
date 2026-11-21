@@ -77,3 +77,35 @@ As cinco dimensões são definições próprias do Persona e **não equivalem ao
 ## Registro de decisão
 
 **Decisão nesta etapa:** preservar integralmente os 30 itens e o cálculo atual; disponibilizar a análise para discussão antes de qualquer mudança. Esta auditoria é uma triagem conceitual preliminar, não uma validação científica.
+
+## Encerramento da revisão documental e decisões de produto
+
+A auditoria documental foi concluída para **30/30 itens**. Classificação: **15 itens para manter provisoriamente** e **15 para investigar** (Social 3/3; Cognitiva 3/3; Decisória 3/3; Organizacional 4/2; Comportamental 2/4). Esses totais não representam aprovação psicométrica ou percentual de qualidade.
+
+### Decisão sobre a dimensão Social
+
+O conceito de trabalho será ampliado para **estilo de interação social**, abrangendo iniciativa de contato, participação em conversas e escuta/acompanhamento. O produto **continuará apresentando apenas cinco indicadores principais**, sem subdivisões neste momento.
+
+**Ressalva de coerência:** a pontuação Social atual continua organizada como observação inicial ↔ iniciativa social. A definição ampliada não foi incorporada à página pública nem à fórmula, pois itens de escuta e iniciativa não são necessariamente opostos. Uma futura mudança conceitual exigirá decidir qual aspecto único pode ser resumido pelo indicador ou se é necessário alterar a forma de interpretação. As seis reformulações discutidas são apenas rascunhos e **não foram aprovadas para produção**.
+
+### Revisão da Metodologia publicada
+
+| Área | Verificação documental | Decisão |
+| --- | --- | --- |
+| Proposta e limites | Informa que são 30 itens autorais, cinco dimensões próprias, sem validação científica e sem equivalência ao Big Five | Preservar |
+| Definições das dimensões | Correspondem aos polos pretendidos no código; há riscos de sobreposição conceitual e de falsa oposição entre preferências | Preservar provisoriamente e investigar |
+| Respostas e cálculo | Escala 1–5, inversão `6 - resposta`, média e conversão `(média - 1)/4 × 100` correspondem ao módulo de pontuação | Preservar |
+| Faixas de interpretação | 0–34, 35–65 e 66–100 são declaradas como convenções internas, não cortes científicos | Preservar com essa ressalva |
+| Resultados | Página reconhece que pontuações não são percentis nem porcentagens de uma característica | Preservar |
+| Privacidade | Descreve armazenamento local e de sessão, salvamento opcional e riscos de compartilhar QR Code | Manter revisão técnica contínua; não é auditoria independente de segurança |
+| Referências | Seis referências orientadoras, com limites de aplicabilidade explicitados | Preservar; não usar a quantidade de fontes como prova de validade |
+
+### Critérios de decisão para uma futura revisão do instrumento
+
+1. **Não mudar agora:** textos, identificadores, polaridade, pontuação e indicadores publicados permanecem inalterados.
+2. **Priorizar testes de compreensão:** entrevistar participantes sobre o significado de itens sinalizados, começando pelos itens SOC-002/004/006, COG-001/004/006, DEC-002/004/006, ORG-004/006 e COM-002/003/004/006.
+3. **Examinar a estrutura conceitual:** verificar se cada conjunto de seis itens representa um único indicador interpretável. Um equilíbrio de três itens diretos e três invertidos não garante isso.
+4. **Documentar revisões futuras:** justificar mudanças, identificar a revisão do instrumento e proteger a interpretação dos resultados antigos.
+5. **Não afirmar validação:** a auditoria documental e seis referências não substituem evidências obtidas com participantes.
+
+**Encerramento desta etapa:** auditoria documental e revisão de coerência metodológica concluídas; validação empírica e decisões sobre reformulações ficam explicitamente pendentes.
