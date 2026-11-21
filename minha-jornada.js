@@ -95,6 +95,18 @@ document.addEventListener("DOMContentLoaded", () => {
         cartao.append(cabecalho, detalhes);
         return cartao;
       }
+      const recuperarInvalidos = document.getElementById("journey-remove-invalid");
+      if (recuperarInvalidos) recuperarInvalidos.addEventListener("click", () => {
+        const quantidade = window.PersonaHistorico?.quantidadeIgnorada?.() || 0;
+        if (!quantidade) return;
+        if (!window.confirm(`Remover ${quantidade} registro(s) inválido(s) do histórico?\\n\\nAntes da remoção, será criada uma cópia dos dados originais neste navegador. Esta ação não afeta perfis salvos.`)) return;
+        try {
+          const resultado = window.PersonaHistorico.removerInvalidos();
+          atualizarLista(`${resultado.removidos} registro(s) inválido(s) removido(s). Uma cópia dos dados originais foi preservada neste navegador.`);
+        } catch (erro) {
+          mensagem.textContent = "Não foi possível recuperar o histórico. Os registros originais foram preservados.";
+        }
+      });
       function atualizarLista(aviso = "") {
         mensagem.textContent = aviso;
         lista.replaceChildren();
@@ -106,6 +118,11 @@ document.addEventListener("DOMContentLoaded", () => {
         try {
           const registros = window.PersonaHistorico.listar();
           contador.textContent = registros.length === 1 ? "1 exploração salva" : `${registros.length} explorações salvas`;
+          const ignorados = window.PersonaHistorico.quantidadeIgnorada?.() || 0;
+          if (recuperarInvalidos) recuperarInvalidos.hidden = ignorados === 0;
+          if (ignorados > 0) {
+            mensagem.textContent = `${ignorados} registro(s) inválido(s) não foram exibidos. Os dados originais foram preservados. Use a recuperação para criar uma cópia antes de removê-los.`;
+          }
           if (registros.length === 0) {
             const vazio = elemento("div", "journey-empty");
             vazio.append(
@@ -116,8 +133,6 @@ document.addEventListener("DOMContentLoaded", () => {
             return;
           }
           registros.forEach((registro, indice) => lista.appendChild(montarRegistro(registro, indice)));
-          const ignorados = window.PersonaHistorico.quantidadeIgnorada?.() || 0;
-          if (ignorados > 0) mensagem.textContent = `${ignorados} registro(s) inválido(s) não foram exibidos. Os dados originais foram preservados; evite salvar ou excluir registros até recuperar o histórico.`;
         } catch (erro) {
           contador.textContent = "Histórico indisponível";
           mensagem.textContent = "Não foi possível ler os registros salvos. Por segurança, nenhum dado foi alterado ou excluído.";
