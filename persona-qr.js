@@ -32,10 +32,6 @@
     const no = document.getElementById("journey-message");
     if (no) no.textContent = texto;
   }
-  function adicionarEstilos() {
-    // Os estilos agora são carregados pela folha persona-qr.css.
-  }
-
   function validar(registro) {
     return registro && typeof registro === "object" && !Array.isArray(registro) &&
       typeof registro.id === "string" && registro.id.length >= 4 && registro.id.length <= 150 &&
@@ -206,7 +202,6 @@
   }
   function iniciar() {
     if (!document.querySelector("#journey-list")) return;
-    adicionarEstilos();
     const lista = document.getElementById("journey-list");
     const section = lista.closest("section");
     if (section && !document.getElementById("persona-qr-box")) {
