@@ -16,6 +16,10 @@ As cinco páginas principais usam Content Security Policy (CSP) declarada via me
 
 A CSP declarada como meta-tag tem limitações: por exemplo, a proteção `frame-ancestors` exige cabeçalhos HTTP, que não são controlados diretamente por arquivos HTML estáticos do GitHub Pages.
 
+## Histórico de alterações
+
+As mudanças relevantes do projeto e as convenções para futuros lançamentos estão registradas em [`CHANGELOG.md`](CHANGELOG.md). O histórico anterior ao versionamento formal não recebeu números de versão retroativos.
+
 ## Arquitetura e testes automatizados
 
 A organização dos módulos do questionário, a ordem de carregamento, os contratos de compatibilidade e o procedimento de manutenção estão descritos em [`docs/arquitetura-questionario.md`](docs/arquitetura-questionario.md).
@@ -26,7 +30,7 @@ Com Node.js instalado, execute na raiz do repositório:
 node --test tests/*.test.cjs
 ```
 
-A suíte contém 14 testes de perguntas, pontuação, progresso e navegação lógica. Os testes de navegação extraem funções do controlador e podem precisar de atualização se essas funções forem movidas. Ainda não existe teste automatizado de ponta a ponta para a interface no navegador.
+A suíte contém 23 testes de perguntas, pontuação, progresso, navegação, falhas de inicialização e recuperação do histórico. Os testes de navegação extraem funções do controlador e podem precisar de atualização se essas funções forem movidas. Ainda não existe teste automatizado de ponta a ponta para a interface no navegador.
 
 ## Testes manuais recomendados antes da publicação
 
