@@ -14,8 +14,6 @@
   const CHAVE_RESULTADO = "persona_resultado_v3";
   const CHAVE_PROGRESSO = "persona_progresso_v3";
 
-  const { dimensoes, alternativas, perguntas } = window.PersonaQuizDados;
-
   // Elementos da interface.
   const perguntaEl = document.getElementById("quiz-question");
   const alternativasEl = document.getElementById("quiz-options");
@@ -41,6 +39,31 @@
     console.error(
       "PERSONA: elementos necessários não encontrados em quiz.html."
     );
+    return;
+  }
+
+  // Mostra uma mensagem visível se um dos módulos não tiver carregado.
+  if (!window.PersonaQuizDados ||
+      !window.PersonaQuizPontuacao ||
+      typeof window.PersonaQuizPontuacao.calcularPontuacoes !== "function" ||
+      !window.PersonaQuizProgresso ||
+      typeof window.PersonaQuizProgresso.criar !== "function" ||
+      !window.PersonaQuizInterface ||
+      typeof window.PersonaQuizInterface.criar !== "function") {
+    contadorEl.textContent = "Questionário indisponível";
+    perguntaEl.textContent = "Não foi possível carregar o questionário.";
+    instrucaoEl.textContent = "Alguns arquivos necessários não foram carregados. Atualize a página ou tente novamente mais tarde.";
+    continuarEl.disabled = true;
+    console.error("PERSONA: módulos necessários ausentes ou incompletos.");
+    return;
+  }
+
+  const { dimensoes, alternativas, perguntas } = window.PersonaQuizDados;
+  if (!Array.isArray(perguntas) || !Array.isArray(dimensoes) || !Array.isArray(alternativas)) {
+    contadorEl.textContent = "Questionário indisponível";
+    perguntaEl.textContent = "Não foi possível carregar o questionário.";
+    instrucaoEl.textContent = "Os dados do questionário estão incompletos. Tente novamente mais tarde.";
+    console.error("PERSONA: estrutura dos dados não reconhecida.");
     return;
   }
 
@@ -166,10 +189,20 @@
     }
   }
 
+  // A propriedade sessionStorage pode lançar SecurityError antes de qualquer operação.
+  let armazenamentoSessao;
+  try {
+    armazenamentoSessao = window.sessionStorage;
+  } catch (erro) {
+    console.warn("PERSONA: acesso ao armazenamento de sessão bloqueado.", erro);
+    mostrarErro("O navegador bloqueou o armazenamento necessário para continuar e salvar o resultado. Verifique as permissões do site e atualize a página.", false);
+    return;
+  }
+
   const controleProgresso = window.PersonaQuizProgresso.criar({
     perguntas, perguntasPorId, revisoesPerguntas,
     versao: VERSAO, revisaoInstrumento: REVISAO_INSTRUMENTO,
-    chaveProgresso: CHAVE_PROGRESSO, armazenamento: sessionStorage,
+    chaveProgresso: CHAVE_PROGRESSO, armazenamento: armazenamentoSessao,
     obterEstado: () => ({ atual, ordem, respostas, armazenamentoDisponivel }),
     atualizarEstado: alteracoes => {
       if (Object.hasOwn(alteracoes, "atual")) atual = alteracoes.atual;
@@ -314,7 +347,7 @@
       )) return;
 
       try {
-        sessionStorage.removeItem(CHAVE_PROGRESSO);
+        armazenamentoSessao.removeItem(CHAVE_PROGRESSO);
         window.location.reload();
       } catch (erro) {
         console.error("PERSONA: não foi possível reiniciar a tentativa.", erro);
@@ -350,7 +383,7 @@
         scores: window.PersonaQuizPontuacao.calcularPontuacoes(dimensoes, perguntas, respostas)
       };
 
-      sessionStorage.setItem(
+      armazenamentoSessao.setItem(
         CHAVE_RESULTADO,
         JSON.stringify(resultado)
       );
@@ -358,7 +391,7 @@
       // O resultado foi salvo; o progresso já
       // não é necessário para esta conclusão.
       try {
-        sessionStorage.removeItem(CHAVE_PROGRESSO);
+        armazenamentoSessao.removeItem(CHAVE_PROGRESSO);
       } catch (erro) {
         console.warn(
           "PERSONA: não foi possível limpar o progresso.",
