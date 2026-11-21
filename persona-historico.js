@@ -125,6 +125,46 @@
     return dados.registros.length - listar().length;
   }
 
+  /**
+   * Remove somente entradas inválidas ou com IDs repetidos, mediante confirmação
+   * na interface. Antes de alterar o histórico, guarda uma cópia integral do JSON.
+   * Formatos inteiramente ilegíveis/incompatíveis não são modificados.
+   */
+  function removerInvalidos() {
+    const bruto = localStorage.getItem(CHAVE);
+    if (bruto === null) return { removidos: 0, preservados: 0, backup: null };
+
+    let dados;
+    try {
+      dados = JSON.parse(bruto);
+    } catch {
+      throw new Error("Histórico ilegível: não é seguro remover registros automaticamente.");
+    }
+    if (!dados || dados.formato !== FORMATO || !Array.isArray(dados.registros)) {
+      throw new Error("Formato do histórico incompatível: os dados foram preservados.");
+    }
+
+    const ids = new Set();
+    const validos = dados.registros.filter(registro => {
+      if (!registroValido(registro) || ids.has(registro.id)) return false;
+      ids.add(registro.id);
+      return true;
+    });
+    const removidos = dados.registros.length - validos.length;
+    if (removidos === 0) return { removidos: 0, preservados: validos.length, backup: null };
+
+    // Não altera o original se não conseguir criar o backup.
+    const backup = `persona_backup_historico_${Date.now()}`;
+    localStorage.setItem(backup, bruto);
+    // Preserva o documento original mesmo quando a gravação falhar.
+    try {
+      localStorage.setItem(CHAVE, JSON.stringify({ formato: FORMATO, registros: validos }));
+    } catch (erro) {
+      throw new Error("Backup criado, mas não foi possível atualizar o histórico.");
+    }
+    return { removidos, preservados: validos.length, backup };
+  }
+
   /** Busca uma exploração pelo identificador interno. */
   function obter(id) {
     const registro = lerDocumento().registros.find(item => item.id === id);
@@ -195,6 +235,6 @@
   }
 
   window.PersonaHistorico = Object.freeze({
-    listar, quantidadeIgnorada, obter, adicionar, excluir, excluirTudo
+    listar, quantidadeIgnorada, removerInvalidos, obter, adicionar, excluir, excluirTudo
   });
 })();
