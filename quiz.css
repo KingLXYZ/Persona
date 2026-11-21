@@ -161,14 +161,12 @@
 
 /* Alternativa selecionada */
 
-.quiz-option.selected,
-.quiz-option[aria-pressed="true"] {
+.quiz-option.selected {
     background: rgba(167, 139, 250, 0.09);
     border-color: var(--purple);
 }
 
-.quiz-option.selected::before,
-.quiz-option[aria-pressed="true"]::before {
+.quiz-option.selected::before {
     background: var(--purple);
 
     border-color: var(--purple);
