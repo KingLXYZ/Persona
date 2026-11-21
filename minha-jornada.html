@@ -16,7 +16,7 @@
   <link rel="stylesheet" href="persona-qr.css?v=1">
   <link rel="stylesheet" href="persona-interface.css?v=1">
 
-  <script src="persona-historico.js?v=2" defer></script>
+  <script src="persona-historico.js?v=3" defer></script>
 </head>
 <body>
   <header class="header">
@@ -43,6 +43,7 @@
         <p class="journey-count" id="journey-count" aria-live="polite">Carregando histórico...</p>
       </div>
       <p class="journey-message" id="journey-message" role="status" aria-live="polite"></p>
+      <button type="button" class="journey-delete" id="journey-remove-invalid" hidden>Remover registros inválidos (com cópia de segurança)</button>
       <div class="journey-list" id="journey-list" aria-label="Explorações salvas"></div>
       <div class="journey-bottom">
         <a href="quiz.html" class="primary-button">Nova exploração <span aria-hidden="true">→</span></a>
@@ -64,7 +65,7 @@
     <span>© <span id="current-year"></span> PERSONA.</span>
   </footer>
 
-  <script src="minha-jornada.js?v=3" defer></script>
+  <script src="minha-jornada.js?v=4" defer></script>
   <script src="persona-interface.js?v=1" defer></script>
   <script src="persona-qr-lib.js?v=1" defer></script>
   <script src="persona-qr.js?v=3" defer></script>
