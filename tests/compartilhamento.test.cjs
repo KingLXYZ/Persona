@@ -11,6 +11,7 @@ function carregar() {
   const ctx = new Proxy({}, {
     get(obj, chave) {
       if (chave in obj) return obj[chave];
+      if (chave === 'createLinearGradient') return () => ({ addColorStop() {} });
       return (...args) => { chamadas.push({ metodo: chave, args }); };
     },
     set(obj, chave, valor) { obj[chave] = valor; return true; }
