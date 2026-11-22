@@ -10,7 +10,7 @@
 
   const VERSAO = 3;
   // Revisão metodológica interna, independente da versão de armazenamento.
-  const REVISAO_INSTRUMENTO = 1;
+  const REVISAO_INSTRUMENTO = 2;
   const CHAVE_RESULTADO = "persona_resultado_v3";
   const CHAVE_PROGRESSO = "persona_progresso_v3";
 
