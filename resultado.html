@@ -109,9 +109,23 @@
         </section>
 
 
+        <!-- NAVEGAÇÃO RÁPIDA: links nativos preservam teclado e funcionamento sem JavaScript. -->
+        <nav class="result-quick-nav" aria-label="Navegação pelos resultados">
+            <span class="result-tag">EXPLORE SEU RESULTADO</span>
+            <div class="result-quick-nav-links">
+                <a href="#dimensoes">Dimensões</a>
+                <a href="#visao-geral">Visão geral</a>
+                <a href="#perfil-cotidiano">Cotidiano</a>
+                <a href="#sua-jornada">Sua jornada</a>
+                <a href="#avaliar-experiencia">Avaliação</a>
+            </div>
+        </nav>
+
+
         <!-- 01 / SUAS DIMENSÕES -->
         <section
             class="result-section"
+            id="dimensoes"
             aria-labelledby="result-title"
         >
 
@@ -430,6 +444,7 @@
         <!-- REFLEXÃO FINAL -->
         <section
             class="result-reflection"
+            id="sua-jornada"
             aria-labelledby="reflection-title"
         >
 
@@ -461,7 +476,7 @@
 
 
         <!-- FEEDBACK OPCIONAL: não integra a pontuação do questionário. -->
-        <section class="result-feedback" aria-labelledby="feedback-title">
+        <section class="result-feedback" id="avaliar-experiencia" aria-labelledby="feedback-title">
             <span class="result-tag">SUA OPINIÃO</span>
             <h2 id="feedback-title">Como foi sua experiência?</h2>
             <p>
