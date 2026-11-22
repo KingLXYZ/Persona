@@ -289,3 +289,42 @@ As 30 propostas preservam a distribuição documental de três itens diretos e t
 **Decisão:** encerrada a rodada de revisão documental da dimensão Comportamental com aprovação **como propostas para testes**, não como itens validados ou autorizados para publicação. Esta seção consolida e **substitui, para consulta das redações de trabalho atuais**, as versões anteriores de COM-002, COM-003, COM-004 e COM-006 que permanecem acima como histórico de decisões.
 
 **Próximos passos antes de publicar:** conduzir entrevistas cognitivas/testes de compreensão com participantes reais; examinar interpretações e padrões de resposta, redundância, comportamento dos itens invertidos e adequação de um indicador único; definir identificação interna de revisões e preservar a comparabilidade histórica. **Não alterar nesta etapa** `quiz-perguntas.js`, fórmula de pontuação, metodologia pública nem resultados históricos.
+
+
+## Primeira rodada exploratória de compreensão — Comportamental (5 participantes)
+
+**Natureza:** coleta exploratória relatada pelo responsável pelo projeto, com cinco participantes identificados apenas como P01–P05. Foram registradas respostas às seis redações de trabalho do Modelo C, escala de concordância 1–5. Não se trata de validação psicométrica, amostra representativa ou demonstração de compreensão de todos os itens. Não foram informadas datas, características demográficas, gravações ou transcrições; não inferir tais informações. As observações abaixo são relatos do aplicador, não citações literais verificadas dos participantes.
+
+### Respostas originais (sem recodificação)
+
+| Item | P01 | P02 | P03 | P04 | P05 | Média bruta |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: |
+| COM-001 | 4 | 3 | 2 | 1 | 1 | 2,2 |
+| COM-002 | 5 | 4 | 1 | 5 | 3 | 3,6 |
+| COM-003 | 3 | 4 | 2 | 4 | 3 | 3,2 |
+| COM-004 | 2 | 2 | 2 | 4 | 3 | 2,6 |
+| COM-005 | 4 | 1 | 1 | 2 | 3 | 2,2 |
+| COM-006 | 3 | 5 | 3 | 5 | 4 | 4,0 |
+
+**Total:** 30 respostas de concordância, seis por participante. As médias descrevem concordância bruta, não qualidade dos itens nem escore validado. O conjunto de redações de trabalho testado está na seção de consolidação documental do Modelo C acima; não corresponde necessariamente ao questionário atualmente publicado.
+
+### Observações de campo relatadas
+
+- **P01:** nenhuma observação por item registrada. O aplicador relatou que a participante respondeu bem e entendeu as perguntas, sem explicações individuais documentadas.
+- **P02:** COM-001: participante elogiou a pergunta (sem conteúdo exato do elogio); COM-002: participante soube responder prontamente. Sem observações registradas para COM-003 a COM-006. Rapidez de resposta não comprova compreensão do sentido pretendido.
+- **P03:** COM-001: entendeu que deveria parar por um momento e pensar; COM-002: entendeu que deveria pensar antes de agir “com a cabeça quente”; COM-003: lembrou de momentos de grupo ou com pessoas; COM-004: entendeu que surgiu uma alternativa para agir; COM-005: entendeu que deveria ter um momento para pensar antes de tentar novamente o que estava dando errado; COM-006: pensou em situações de trabalho e obstáculos da vida. Estas são paráfrases fornecidas pelo aplicador, sem transcrição literal da fala.
+- **P04:** nenhuma observação registrada por item.
+- **P05:** nenhuma observação registrada por item.
+
+### Leitura metodológica provisória
+
+1. **COM-001:** elogio de P02 e interpretação de pausa para pensar por P03 são indícios favoráveis de aceitação/compreensão parcial; não confirmam interpretação uniforme.
+2. **COM-002 — prioridade de sondagem:** a menção de P03 a agir “com a cabeça quente” pode introduzir autocontrole emocional, diferente da preferência por prontidão de resposta. Investigar sem pressupor que houve erro de compreensão.
+3. **COM-003:** P03 evocou contexto social, mas não ficou documentado se compreendeu a sequência “entender o motivo antes de responder”. Possível interferência de normas de interação social.
+4. **COM-004:** P03 reconheceu a existência de alternativa para agir, mas não há evidência explícita de compreensão de “colocá-la em prática logo”. As respostas brutas foram 2, 2, 2, 4 e 3; coincidências não demonstram redundância ou defeito.
+5. **COM-005:** a interpretação relatada por P03 é compatível com avaliar antes de tentar novamente; evidência limitada a uma observação individual.
+6. **COM-006:** P03 imaginou contextos plausíveis (trabalho e obstáculos), mas não ficou registrado se captou a prontidão da reação.
+
+**Limites:** a ausência de comentários não equivale à ausência comprovada de dificuldade. As respostas numéricas não identificam, por si só, ambiguidade, compreensão correta, estrutura bipolar, funcionamento da inversão, consistência interna ou validade da pontuação 0–100. Não foram aplicadas sondagens de compreensão completas e documentadas a todos os participantes.
+
+**Encaminhamento:** preservar as seis redações de trabalho para uma segunda rodada de entrevistas cognitivas mais direcionadas, com explicação espontânea do sentido de cada item e sondagens neutras, especialmente em COM-002, COM-003, COM-004 e COM-006. Não alterar nesta etapa as perguntas publicadas, a pontuação, a metodologia pública nem os resultados históricos. A decisão de manter ou revisar itens permanece em aberto.
