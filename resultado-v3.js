@@ -577,10 +577,15 @@
     secao.style.border = "1px solid var(--border)";
     secao.style.background = "var(--surface)";
 
-    const titulo = document.createElement("h2");
+    // Painel nativo: fechado inicialmente e acessível por teclado/toque.
+    const painel = document.createElement("details");
+    painel.className = "result-share-details";
+    const titulo = document.createElement("summary");
     titulo.textContent = "Compartilhar meu perfil";
     titulo.style.fontSize = "24px";
-    titulo.style.marginBottom = "12px";
+    titulo.style.fontWeight = "700";
+    titulo.style.cursor = "pointer";
+    titulo.style.padding = "4px 0";
 
     const explicacao = document.createElement("p");
     explicacao.textContent = "Escolha o que deseja mostrar. A imagem é criada no seu navegador, sem publicar suas respostas automaticamente.";
@@ -693,11 +698,19 @@
     baixar.addEventListener("click", () => executar("baixar"));
     compartilhar.addEventListener("click", () => executar("compartilhar"));
     acoes.append(baixar, compartilhar);
-    secao.append(titulo, explicacao, rotulo, formato, visualizacao, acoes, aviso);
+    const conteudo = document.createElement("div");
+    conteudo.append(explicacao, rotulo, formato, visualizacao, acoes, aviso);
+    conteudo.style.paddingTop = "16px";
+    painel.append(titulo, conteudo);
+    secao.appendChild(painel);
     const jornada = document.querySelector(".result-journey-link");
     if (jornada) jornada.insertAdjacentElement("beforebegin", secao);
     else ancora.insertAdjacentElement("afterend", secao);
-    atualizar();
+    // A prévia só é gerada quando o visitante decide abrir o painel.
+    // Ao recolher, preservamos o canvas e o formato selecionado.
+    painel.addEventListener("toggle", () => {
+      if (painel.open && !canvas) atualizar();
+    });
   }
 
   const parametros = new URLSearchParams(window.location.search);
