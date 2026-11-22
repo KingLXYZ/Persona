@@ -364,6 +364,8 @@
 
   function mostrarResultados(resultado, demonstracao = false) {
     const { versao, pontuacoes: scores } = resultado;
+    // Registros anteriores ou sem revisão conhecida não recebem a leitura do instrumento atual.
+    const revisaoAnterior = versao === 3 && resultado.revisaoInstrumento !== 2 && !demonstracao;
     for (const chave of ORDEM) {
       const config = DIMENSOES[versao][chave];
       const card = document.querySelector(`[data-dimension="${chave}"]`);
@@ -374,8 +376,10 @@
 
       numero.textContent = String(scores[chave]);
       preenchimento.style.width = `${scores[chave]}%`;
-      descricao.textContent = interpretar(config, scores[chave]);
-      if (chave === "social") {
+      descricao.textContent = revisaoAnterior
+        ? "Pontuação preservada de uma aplicação anterior. A interpretação específica desta dimensão não está disponível para esta revisão do questionário."
+        : interpretar(config, scores[chave]);
+      if (chave === "social" && !revisaoAnterior) {
         descricao.textContent += " Esta pontuação resume preferências em situações sociais específicas. Ela não define se você é antissocial, tímido ou introvertido.";
       }
       const rotulos = card.querySelectorAll(".result-scale span");
@@ -392,14 +396,24 @@
         medidor.setAttribute("aria-valuenow", String(scores[chave]));
       }
     }
-    mostrarVisaoGeral(scores, versao, demonstracao);
-    mostrarCotidiano(scores, versao, demonstracao);
+    if (revisaoAnterior) {
+      const leitura = document.getElementById("overview-combination");
+      const orientacao = document.getElementById("overview-guidance");
+      if (leitura) leitura.textContent = "Este perfil foi preservado de uma aplicação anterior. Não é possível reconstruir uma interpretação equivalente usando as perguntas atuais.";
+      if (orientacao) orientacao.textContent = "Consulte as pontuações como registro histórico. Evite compará-las diretamente com resultados mais recentes.";
+    } else {
+      mostrarVisaoGeral(scores, versao, demonstracao);
+      mostrarCotidiano(scores, versao, demonstracao);
+    }
     if (demonstracao) {
       statusEl.textContent = "DEMONSTRAÇÃO — Exemplo fictício com pontuações possíveis. Não é seu perfil.";
     } else {
       statusEl.textContent = "Resultado da sua exploração. Indicadores experimentais de autoconhecimento.";
       if (resultado.origem === "salvo") {
         statusEl.textContent += " Perfil recuperado deste navegador.";
+      }
+      if (revisaoAnterior) {
+        statusEl.textContent += " Este resultado foi criado com uma revisão anterior ou não identificada do questionário. Suas pontuações foram preservadas, mas as interpretações atuais não se aplicam automaticamente. Não compare diretamente com resultados recentes.";
       }
       if (versao === 1) {
         statusEl.textContent += " Este perfil foi criado com perguntas anteriores. Não compare diretamente suas pontuações com resultados mais recentes.";
