@@ -792,3 +792,6 @@
 @media (prefers-reduced-motion: reduce) {
     .result-quick-nav { transition: none; }
 }
+
+/* Respeita links indisponíveis em resultados históricos. */
+.result-quick-nav-links a[hidden] { display: none; }
