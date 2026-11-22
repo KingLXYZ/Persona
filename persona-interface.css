@@ -111,8 +111,8 @@
         letter-spacing: 1.2px;
       }
       footer.footer .kingdom-signature-name svg {
-        width: 20px;
-        height: 20px;
+        width: 24px;
+        height: 24px;
         stroke: var(--purple-light, #c4b5fd);
       }
       footer.footer .kingdom-signature-slogan {
