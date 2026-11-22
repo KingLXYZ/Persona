@@ -120,14 +120,12 @@
     const marca = document.createElement("span");
     marca.className = "kingdom-signature-name";
     const coroa = document.createElementNS("http://www.w3.org/2000/svg", "svg");
-    coroa.setAttribute("viewBox", "0 0 24 24");
-    coroa.setAttribute("fill", "none");
-    coroa.setAttribute("stroke-width", "1.8");
-    coroa.setAttribute("stroke-linecap", "round");
-    coroa.setAttribute("stroke-linejoin", "round");
+    coroa.setAttribute("viewBox", "604 97 328 288");
+    coroa.setAttribute("fill", "var(--purple-light, #c4b5fd)");
     coroa.setAttribute("aria-hidden", "true");
     const caminho = document.createElementNS("http://www.w3.org/2000/svg", "path");
-    caminho.setAttribute("d", "M3 9l4 4 5-7 5 7 4-4-2 12H5L3 9Z");
+    caminho.setAttribute("stroke", "none");
+    caminho.setAttribute("d", "M624 160 L704 221 L768 117 L832 221 L912 160 L889 270 L864 270 L874 218 L828 254 L768 159 L708 254 L662 218 L672 270 L647 270 Z M651 287 L684 287 L688 305 L655 305 Z M852 287 L885 287 L881 305 L848 305 Z M659 322 L683 322 L688 342 L848 342 L853 322 L877 322 L870 359 Q869 365 862 365 L674 365 Q667 365 666 359 Z");
     coroa.appendChild(caminho);
     marca.append(coroa, document.createTextNode(NOME));
 
