@@ -214,3 +214,32 @@ O conceito de trabalho será ampliado para **estilo de interação social**, abr
 **Limitações e hipóteses a testar:** COM-001 e COM-003 podem ser redundantes; COM-002 e COM-005 se aproximam por tratarem de dificuldades; COM-004 pode captar interesse, disponibilidade, impulsividade ou disposição a riscos, e não somente velocidade de reação; COM-006 pode captar adaptabilidade. A expressão “por muito tempo” em COM-002 pode exagerar o contraste. Os itens de pausa podem suscitar desejabilidade social. Pausar e agir rapidamente não são mutuamente exclusivos. A unidade do construto e a oposição dos polos não foram demonstradas empiricamente; a inversão de pontuação é uma hipótese operacional.
 
 **Status:** revisão conceitual documental preliminar concluída, fechando a primeira rodada das cinco dimensões (30 itens). As seis redações foram aprovadas **como propostas para futura implementação e testes de compreensão**, sem validação psicométrica. **Não alterar nesta etapa** `quiz-perguntas.js`, fórmula de pontuação, metodologia pública ou resultados históricos. Antes da implementação, realizar revisão transversal de coerência, sobreposições entre dimensões e compatibilidade/versionamento dos itens.
+
+
+## Auditoria transversal — primeira passagem documental
+
+**Escopo:** comparação documental das 30 redações propostas aprovadas nas cinco dimensões, ainda não implementadas no questionário público. Esta etapa identifica hipóteses de sobreposição, ambiguidades, possíveis efeitos de resposta e riscos de interpretação; não equivale a validação psicométrica.
+
+### Pontos transversais a investigar
+
+| Itens | Hipótese de sobreposição ou distinção | Prioridade |
+| --- | --- | --- |
+| DEC-005 × COM-003 | Antecipar consequências ao decidir versus pausar diante de informação inesperada. Distinguir deliberação decisória de tempo de reação. | Alta |
+| ORG-002 × COM-006 | Definir passos conforme avança versus agir e ajustar diante de mudança repentina. Distinguir planejamento de resposta a imprevistos. | Alta |
+| SOC-003 × COM-004 | Tomar iniciativa ao falar em grupo versus aproveitar uma oportunidade inesperada. Sobreposição apenas contextual; COM-004 também pode refletir disposição a risco. | Moderada |
+| COG-004 × COM-005 | Observar situações reais para compreender explicações versus investigar por que uma tentativa falhou. Compartilham linguagem de compreensão, mas contextos distintos. | Moderada |
+| DEC-004 × ORG-004 | Encerrar busca por alternativas satisfatórias versus escolher ordem de tarefas na hora. Podem refletir economia de esforço/tempo, não o mesmo traço. | Moderada |
+
+### Riscos de clareza e interpretação
+
+- **SOC-006:** oferecer ajuda ou aguardar atribuição pode medir cooperação e regras do grupo, não apenas iniciativa social.
+- **COG-001:** “ideias por trás” pode ter múltiplos significados; **COG-005** pode captar imaginação.
+- **DEC-004:** pode representar estratégia de decisão satisfatória (*satisficing*) em vez de impressão inicial.
+- **ORG-006:** liberdade real sobre a agenda pode influenciar respostas; **ORG-005:** “tudo” pode soar absoluto.
+- **COM-002:** “por muito tempo” cria contraste assimétrico; **COM-004:** aproveitar oportunidades pode medir interesse/disposição a riscos; **COM-006:** adaptação pode ser distinta de reação imediata.
+
+### Pontuação, polos e compatibilidade
+
+As 30 propostas preservam a distribuição documental de três itens diretos e três invertidos por dimensão. Isso **não demonstra** que os polos sejam opostos, que cada conjunto seja unidimensional ou que a soma/inversão produza interpretação válida. A revisão linguística não resolve essas hipóteses. Os itens analíticos, planejadores e de pausa podem parecer socialmente desejáveis. Investigar compreensão das âncoras de resposta, situações de contexto e respostas extremas.
+
+**Não aplicar ainda as redações em produção.** Antes da implementação: (1) decidir se itens de alta prioridade exigem refinamento; (2) planejar entrevistas cognitivas com participantes reais e registrar interpretações; (3) definir estratégia explícita de identificação de revisões e não comparar diretamente resultados obtidos com redações diferentes; (4) verificar testes automatizados e fluxos de histórico/retomada. Nenhum dado empírico foi analisado nesta passagem.
