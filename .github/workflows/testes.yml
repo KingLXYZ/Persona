@@ -1,0 +1,23 @@
+name: Testes do Persona
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  testes:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Obter código
+        uses: actions/checkout@v4
+      - name: Preparar Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Verificar sintaxe dos módulos
+        run: |
+          for arquivo in *.js; do node --check "$arquivo"; done
+      - name: Executar testes automatizados
+        run: node --test tests/*.test.cjs
