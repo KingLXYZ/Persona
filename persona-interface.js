@@ -65,6 +65,27 @@
     if (acordeao.children.length > 0) grade.replaceWith(acordeao);
   }
 
+  // As pontuações e escalas permanecem visíveis; só a interpretação é recolhida.
+  function transformarDimensoes() {
+    const secao = document.getElementById("dimensoes");
+    if (!secao) return;
+    for (const cartao of secao.querySelectorAll(".result-card[data-dimension]")) {
+      if (cartao.querySelector(".result-dimension-details")) continue;
+      const descricao = cartao.querySelector(".result-description");
+      if (!descricao) continue;
+
+      const detalhes = document.createElement("details");
+      detalhes.className = "result-dimension-details";
+      const resumo = document.createElement("summary");
+      resumo.textContent = "Entender minha pontuação";
+      const conteudo = document.createElement("div");
+      conteudo.className = "result-dimension-explanation";
+      conteudo.appendChild(descricao);
+      detalhes.append(resumo, conteudo);
+      cartao.appendChild(detalhes);
+    }
+  }
+
   function adicionarAssinatura() {
     let footer = document.querySelector("footer.footer");
     // A página do questionário não tinha rodapé; acrescentamos uma versão
@@ -183,6 +204,7 @@
     const ano = document.getElementById('current-year');
     if (ano) ano.textContent = String(new Date().getFullYear());
     transformarCotidiano();
+    transformarDimensoes();
     adicionarAssinatura();
     iniciarNavegacaoResultados();
   }
