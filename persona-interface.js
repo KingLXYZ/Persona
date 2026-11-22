@@ -117,11 +117,68 @@
     footer.appendChild(assinatura);
   }
 
+  // Navegação complementar dos resultados, sem interferir nos dados do perfil.
+  function iniciarNavegacaoResultados() {
+    const navegacao = document.querySelector(".result-quick-nav");
+    const introducao = document.querySelector(".result-intro");
+    if (!navegacao || !introducao || navegacao.dataset.navigationReady === "true") return;
+    navegacao.dataset.navigationReady = "true";
+
+    const botaoTopo = document.createElement("button");
+    botaoTopo.type = "button";
+    botaoTopo.className = "result-back-to-top";
+    botaoTopo.textContent = "↑";
+    botaoTopo.setAttribute("aria-label", "Voltar ao início dos resultados");
+    botaoTopo.title = "Voltar ao início";
+    botaoTopo.hidden = true;
+    botaoTopo.addEventListener("click", () => {
+      const reduzir = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      window.scrollTo({ top: 0, behavior: reduzir ? "instant" : "smooth" });
+    });
+    document.body.appendChild(botaoTopo);
+
+    const links = Array.from(navegacao.querySelectorAll('a[href^="#"]'));
+    const destinos = links.map(link => {
+      const id = link.getAttribute("href").slice(1);
+      return { link, elemento: document.getElementById(id) };
+    }).filter(item => item.elemento);
+
+    function atualizar() {
+      const y = window.scrollY || window.pageYOffset || 0;
+      const limite = introducao.getBoundingClientRect().bottom + y;
+      botaoTopo.hidden = y < Math.max(500, limite);
+      navegacao.classList.toggle("result-quick-nav--compact", y > limite);
+
+      let atual = null;
+      for (const item of destinos) {
+        if (item.elemento.getBoundingClientRect().top <= 160) atual = item;
+      }
+      for (const item of destinos) {
+        if (item === atual) item.link.setAttribute("aria-current", "location");
+        else item.link.removeAttribute("aria-current");
+      }
+    }
+
+    let pendente = false;
+    function agendar() {
+      if (pendente) return;
+      pendente = true;
+      window.requestAnimationFrame(() => {
+        pendente = false;
+        atualizar();
+      });
+    }
+    window.addEventListener("scroll", agendar, { passive: true });
+    window.addEventListener("resize", agendar);
+    atualizar();
+  }
+
   function iniciar() {
     const ano = document.getElementById('current-year');
     if (ano) ano.textContent = String(new Date().getFullYear());
     transformarCotidiano();
     adicionarAssinatura();
+    iniciarNavegacaoResultados();
   }
 
   if (document.readyState === "loading") {
