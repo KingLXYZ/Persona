@@ -192,3 +192,25 @@ O conceito de trabalho será ampliado para **estilo de interação social**, abr
 **Limitações e hipóteses a testar:** ORG-002 e ORG-004 podem se aproximar na tomada de decisões durante a execução; ORG-003 e ORG-006 tratam de organização temporal em escalas distintas. ORG-004 pode captar priorização de tarefas; ORG-006 pode refletir autonomia sobre o próprio tempo. A formulação “tudo o que vou precisar” em ORG-005 pode soar absoluta. A oposição entre flexibilidade e planejamento, bem como a estrutura de um indicador único, ainda não foi demonstrada empiricamente. A codificação invertida é uma escolha operacional sujeita a revisão.
 
 **Status:** revisão conceitual documental preliminar concluída. As seis redações foram aprovadas **como propostas para futura implementação e testes de compreensão**, não validadas psicometricamente. **Não alterar nesta etapa** `quiz-perguntas.js`, fórmula de pontuação, metodologia pública ou resultados históricos. Uma futura alteração dos itens deve preservar compatibilidade e identificar revisões.
+
+
+## Revisão conceitual específica — Comportamental (decisão posterior)
+
+**Definição operacional proposta:** *Preferência de reação diante de imprevistos* — preferência por agir prontamente ou fazer uma pausa para compreender situações inesperadas antes de responder. Polos descritivos: *Reação imediata ↔ Pausa para avaliar*. Não mede autocontrole, estabilidade emocional, coragem, impulsividade clínica ou capacidade de resolver problemas.
+
+### Conjunto de seis itens proposto e aprovado conceitualmente
+
+| ID | Texto de trabalho | Direção mantida | Situação |
+| --- | --- | --- | --- |
+| COM-001 | Quando acontece algo que eu não esperava, gosto de entender o que está acontecendo antes de agir. | Direta | Simplificação aprovada como proposta |
+| COM-002 | Quando algo não sai como eu esperava, prefiro tentar resolver a situação logo, em vez de parar para pensar por muito tempo. | Invertida | Reformulação aprovada como proposta |
+| COM-003 | Quando recebo uma informação inesperada, prefiro pensar um pouco sobre ela antes de decidir o que fazer. | Direta | Reformulação aprovada como proposta |
+| COM-004 | Quando surge uma oportunidade inesperada de fazer algo, costumo aproveitar o momento sem pensar muito antes. | Invertida | Segunda reformulação aprovada como proposta |
+| COM-005 | Quando algo que estou fazendo não dá certo, prefiro parar um momento para entender o motivo antes de tentar novamente. | Direta | Reformulação aprovada como proposta |
+| COM-006 | Quando meus planos mudam de repente, prefiro começar a agir e descobrir o que fazer conforme a situação acontece. | Invertida | Reformulação aprovada como proposta |
+
+**Cobertura conceitual:** COM-001 aborda um acontecimento inesperado; COM-003, uma informação inesperada; COM-005, uma tentativa malsucedida. COM-002 trata de reação a contratempos; COM-004, de oportunidade inesperada; COM-006, de mudança repentina nos planos.
+
+**Limitações e hipóteses a testar:** COM-001 e COM-003 podem ser redundantes; COM-002 e COM-005 se aproximam por tratarem de dificuldades; COM-004 pode captar interesse, disponibilidade, impulsividade ou disposição a riscos, e não somente velocidade de reação; COM-006 pode captar adaptabilidade. A expressão “por muito tempo” em COM-002 pode exagerar o contraste. Os itens de pausa podem suscitar desejabilidade social. Pausar e agir rapidamente não são mutuamente exclusivos. A unidade do construto e a oposição dos polos não foram demonstradas empiricamente; a inversão de pontuação é uma hipótese operacional.
+
+**Status:** revisão conceitual documental preliminar concluída, fechando a primeira rodada das cinco dimensões (30 itens). As seis redações foram aprovadas **como propostas para futura implementação e testes de compreensão**, sem validação psicométrica. **Não alterar nesta etapa** `quiz-perguntas.js`, fórmula de pontuação, metodologia pública ou resultados históricos. Antes da implementação, realizar revisão transversal de coerência, sobreposições entre dimensões e compatibilidade/versionamento dos itens.
