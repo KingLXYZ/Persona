@@ -379,6 +379,7 @@
     try {
       const resultado = {
         version: VERSAO,
+        revisaoInstrumento: REVISAO_INSTRUMENTO,
         totalPerguntas: perguntas.length,
         scores: window.PersonaQuizPontuacao.calcularPontuacoes(dimensoes, perguntas, respostas)
       };
