@@ -265,3 +265,27 @@ As 30 propostas preservam a distribuição documental de três itens diretos e t
 **Ressalvas metodológicas:** a diferença entre COM-001 e COM-003 ainda é principalmente situacional, não uma distinção psicológica demonstrada; a resposta pode refletir educação, normas sociais, familiaridade com quem interrompe ou hábitos de comunicação, criando possível interferência da dimensão Social. “Entender o motivo” pode captar curiosidade ou interpretação de intenção, e não apenas preferência por pausa. Investigar essas hipóteses em entrevistas cognitivas e posteriormente com dados empíricos; a aprovação conceitual não significa validação psicométrica.
 
 **Status:** proposta documental aprovada, **sem alteração** do questionário publicado, da pontuação ou dos resultados históricos.
+
+
+## Consolidação documental — Comportamental, Modelo C (decisão posterior)
+
+**Definição operacional de trabalho:** *Prontidão de resposta ↔ Avaliação prévia*. Investiga a preferência por iniciar uma resposta prontamente ou dedicar um momento à compreensão da situação antes de agir, sobretudo diante de acontecimentos não previstos. Não mede qualidade das decisões, responsabilidade, inteligência, impulsividade clínica, autocontrole, competência de adaptação nem rapidez de reflexos. O caráter bipolar e a unidimensionalidade são hipóteses ainda não demonstradas.
+
+### Conjunto consolidado de seis redações aprovadas como propostas
+
+| ID | Redação de trabalho | Polo descritivo | Codificação atual prevista |
+| --- | --- | --- | --- |
+| COM-001 | Quando acontece algo que eu não esperava, gosto de entender o que está acontecendo antes de agir. | Avaliação prévia | Direta |
+| COM-002 | Quando encontro uma dificuldade inesperada durante uma atividade, costumo tomar uma atitude logo para lidar com ela. | Prontidão de resposta | Invertida |
+| COM-003 | Quando alguém me interrompe de surpresa, prefiro entender o motivo antes de responder. | Avaliação prévia | Direta |
+| COM-004 | Quando acontece algo inesperado e percebo uma maneira de agir, costumo colocá-la em prática logo. | Prontidão de resposta | Invertida |
+| COM-005 | Quando algo que estou fazendo não dá certo, prefiro parar um momento para entender o motivo antes de tentar novamente. | Avaliação prévia | Direta |
+| COM-006 | Quando acontece uma mudança inesperada, minha primeira reação costuma ser agir logo para lidar com a situação. | Prontidão de resposta | Invertida |
+
+**Cobertura pretendida:** COM-001 investiga compreensão inicial de imprevisto geral; COM-002, resposta a obstáculo durante atividade; COM-003, compreensão antes de responder a interrupção interpessoal; COM-004, início de uma ação já percebida como possível; COM-005, avaliação após tentativa malsucedida; COM-006, reação inicial a mudança inesperada.
+
+**Ressalvas e hipóteses a testar:** COM-001 e COM-004 compartilham o contexto genérico de imprevistos; COM-002 e COM-005 tratam de dificuldades em atividades, em momentos distintos; COM-002 e COM-006 podem refletir iniciativa/adaptação, além de prontidão; COM-003 pode refletir educação, comunicação e normas sociais, além de avaliação prévia; COM-004 pressupõe percepção de uma ação possível, o que pode envolver avaliação. Responder prontamente e avaliar previamente podem coexistir, de modo que a inversão de três itens e a pontuação única de 0 a 100 **não estão psicometricamente validadas**. Possível desejabilidade social dos itens de pausa. As avaliações de redundância são documentais, sem dados de participantes.
+
+**Decisão:** encerrada a rodada de revisão documental da dimensão Comportamental com aprovação **como propostas para testes**, não como itens validados ou autorizados para publicação. Esta seção consolida e **substitui, para consulta das redações de trabalho atuais**, as versões anteriores de COM-002, COM-003, COM-004 e COM-006 que permanecem acima como histórico de decisões.
+
+**Próximos passos antes de publicar:** conduzir entrevistas cognitivas/testes de compreensão com participantes reais; examinar interpretações e padrões de resposta, redundância, comportamento dos itens invertidos e adequação de um indicador único; definir identificação interna de revisões e preservar a comparabilidade histórica. **Não alterar nesta etapa** `quiz-perguntas.js`, fórmula de pontuação, metodologia pública nem resultados históricos.
