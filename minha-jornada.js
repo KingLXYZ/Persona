@@ -73,6 +73,13 @@ document.addEventListener("DOMContentLoaded", () => {
         const grade = elemento("div", "journey-score-grid");
         dimensoes.forEach(dim => grade.appendChild(montarDimensao(dim, registro)));
         detalhes.appendChild(grade);
+        if (registro.versao === 3 && registro.revisaoInstrumento !== 2) {
+          detalhes.appendChild(elemento("p", "journey-action-note",
+            "Registro de uma aplicação anterior ou de revisão não identificada. As pontuações foram preservadas, mas não devem ser comparadas diretamente com as do questionário atual."));
+        } else if (registro.versao < 3) {
+          detalhes.appendChild(elemento("p", "journey-action-note",
+            "Este registro pertence a um questionário anterior. Evite comparar diretamente suas pontuações com as de aplicações recentes."));
+        }
         const acoes = elemento("div", "journey-actions");
         const excluir = elemento("button", "journey-delete", "Excluir esta exploração");
         excluir.type = "button";
