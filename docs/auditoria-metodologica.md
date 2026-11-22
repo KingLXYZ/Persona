@@ -170,3 +170,25 @@ O conceito de trabalho será ampliado para **estilo de interação social**, abr
 **Limitações e hipóteses a testar:** DEC-001 e DEC-003 podem se sobrepor; DEC-002 e DEC-006 também podem compartilhar o mesmo mecanismo. DEC-004 pode representar uma estratégia eficiente de busca (*satisficing*) em vez de preferência intuitiva; DEC-006 pode incorporar experiência implícita. Decidir rapidamente ou confiar em experiências anteriores não é necessariamente falta de análise. Os itens analíticos podem induzir desejabilidade social. A oposição entre os polos e a estrutura unidimensional não foram demonstradas empiricamente; a pontuação invertida continua sendo uma hipótese operacional, não uma prova de bipolaridade.
 
 **Status:** revisão conceitual documental preliminar concluída; as seis redações foram aprovadas **como propostas para implementação futura e testes de compreensão**, sem validação psicométrica. **Não alterar nesta etapa** os textos publicados em `quiz-perguntas.js`, a fórmula, a metodologia pública ou resultados históricos. Qualquer implementação posterior deve tratar compatibilidade e revisão dos itens.
+
+
+## Revisão conceitual específica — Organizacional (decisão posterior)
+
+**Definição operacional proposta:** *Preferência de organização das atividades* — preferência por definir etapas, horários e recursos antecipadamente ou manter liberdade para decidir a ordem e parte da programação durante a execução. Os polos descritivos permanecem *Flexibilidade ↔ Planejamento*. Não mede produtividade, disciplina, responsabilidade nem competência profissional; flexibilidade e planejamento podem coexistir.
+
+### Conjunto de seis itens proposto e aprovado conceitualmente
+
+| ID | Texto de trabalho | Direção mantida | Situação |
+| --- | --- | --- | --- |
+| ORG-001 | Antes de começar uma atividade com várias etapas, gosto de decidir a ordem em que vou fazer cada uma. | Direta | Simplificação aprovada como proposta |
+| ORG-002 | Ao realizar uma atividade nova, prefiro decidir os próximos passos conforme avanço. | Invertida | Redação original mantida como proposta |
+| ORG-003 | Quando tenho várias coisas para fazer durante a semana, gosto de planejar quando vou realizar cada uma. | Direta | Redação final ajustada e aprovada como proposta |
+| ORG-004 | Quando tenho várias coisas para fazer, prefiro decidir na hora por qual delas começar. | Invertida | Reformulação aprovada como proposta |
+| ORG-005 | Antes de começar uma atividade, gosto de separar tudo o que vou precisar para realizá-la. | Direta | Simplificação aprovada como proposta |
+| ORG-006 | Quando organizo meu dia, prefiro deixar espaço para escolher algumas atividades conforme minha vontade. | Invertida | Segunda reformulação aprovada como proposta |
+
+**Cobertura conceitual:** ORG-001 trata da sequência de etapas; ORG-003, da distribuição de atividades na semana; ORG-005, da preparação de recursos. ORG-002 aborda decidir passos durante uma atividade nova; ORG-004, escolher a ordem de tarefas na hora; ORG-006, manter parte da programação diária aberta.
+
+**Limitações e hipóteses a testar:** ORG-002 e ORG-004 podem se aproximar na tomada de decisões durante a execução; ORG-003 e ORG-006 tratam de organização temporal em escalas distintas. ORG-004 pode captar priorização de tarefas; ORG-006 pode refletir autonomia sobre o próprio tempo. A formulação “tudo o que vou precisar” em ORG-005 pode soar absoluta. A oposição entre flexibilidade e planejamento, bem como a estrutura de um indicador único, ainda não foi demonstrada empiricamente. A codificação invertida é uma escolha operacional sujeita a revisão.
+
+**Status:** revisão conceitual documental preliminar concluída. As seis redações foram aprovadas **como propostas para futura implementação e testes de compreensão**, não validadas psicometricamente. **Não alterar nesta etapa** `quiz-perguntas.js`, fórmula de pontuação, metodologia pública ou resultados históricos. Uma futura alteração dos itens deve preservar compatibilidade e identificar revisões.
