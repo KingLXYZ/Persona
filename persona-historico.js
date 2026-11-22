@@ -43,11 +43,18 @@
       totalPerguntas === (versao === 1 ? 20 : 30);
   }
 
+  // Registros antigos não possuem revisão explícita: continuam válidos como legado.
+  function revisaoValida(registro) {
+    return registro.revisaoInstrumento === undefined ||
+      (registro.versao === 3 && Number.isInteger(registro.revisaoInstrumento) &&
+       registro.revisaoInstrumento >= 1);
+  }
+
   function registroValido(registro) {
     return registro && typeof registro === "object" && !Array.isArray(registro) &&
       typeof registro.id === "string" && registro.id.length >= 4 && registro.id.length <= 150 &&
       metadadosValidos(registro.versao, registro.totalPerguntas) &&
-      pontuacoesValidas(registro.pontuacoes) && dataValida(registro.salvoEm);
+      revisaoValida(registro) && pontuacoesValidas(registro.pontuacoes) && dataValida(registro.salvoEm);
   }
 
   function lerDocumento() {
@@ -83,6 +90,7 @@
 
   function copiarRegistro(registro) {
     return {
+      ...(registro.revisaoInstrumento === undefined ? {} : { revisaoInstrumento: registro.revisaoInstrumento }),
       id: registro.id,
       versao: registro.versao,
       totalPerguntas: registro.totalPerguntas,
@@ -173,7 +181,7 @@
 
   /**
    * Registra UMA exploração após o visitante optar por salvá-la.
-   * Entrada: { versao, pontuacoes, salvoEm?, id?, origem? }
+   * Entrada: { versao, pontuacoes, revisaoInstrumento?, salvoEm?, id?, origem? }
    * - id opcional permite impedir duplicatas de uma mesma conclusão;
    * - salvoEm opcional permite preservar a data original de um perfil importado;
    * - exemplos fictícios não podem entrar no histórico.
@@ -187,6 +195,7 @@
     const versao = resultado.versao;
     const totalPerguntas = versao === 1 ? 20 : 30;
     const pontuacoes = resultado.pontuacoes;
+    const revisaoInstrumento = resultado.revisaoInstrumento;
     const salvoEm = resultado.salvoEm === undefined
       ? new Date().toISOString() : resultado.salvoEm;
 
@@ -197,13 +206,17 @@
 
     const documento = lerDocumento();
     const id = resultado.id === undefined ? criarId() : resultado.id;
-    const novo = { id, versao, totalPerguntas, pontuacoes: copiarPontuacoes(pontuacoes), salvoEm };
+    const novo = {
+      id, versao, totalPerguntas, pontuacoes: copiarPontuacoes(pontuacoes), salvoEm,
+      ...(revisaoInstrumento === undefined ? {} : { revisaoInstrumento })
+    };
     if (!registroValido(novo)) throw new Error("Identificador inválido para a exploração.");
 
     const existente = documento.registros.find(item => item.id === id);
     if (existente) {
       const mesmasPontuacoes = DIMENSOES.every(chave => existente.pontuacoes[chave] === pontuacoes[chave]);
-      if (!mesmasPontuacoes || existente.versao !== versao || existente.salvoEm !== salvoEm) {
+      if (!mesmasPontuacoes || existente.versao !== versao || existente.salvoEm !== salvoEm ||
+          existente.revisaoInstrumento !== revisaoInstrumento) {
         throw new Error("Já existe uma exploração diferente com este identificador.");
       }
       return { id, criado: false };
