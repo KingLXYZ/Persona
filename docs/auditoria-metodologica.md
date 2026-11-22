@@ -380,3 +380,36 @@ As 30 propostas preservam a distribuição documental de três itens diretos e t
 **Limitações:** a meta de coleta numérica foi alcançada, mas a documentação qualitativa foi escassa, especialmente na segunda rodada. Não há base para declarar validade psicométrica, funcionamento adequado dos itens invertidos, bipolaridade, unidimensionalidade, consistência interna ou adequação do escore único 0–100. Não inferir características individuais a partir de diferenças nas respostas.
 
 **Decisão documental:** concluir o registro das duas rodadas exploratórias; priorizar propostas alternativas para COM-002 e COM-003, uma de cada vez, com teste de interpretação espontânea antes de qualquer adoção. Manter COM-001, COM-004, COM-005 e COM-006 sob investigação. **Nenhuma autorização para alterar nesta etapa** o questionário publicado, a pontuação, a metodologia pública ou os resultados históricos.
+
+
+## Teste exploratório focalizado — COM-002, alternativa B (T01–T03)
+
+**Objetivo:** investigar a compreensão da alternativa B proposta para COM-002, com atenção à prontidão de resposta, à avaliação prévia e a possíveis associações emocionais. Esta etapa é documental e **não modifica** a redação publicada, a pontuação ou o histórico.
+
+**Redação testada, mantida sem alterações durante as três entrevistas:**
+
+> Quando surge uma dificuldade inesperada durante uma atividade, prefiro tentar resolvê-la logo em vez de esperar para pensar no que fazer.
+
+**Procedimento relatado:** três participantes identificados como T01, T02 e T03, todos com consentimento informado registrado como “Sim”. Escala de concordância de 1 a 5, seguida de relato de compreensão espontânea, situação imaginada, interpretação de “esperar para pensar”, associação emocional e dificuldade ou sugestão. Não foram informados dados demográficos, datas, recrutamento ou gravações. Os textos abaixo são os relatos fornecidos pelo aplicador, sem pressupor transcrição de áudio.
+
+| Campo | T01 | T02 | T03 |
+| --- | --- | --- | --- |
+| Resposta | 4 | 1 | 5 |
+| Compreensão espontânea | “agir de prontidão para resolver o problema” | “agir logo” | “agir com rapidez” |
+| Situação imaginada | “sim, no ambiente de trabalho” | “sim, em alguma situação difícil da vida” | “sim, na minha vida ou trabalho” |
+| Interpretação de “esperar para pensar” | “um momento para respirar e analianalisar” | “analisar a situação” | “analisar a situação e as alternativas” |
+| Associação emocional declarada | “não” | “não” | “não” |
+| Dificuldade ou sugestão | “não” | “não” | “não” |
+
+**Nota de fidelidade:** preservou-se a grafia “analianalisar” no registro original de T01; na análise ela foi interpretada provisoriamente como referência a analisar, sem corrigir silenciosamente o relato.
+
+### Síntese interpretativa provisória
+
+- **Prontidão de resposta:** as três explicações espontâneas fazem referência a agir prontamente ou com rapidez, coerentemente com o componente temporal pretendido.
+- **Avaliação prévia:** as três respostas à sondagem incluem análise da situação; T03 menciona alternativas. T01 também menciona respirar, o que pode significar uma pausa ou autorregulação, embora tenha declarado “não” à pergunta sobre associação emocional.
+- **Variação da concordância:** respostas 4, 1 e 5. A interpretação central apareceu em participantes com respostas distintas; o valor da concordância não é medida de qualidade da compreensão.
+- **Emoções e clareza:** nenhum participante relatou associação emocional nem dificuldade. Isso não prova ausência de ambiguidade, viés ou interpretação emocional em outras pessoas.
+- **Neutralidade:** não houve sondagem direta sobre se “esperar para pensar” soa depreciativo, nem sobre se “tentar resolver” é interpretado como capacidade de solucionar problemas. Permanecem riscos em aberto.
+- **Comparação com P01–P10:** os relatos de T01–T03 são favoráveis à compreensão da nova redação, mas não constituem comparação controlada com a anterior; não demonstram superioridade estatística nem validade psicométrica.
+
+**Decisão provisória:** encerrar esta rodada focalizada e manter a **alternativa B como candidata preferencial para COM-002**, ainda sujeita à revisão conjunta dos seis itens e a investigações adicionais. Prosseguir com a revisão conceitual da COM-003. **Não substituir o item no questionário público nesta etapa.**
