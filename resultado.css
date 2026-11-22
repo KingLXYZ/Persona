@@ -795,3 +795,38 @@
 
 /* Respeita links indisponíveis em resultados históricos. */
 .result-quick-nav-links a[hidden] { display: none; }
+
+
+/* Painel de compartilhamento recolhível. */
+.result-share-details > summary {
+    list-style: none;
+    color: var(--text);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+}
+.result-share-details > summary::-webkit-details-marker { display: none; }
+.result-share-details > summary::after {
+    content: "+";
+    flex: 0 0 auto;
+    width: 30px;
+    height: 30px;
+    display: grid;
+    place-items: center;
+    border: 1px solid var(--border);
+    border-radius: 50%;
+    color: var(--purple-light);
+    font-size: 21px;
+    font-weight: 400;
+}
+.result-share-details[open] > summary::after { content: "−"; }
+.result-share-details > summary:focus-visible {
+    outline: 2px solid var(--purple-light);
+    outline-offset: 5px;
+    border-radius: 4px;
+}
+@media (max-width: 600px) {
+    .result-share { padding: 18px !important; }
+    .result-share-details > summary { font-size: 19px !important; }
+}
