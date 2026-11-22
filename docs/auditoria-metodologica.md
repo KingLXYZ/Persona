@@ -109,3 +109,22 @@ O conceito de trabalho será ampliado para **estilo de interação social**, abr
 5. **Não afirmar validação:** a auditoria documental e seis referências não substituem evidências obtidas com participantes.
 
 **Encerramento desta etapa:** auditoria documental e revisão de coerência metodológica concluídas; validação empírica e decisões sobre reformulações ficam explicitamente pendentes.
+
+## Revisão conceitual específica — Social (decisão posterior)
+
+**Definição operacional proposta:** *Iniciativa de participação social* — preferência por iniciar contatos, aproximar-se de pessoas e participar espontaneamente de conversas e atividades coletivas. É um recorte do conceito amplo de estilo de interação social, e não uma medida de extroversão, timidez, habilidade social ou qualidade dos vínculos. A decisão mantém um único indicador Social, sem subindicadores.
+
+### Conjunto de seis itens proposto
+
+| ID | Texto de trabalho | Direção mantida | Situação |
+| --- | --- | --- | --- |
+| SOC-001 | Quando estou com pessoas que ainda não conheço, costumo começar uma conversa. | Direta | Manter |
+| SOC-002 | Quando encontro um grupo de pessoas conversando, costumo esperar que alguém me convide a participar. | Invertida | Reformulação aprovada como proposta |
+| SOC-003 | Em atividades de grupo, costumo apresentar minhas ideias sem esperar que me convidem a falar. | Direta | Manter |
+| SOC-004 | Quando tenho interesse em conhecer melhor uma pessoa, costumo esperar que ela tome a iniciativa de se aproximar. | Invertida | Reformulação aprovada como proposta |
+| SOC-005 | Quando uma conversa em grupo perde o ritmo, costumo sugerir um novo assunto. | Direta | Manter |
+| SOC-006 | Quando estou em uma atividade em grupo, prefiro esperar que alguém me atribua uma tarefa em vez de me oferecer espontaneamente para ajudar. | Invertida | Reformulação aprovada como proposta |
+
+**Avaliação crítica:** SOC-001 e SOC-004 ainda compartilham o tema da aproximação; SOC-003 e SOC-006 diferenciam expressão de ideias e oferta de ajuda, mas SOC-006 pode captar cooperação ou disposição para ajudar, e não apenas iniciativa social. SOC-002 pode variar conforme receptividade e normas do grupo. A aprovação aqui é **conceitual e provisória**, não comprovação de unidimensionalidade ou validade.
+
+**Decisão de implementação:** nenhuma alteração em `quiz-perguntas.js`, `metodologia.html`, resultados ou pontuação nesta etapa. Antes de publicar novas redações, revisar a compatibilidade dos resultados antigos e o controle de revisão dos itens; posteriormente investigar compreensão e estrutura do indicador com participantes. A definição pública atual permanece em vigor até uma implementação aprovada.
