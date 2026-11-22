@@ -127,6 +127,12 @@
     return `exploracao-${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 12)}`;
   }
 
+  // Resultados antigos sem revisão explícita permanecem identificados como legado.
+  function revisaoResultado(dados, versao) {
+    return versao === 3 && Number.isInteger(dados.revisaoInstrumento) &&
+      dados.revisaoInstrumento >= 1 ? dados.revisaoInstrumento : undefined;
+  }
+
   function carregarSessao(versao) {
     const dados = lerJSON(sessionStorage, CHAVES_SESSAO[versao]);
     if (!dados || dados.version !== versao || !pontuacoesValidas(dados.scores)) return null;
@@ -139,7 +145,11 @@
         // A ausência de armazenamento impede salvar o histórico, mas não ler o resultado.
       }
     }
-    return { versao, pontuacoes: dados.scores, origem: "sessao", historicoId: dados.historicoId };
+    return {
+      versao, pontuacoes: dados.scores, origem: "sessao", historicoId: dados.historicoId,
+      ...(revisaoResultado(dados, versao) === undefined ? {} :
+        { revisaoInstrumento: revisaoResultado(dados, versao) })
+    };
   }
 
   function carregarSalvo(chave, versoes) {
@@ -152,7 +162,9 @@
       : `exploracao-importada-${dados.version}-${Date.parse(dados.salvoEm)}`;
     return {
       versao: dados.version, pontuacoes: dados.scores,
-      origem: "salvo", salvoEm: dados.salvoEm, historicoId
+      origem: "salvo", salvoEm: dados.salvoEm, historicoId,
+      ...(revisaoResultado(dados, dados.version) === undefined ? {} :
+        { revisaoInstrumento: revisaoResultado(dados, dados.version) })
     };
   }
 
@@ -467,6 +479,7 @@
       const anterior = carregarSalvo(chave, versao === 3 ? [3] : [1, 2]);
       const mesmaExploracao = anterior &&
         anterior.historicoId === resultado.historicoId &&
+        anterior.revisaoInstrumento === resultado.revisaoInstrumento &&
         ORDEM.every(dim => anterior.pontuacoes[dim] === resultado.pontuacoes[dim]);
       if (anterior && !mesmaExploracao &&
           !window.confirm("Deseja tornar esta exploração seu perfil mais recente? A exploração anterior continuará no histórico, caso tenha sido salva nele.")) {
@@ -486,6 +499,7 @@
             : new Date().toISOString());
         gravacao = historico.adicionar({
           id, versao, pontuacoes: resultado.pontuacoes,
+          revisaoInstrumento: resultado.revisaoInstrumento,
           salvoEm, origem: resultado.origem
         });
       } catch (erro) {
@@ -497,7 +511,9 @@
       try {
         localStorage.setItem(chave, JSON.stringify({
           formato: 1, version: versao, totalPerguntas: versao === 1 ? 20 : 30,
-          scores: resultado.pontuacoes, salvoEm, historicoId: id
+          scores: resultado.pontuacoes, salvoEm, historicoId: id,
+          ...(resultado.revisaoInstrumento === undefined ? {} :
+            { revisaoInstrumento: resultado.revisaoInstrumento })
         }));
         resultado.historicoId = id;
         resultado.salvoEm = salvoEm;
