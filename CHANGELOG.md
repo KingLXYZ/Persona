@@ -10,6 +10,28 @@ O versionamento dos lançamentos do site será independente da revisão metodol�
 
 Reservado para alterações futuras, ainda não incluídas em um lançamento identificado. Quando definirmos a primeira versão formal, registraremos sua data e o conjunto de mudanças correspondente.
 
+### 2026-11-22 — Compartilhamento, compatibilidade histórica e validação
+
+**Adicionado**
+- Cartões de compartilhamento do perfil em PNG, nos formatos completo (cinco dimensões) e resumido (duas dimensões), com identidade visual do Persona.
+- Opções de baixar a imagem e compartilhar pelo recurso nativo do dispositivo, quando disponível.
+- Testes automatizados do gerador de cartões, incluindo formatos, validação de pontuações e exportação PNG.
+- Fluxo de integração contínua em `.github/workflows/testes.yml`, com verificação de sintaxe JavaScript e execução da suíte de testes a cada envio à branch principal.
+
+**Corrigido**
+- Proteção da interpretação de resultados de revisões anteriores ou não identificadas: pontuações históricas são preservadas sem receber automaticamente as leituras do questionário atual.
+- Avisos na área Minha Jornada sobre a comparabilidade limitada entre aplicações anteriores e atuais.
+- Parâmetros de cache dos scripts alterados, para facilitar a atualização do navegador.
+
+**Validado**
+- Testes manuais relatados no navegador: início do questionário em 1/30, recuperação de progresso, conclusão das 30 perguntas e exibição das cinco pontuações, visualização e download dos dois cartões, e salvamento em Minha Jornada.
+- GitHub Actions: execução [45063339524](https://github.com/KingLXYZ/Persona/actions/runs/45063339524) concluída com sucesso, incluindo verificação de sintaxe e suíte automatizada.
+
+**Limitações conhecidas da validação**
+- Os testes manuais acima cobrem os fluxos relatados, não todos os navegadores ou dispositivos.
+- Ainda não foram verificados manualmente todos os cenários de registros legados, armazenamento indisponível e cancelamento do compartilhamento nativo.
+- A conclusão dos testes não equivale à validação psicométrica do questionário, que continua experimental.
+
 ## Histórico anterior ao versionamento formal
 
 ### 2026-11-21 — Confiabilidade, recuperação de dados e manutenção
