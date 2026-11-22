@@ -549,6 +549,143 @@
     statusEl.insertAdjacentElement("afterend", painel);
   }
 
+  // Compartilhamento opcional: imagens geradas localmente a partir do resultado real.
+  function mostrarCompartilhamento(resultado) {
+    const gerador = window.PersonaCompartilhamento;
+    const ancora = document.getElementById("result-status");
+    if (!gerador || !ancora || !resultado || resultado.origem === "demonstracao") return;
+
+    const secao = document.createElement("section");
+    secao.className = "result-share";
+    secao.setAttribute("aria-label", "Compartilhar meu perfil");
+    secao.style.marginTop = "32px";
+    secao.style.padding = "26px";
+    secao.style.border = "1px solid var(--border)";
+    secao.style.background = "var(--surface)";
+
+    const titulo = document.createElement("h2");
+    titulo.textContent = "Compartilhar meu perfil";
+    titulo.style.fontSize = "24px";
+    titulo.style.marginBottom = "12px";
+
+    const explicacao = document.createElement("p");
+    explicacao.textContent = "Escolha o que deseja mostrar. A imagem é criada no seu navegador, sem publicar suas respostas automaticamente.";
+    explicacao.style.color = "var(--muted)";
+    explicacao.style.lineHeight = "1.7";
+
+    const rotulo = document.createElement("label");
+    rotulo.textContent = "Formato da imagem";
+    rotulo.htmlFor = "persona-share-format";
+    rotulo.style.display = "block";
+    rotulo.style.marginTop = "20px";
+
+    const formato = document.createElement("select");
+    formato.id = "persona-share-format";
+    formato.style.display = "block";
+    formato.style.width = "100%";
+    formato.style.maxWidth = "340px";
+    formato.style.padding = "12px";
+    formato.style.marginTop = "8px";
+    formato.style.background = "#171022";
+    formato.style.color = "#f7f4ff";
+    formato.style.border = "1px solid #65478b";
+    [["completo", "Completo — cinco dimensões"],
+      ["resumido", "Resumido — dois destaques"]].forEach(([valor, nome]) => {
+      const opcao = document.createElement("option");
+      opcao.value = valor;
+      opcao.textContent = nome;
+      formato.appendChild(opcao);
+    });
+
+    const visualizacao = document.createElement("div");
+    visualizacao.style.maxWidth = "280px";
+    visualizacao.style.marginTop = "22px";
+
+    const acoes = document.createElement("div");
+    acoes.style.display = "flex";
+    acoes.style.flexWrap = "wrap";
+    acoes.style.gap = "12px";
+    acoes.style.marginTop = "20px";
+
+    const baixar = document.createElement("button");
+    baixar.type = "button";
+    baixar.className = "secondary-button";
+    baixar.textContent = "Baixar imagem";
+
+    const compartilhar = document.createElement("button");
+    compartilhar.type = "button";
+    compartilhar.className = "secondary-button";
+    compartilhar.textContent = "Compartilhar";
+
+    const aviso = document.createElement("p");
+    aviso.setAttribute("role", "status");
+    aviso.setAttribute("aria-live", "polite");
+    aviso.style.color = "var(--muted)";
+    aviso.style.marginTop = "14px";
+    aviso.textContent = "O perfil resumido destaca pontuações, não habilidades superiores.";
+
+    let canvas;
+    function atualizar() {
+      try {
+        canvas = gerador.gerar({ pontuacoes: resultado.pontuacoes, formato: formato.value });
+        canvas.style.display = "block";
+        canvas.style.width = "100%";
+        canvas.style.height = "auto";
+        canvas.setAttribute("role", "img");
+        canvas.setAttribute("aria-label", formato.value === "completo"
+          ? "Prévia do cartão com cinco dimensões."
+          : "Prévia do cartão com duas dimensões em destaque.");
+        visualizacao.replaceChildren(canvas);
+        aviso.textContent = "Prévia gerada somente neste dispositivo.";
+      } catch (erro) {
+        canvas = null;
+        visualizacao.replaceChildren();
+        aviso.textContent = "Não foi possível gerar a imagem neste navegador.";
+      }
+      baixar.disabled = !canvas;
+      compartilhar.disabled = !canvas;
+    }
+
+    async function executar(acao) {
+      if (!canvas) return;
+      baixar.disabled = true;
+      compartilhar.disabled = true;
+      try {
+        const blob = await gerador.criarBlob(canvas);
+        const nome = `persona-perfil-${formato.value}.png`;
+        if (acao === "baixar") {
+          gerador.baixar(blob, nome);
+          aviso.textContent = "Imagem preparada para download.";
+        } else {
+          const disponivel = await gerador.compartilhar(blob, nome);
+          if (!disponivel) {
+            gerador.baixar(blob, nome);
+            aviso.textContent = "Compartilhamento direto indisponível. A imagem foi preparada para download.";
+          } else {
+            aviso.textContent = "Compartilhamento solicitado ao dispositivo.";
+          }
+        }
+      } catch (erro) {
+        aviso.textContent = erro && erro.name === "AbortError"
+          ? "Compartilhamento cancelado."
+          : "Não foi possível concluir a ação. Tente novamente.";
+      } finally {
+        baixar.disabled = !canvas;
+        compartilhar.disabled = !canvas;
+      }
+    }
+
+    formato.addEventListener("change", atualizar);
+    baixar.addEventListener("click", () => executar("baixar"));
+    compartilhar.addEventListener("click", () => executar("compartilhar"));
+    acoes.append(baixar, compartilhar);
+    secao.append(titulo, explicacao, rotulo, formato, visualizacao, acoes, aviso);
+    const jornada = document.querySelector(".result-journey-link");
+    if (jornada) jornada.insertAdjacentElement("beforebegin", secao);
+    else ancora.insertAdjacentElement("afterend", secao);
+    atualizar();
+  }
+
   const parametros = new URLSearchParams(window.location.search);
   if (parametros.get("exemplo") === "1") {
     mostrarResultados({
@@ -585,4 +722,5 @@
 
   mostrarResultados(resultado);
   mostrarControles(resultado, salvoAntigo, salvoV3);
+  mostrarCompartilhamento(resultado);
 })();
