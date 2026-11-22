@@ -243,3 +243,9 @@ O conceito de trabalho será ampliado para **estilo de interação social**, abr
 As 30 propostas preservam a distribuição documental de três itens diretos e três invertidos por dimensão. Isso **não demonstra** que os polos sejam opostos, que cada conjunto seja unidimensional ou que a soma/inversão produza interpretação válida. A revisão linguística não resolve essas hipóteses. Os itens analíticos, planejadores e de pausa podem parecer socialmente desejáveis. Investigar compreensão das âncoras de resposta, situações de contexto e respostas extremas.
 
 **Não aplicar ainda as redações em produção.** Antes da implementação: (1) decidir se itens de alta prioridade exigem refinamento; (2) planejar entrevistas cognitivas com participantes reais e registrar interpretações; (3) definir estratégia explícita de identificação de revisões e não comparar diretamente resultados obtidos com redações diferentes; (4) verificar testes automatizados e fluxos de histórico/retomada. Nenhum dado empírico foi analisado nesta passagem.
+
+### Ajuste transversal aprovado — COM-006
+
+**Redação substituta aprovada como proposta:** “Quando acontece uma mudança inesperada, minha primeira reação costuma ser agir logo para lidar com a situação.”
+
+**Motivo:** reduzir a sobreposição entre COM-006 e ORG-002, removendo o foco em descobrir etapas enquanto avança. A nova redação enfatiza a primeira reação a um imprevisto, mas ainda pode se sobrepor a COM-002; testar compreensão e distinção entre esses itens. **Esta decisão posterior substitui a redação de COM-006 registrada na seção de revisão Comportamental; não altera ainda o questionário publicado nem os resultados.**
