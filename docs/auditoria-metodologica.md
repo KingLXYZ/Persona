@@ -255,3 +255,13 @@ As 30 propostas preservam a distribuição documental de três itens diretos e t
 **Redação substituta aprovada como proposta:** “Quando recebo uma notícia inesperada, costumo fazer uma pausa para entender o que aconteceu antes de reagir.”
 
 **Motivo:** separar o foco de COM-003 (pausa diante de informação inesperada) de DEC-005 (consideração de consequências futuras antes de escolher), retirando “antes de decidir o que fazer”. **Ressalvas:** “notícia” pode evocar notícias pessoais ou acontecimentos importantes; COM-003 pode continuar redundante com COM-001, pois ambas abordam compreender algo inesperado antes de reagir. Testar compreensão e distinção dos itens. **Esta decisão posterior substitui a redação de COM-003 registrada na revisão Comportamental; não altera o questionário publicado, pontuação nem resultados históricos.**
+
+### Refinamento transversal aprovado — COM-003 (interrupção interpessoal)
+
+**Redação substituta aprovada como proposta:** “Quando alguém me interrompe de surpresa, prefiro entender o motivo antes de responder.”
+
+**Justificativa:** a COM-003 passa a tratar de interrupção interpessoal inesperada, diferenciando o contexto do imprevisto geral abordado em COM-001 e da tentativa malsucedida em COM-005. A redação evita a expressão abstrata “responder à situação”. **Esta decisão mais recente substitui a redação anterior de COM-003 com “notícia inesperada”, também registrada nesta auditoria.**
+
+**Ressalvas metodológicas:** a diferença entre COM-001 e COM-003 ainda é principalmente situacional, não uma distinção psicológica demonstrada; a resposta pode refletir educação, normas sociais, familiaridade com quem interrompe ou hábitos de comunicação, criando possível interferência da dimensão Social. “Entender o motivo” pode captar curiosidade ou interpretação de intenção, e não apenas preferência por pausa. Investigar essas hipóteses em entrevistas cognitivas e posteriormente com dados empíricos; a aprovação conceitual não significa validação psicométrica.
+
+**Status:** proposta documental aprovada, **sem alteração** do questionário publicado, da pontuação ou dos resultados históricos.
