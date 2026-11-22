@@ -413,3 +413,37 @@ As 30 propostas preservam a distribuição documental de três itens diretos e t
 - **Comparação com P01–P10:** os relatos de T01–T03 são favoráveis à compreensão da nova redação, mas não constituem comparação controlada com a anterior; não demonstram superioridade estatística nem validade psicométrica.
 
 **Decisão provisória:** encerrar esta rodada focalizada e manter a **alternativa B como candidata preferencial para COM-002**, ainda sujeita à revisão conjunta dos seis itens e a investigações adicionais. Prosseguir com a revisão conceitual da COM-003. **Não substituir o item no questionário público nesta etapa.**
+
+
+## Teste exploratório focalizado — COM-003, alternativa B refinada (T04–T06)
+
+**Objetivo:** investigar a compreensão da COM-003 reformulada, em especial a preferência por avaliação prévia antes de responder em uma conversa inesperada, distinguindo-a de compreensão verbal, hesitação, respeito social ou regulação emocional. Registro documental apenas; não representa validação psicométrica nem autoriza publicação.
+
+**Redação testada, sem mudanças entre entrevistas:**
+
+> Quando uma conversa toma um rumo inesperado, prefiro pensar por um momento antes de responder.
+
+**Procedimento relatado:** três participantes T04, T05 e T06, todos com consentimento informado “Sim”. Resposta na escala de concordância 1–5 e perguntas de compreensão espontânea, situação imaginada, significado de “pensar por um momento”, interpretação social, associação emocional e dificuldade ou sugestão. Datas, recrutamento, dados demográficos e gravações não informados. Os registros abaixo reproduzem as informações fornecidas pelo aplicador; não se presume transcrição literal de entrevista gravada.
+
+| Campo | T04 | T05 | T06 |
+| --- | --- | --- | --- |
+| Resposta | 4 | 3 | 4 |
+| Compreensão espontânea | “raciocínio” | “Clareza” | “Observar” |
+| Situação imaginada | “sim, em uma discussão” | “não” | “não” |
+| Interpretação de “pensar por um momento” | Não registrada | “Prefiro pensar e respondo depois” | Não registrada |
+| Interpretação social | Não registrada | Não registrada | “não” |
+| Associação emocional declarada | “não” | “não” | “não” |
+| Dificuldade ou sugestão | “não” | “não” | “não” |
+
+**Nota de interpretação dos dados:** “Não registrada” indica ausência de informação; não equivale a uma resposta negativa. Em T06, o “não” no campo de interpretação social é a resposta relatada, mas não permite determinar como a participante entendeu a mudança de rumo da conversa.
+
+### Síntese metodológica provisória
+
+- **Clareza percebida:** nenhuma pessoa relatou dificuldade com a redação, mas a ausência de queixa não demonstra compreensão integral.
+- **Compreensão espontânea:** “raciocínio”, “clareza” e “observar” são formulações genéricas. Elas podem ser compatíveis com avaliação prévia, mas não confirmam por si sós a sequência comportamental de avaliar antes de responder.
+- **Significado da pausa:** apenas T05 teve sondagem registrada e respondeu “Prefiro pensar e respondo depois”, compatível com o componente pretendido.
+- **Contexto social:** T04 imaginou uma discussão; não há informação suficiente para afirmar que pensou em conflito, desrespeito ou apenas debate. As sondagens sociais de T04 e T05 não foram registradas, e a resposta “não” de T06 não detalha a interpretação.
+- **Emoções:** nenhum participante relatou associação emocional. A amostra pequena e as explicações limitadas impedem concluir que o risco foi eliminado.
+- **Neutralidade e validade:** não se verificou diretamente se a pausa foi percebida como mais virtuosa ou como hesitação. Não há evidência de validade psicométrica, confiabilidade ou superioridade estatística em relação à redação anterior.
+
+**Decisão provisória:** manter a alternativa B refinada como **candidata em investigação**, sem aprovação definitiva. Recomenda-se uma rodada complementar com T07–T08, preservando a redação e coletando explicações espontâneas mais completas, sobretudo o sentido de “pensar por um momento” e de “conversa toma um rumo inesperado”, sem induzir respostas. **Não modificar** o questionário público, a pontuação, a metodologia pública ou os resultados históricos nesta etapa.
