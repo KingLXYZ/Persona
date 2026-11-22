@@ -148,3 +148,25 @@ O conceito de trabalho será ampliado para **estilo de interação social**, abr
 **Avaliação crítica:** a linguagem foi simplificada para que o questionário não pareça uma prova. Os itens concretos agora diferenciam começar por exemplos (COG-002), observar situações reais (COG-004) e reconhecer ideias no cotidiano (COG-006), embora ainda exista proximidade conceitual. COG-001 pode ser interpretado de maneiras distintas devido à expressão “ideias por trás”. COG-005 pode captar imaginação ou curiosidade, não apenas preferência por abstração. Preferências por concretude e abstração podem coexistir; a codificação invertida não demonstra que sejam polos psicometricamente opostos.
 
 **Status:** revisão conceitual documental preliminar concluída, com seis redações aprovadas **como propostas para futura implementação e teste**, sem alegação de validade científica. Permanecem pendentes entrevistas de compreensão, análise empírica da estrutura e revisão de comparabilidade dos resultados antigos. **Não alterar nesta etapa** os textos publicados em `quiz-perguntas.js`, a fórmula, a metodologia pública ou os resultados.
+
+
+## Revisão conceitual específica — Decisória (decisão posterior)
+
+**Definição operacional proposta:** *Preferência na tomada de decisões* — tendência a apoiar escolhas em impressões iniciais ou na comparação de alternativas, desvantagens e possíveis consequências. A dimensão mantém um único indicador com polos descritivos *Impressão inicial ↔ Análise estruturada*. Não mede inteligência, responsabilidade, capacidade de julgamento nem qualidade das decisões.
+
+### Conjunto de seis itens proposto e aprovado conceitualmente
+
+| ID | Texto de trabalho | Direção mantida | Situação |
+| --- | --- | --- | --- |
+| DEC-001 | Quando preciso escolher entre duas opções, gosto de comparar o que cada uma tem de bom e de ruim. | Direta | Simplificação aprovada como proposta |
+| DEC-002 | Quando tenho duas opções que me agradam, costumo escolher aquela que mais me chama a atenção de primeira. | Invertida | Reformulação aprovada como proposta |
+| DEC-003 | Mesmo quando uma opção me agrada logo de início, gosto de considerar suas possíveis desvantagens antes de escolher. | Direta | Simplificação aprovada como proposta |
+| DEC-004 | Quando encontro uma opção que parece atender ao que preciso, costumo escolhê-la sem procurar muitas outras alternativas. | Invertida | Segunda reformulação aprovada como proposta |
+| DEC-005 | Quando preciso tomar uma decisão, gosto de pensar no que pode acontecer depois de cada escolha. | Direta | Simplificação aprovada como proposta |
+| DEC-006 | Quando preciso escolher e não tenho certeza de qual opção é melhor, costumo seguir aquela que sinto ser a escolha certa. | Invertida | Reformulação aprovada como proposta |
+
+**Cobertura conceitual:** DEC-001 compara vantagens/desvantagens; DEC-003 examina desvantagens apesar de atração inicial; DEC-005 antecipa consequências. DEC-002 privilegia a primeira impressão; DEC-004 descreve encerrar a busca após encontrar uma opção satisfatória; DEC-006 aborda intuição diante da incerteza.
+
+**Limitações e hipóteses a testar:** DEC-001 e DEC-003 podem se sobrepor; DEC-002 e DEC-006 também podem compartilhar o mesmo mecanismo. DEC-004 pode representar uma estratégia eficiente de busca (*satisficing*) em vez de preferência intuitiva; DEC-006 pode incorporar experiência implícita. Decidir rapidamente ou confiar em experiências anteriores não é necessariamente falta de análise. Os itens analíticos podem induzir desejabilidade social. A oposição entre os polos e a estrutura unidimensional não foram demonstradas empiricamente; a pontuação invertida continua sendo uma hipótese operacional, não uma prova de bipolaridade.
+
+**Status:** revisão conceitual documental preliminar concluída; as seis redações foram aprovadas **como propostas para implementação futura e testes de compreensão**, sem validação psicométrica. **Não alterar nesta etapa** os textos publicados em `quiz-perguntas.js`, a fórmula, a metodologia pública ou resultados históricos. Qualquer implementação posterior deve tratar compatibilidade e revisão dos itens.
