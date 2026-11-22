@@ -249,3 +249,9 @@ As 30 propostas preservam a distribuição documental de três itens diretos e t
 **Redação substituta aprovada como proposta:** “Quando acontece uma mudança inesperada, minha primeira reação costuma ser agir logo para lidar com a situação.”
 
 **Motivo:** reduzir a sobreposição entre COM-006 e ORG-002, removendo o foco em descobrir etapas enquanto avança. A nova redação enfatiza a primeira reação a um imprevisto, mas ainda pode se sobrepor a COM-002; testar compreensão e distinção entre esses itens. **Esta decisão posterior substitui a redação de COM-006 registrada na seção de revisão Comportamental; não altera ainda o questionário publicado nem os resultados.**
+
+### Ajuste transversal aprovado — COM-003
+
+**Redação substituta aprovada como proposta:** “Quando recebo uma notícia inesperada, costumo fazer uma pausa para entender o que aconteceu antes de reagir.”
+
+**Motivo:** separar o foco de COM-003 (pausa diante de informação inesperada) de DEC-005 (consideração de consequências futuras antes de escolher), retirando “antes de decidir o que fazer”. **Ressalvas:** “notícia” pode evocar notícias pessoais ou acontecimentos importantes; COM-003 pode continuar redundante com COM-001, pois ambas abordam compreender algo inesperado antes de reagir. Testar compreensão e distinção dos itens. **Esta decisão posterior substitui a redação de COM-003 registrada na revisão Comportamental; não altera o questionário publicado, pontuação nem resultados históricos.**
