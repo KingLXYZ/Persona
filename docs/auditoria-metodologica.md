@@ -328,3 +328,55 @@ As 30 propostas preservam a distribuição documental de três itens diretos e t
 **Limites:** a ausência de comentários não equivale à ausência comprovada de dificuldade. As respostas numéricas não identificam, por si só, ambiguidade, compreensão correta, estrutura bipolar, funcionamento da inversão, consistência interna ou validade da pontuação 0–100. Não foram aplicadas sondagens de compreensão completas e documentadas a todos os participantes.
 
 **Encaminhamento:** preservar as seis redações de trabalho para uma segunda rodada de entrevistas cognitivas mais direcionadas, com explicação espontânea do sentido de cada item e sondagens neutras, especialmente em COM-002, COM-003, COM-004 e COM-006. Não alterar nesta etapa as perguntas publicadas, a pontuação, a metodologia pública nem os resultados históricos. A decisão de manter ou revisar itens permanece em aberto.
+
+
+## Segunda rodada exploratória de compreensão — Comportamental (P06–P10)
+
+**Escopo e procedência:** segunda rodada de coleta relatada pelo responsável pelo projeto, com participantes identificados apenas como P06–P10. Foi informado consentimento para cada participante. Seis respostas por pessoa, na escala original de concordância de 1 a 5, referentes às seis redações de trabalho do Modelo C. Não foram informadas datas, método de recrutamento, dados demográficos ou transcrições verificadas. As observações de compreensão reproduzem os relatos encaminhados pelo aplicador; não se deve presumir que sejam transcrições literais.
+
+### Respostas originais da segunda rodada
+
+| Item | P06 | P07 | P08 | P09 | P10 | Média bruta |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: |
+| COM-001 | 4 | 4 | 4 | 3 | 4 | 3,8 |
+| COM-002 | 2 | 5 | 3 | 2 | 2 | 2,8 |
+| COM-003 | 3 | 1 | 3 | 4 | 3 | 2,8 |
+| COM-004 | 2 | 3 | 4 | 3 | 4 | 3,2 |
+| COM-005 | 5 | 4 | 5 | 2 | 3 | 3,8 |
+| COM-006 | 4 | 1 | 2 | 1 | 3 | 2,2 |
+
+**Total da rodada:** cinco participantes, 30 respostas numéricas. Todas as respostas foram registradas; explicações de compreensão não foram registradas para P07–P10. A ausência de explicação não comprova compreensão adequada nem inadequada.
+
+### Observações qualitativas relatadas
+
+- **P06, COM-001 (resposta 4):** “quando acontece uma situação inesperada na vida ou alguma dificuldade”. Reconhece o contexto, mas não explicita o componente de avaliar antes de agir.
+- **P06, COM-002 (resposta 2):** “é mais eficaz tirar um momento para se acalmar e respirar profundamente antes de agir”. Evoca regulação emocional e eficácia da ação; possível conteúdo adicional ao construto pretendido.
+- **P06, COM-003 (resposta 3):** “Isso acontece comigo mais no trabalho, e é tão deselegante. Pode ser algo tão bobo e aleatório como eu falando sobre trabalho e alguém aparece e diz ‘Estou com fome’ Isso me faz nem querer falar com pessoas que me desrespeitam”. Evoca respeito e normas sociais, não apenas avaliação antes da resposta.
+- **P06, COM-004 a COM-006:** sem explicações ou situações imaginadas registradas.
+- **P07, P08, P09 e P10:** consentimento informado relatado e seis respostas numéricas por participante; nenhuma explicação ou situação imaginada registrada.
+
+### Consolidação descritiva das duas rodadas (P01–P10)
+
+| Item | Média bruta da 1ª rodada | Média bruta da 2ª rodada | Média bruta geral |
+| --- | ---: | ---: | ---: |
+| COM-001 | 2,2 | 3,8 | 3,0 |
+| COM-002 | 3,6 | 2,8 | 3,2 |
+| COM-003 | 3,2 | 2,8 | 3,0 |
+| COM-004 | 2,6 | 3,2 | 2,9 |
+| COM-005 | 2,2 | 3,8 | 3,0 |
+| COM-006 | 4,0 | 2,2 | 3,1 |
+
+**Total acumulado:** dez participantes, 60 respostas numéricas. Médias calculadas a partir das respostas brutas, **sem inversão**. As diferenças entre rodadas não indicam por si só melhora ou piora dos itens; não houve comparação experimental controlada.
+
+### Avaliação metodológica provisória
+
+1. **COM-001:** há observações de aceitação e de compreensão parcial do contexto, mas não confirmação consistente do componente “entender antes de agir”. Manter como candidata, sem declaração de validação.
+2. **COM-002 — prioridade de revisão conceitual:** P03 (primeira rodada) mencionou pensar antes de agir “com a cabeça quente”; P06 (segunda rodada) mencionou acalmar-se e respirar profundamente. A recorrência dessa associação em dois relatos sugere risco de captar regulação emocional, autocontrole ou eficácia, além da prontidão de resposta. Não comprova defeito definitivo.
+3. **COM-003 — prioridade de revisão conceitual:** P06 evocou interrupção percebida como desrespeitosa no trabalho. Pode envolver normas sociais e respeito, além de avaliação prévia. Uma observação não estabelece interpretação generalizada.
+4. **COM-004:** a observação de P03 identifica uma alternativa para agir, mas não confirma compreensão de “colocá-la em prática logo”. Sondar o componente temporal.
+5. **COM-005:** a observação de P03 é compatível com avaliação antes de tentar novamente. Manter como candidata, sem inferir compreensão universal.
+6. **COM-006:** contextos relatados por P03 são plausíveis, mas não confirmam compreensão de prontidão da reação. Investigar.
+
+**Limitações:** a meta de coleta numérica foi alcançada, mas a documentação qualitativa foi escassa, especialmente na segunda rodada. Não há base para declarar validade psicométrica, funcionamento adequado dos itens invertidos, bipolaridade, unidimensionalidade, consistência interna ou adequação do escore único 0–100. Não inferir características individuais a partir de diferenças nas respostas.
+
+**Decisão documental:** concluir o registro das duas rodadas exploratórias; priorizar propostas alternativas para COM-002 e COM-003, uma de cada vez, com teste de interpretação espontânea antes de qualquer adoção. Manter COM-001, COM-004, COM-005 e COM-006 sob investigação. **Nenhuma autorização para alterar nesta etapa** o questionário publicado, a pontuação, a metodologia pública ou os resultados históricos.
