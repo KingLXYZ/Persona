@@ -138,7 +138,13 @@
     document.body.appendChild(botaoTopo);
 
     const links = Array.from(navegacao.querySelectorAll('a[href^="#"]'));
-    const destinos = links.map(link => {
+    // O Cotidiano é criado apenas para resultados com interpretação compatível.
+    // Não apresentar atalhos que apontem para seções ausentes.
+    for (const link of links) {
+      const id = link.getAttribute("href").slice(1);
+      if (!document.getElementById(id)) link.hidden = true;
+    }
+    const destinos = links.filter(link => !link.hidden).map(link => {
       const id = link.getAttribute("href").slice(1);
       return { link, elemento: document.getElementById(id) };
     }).filter(item => item.elemento);
