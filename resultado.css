@@ -830,3 +830,43 @@
     .result-share { padding: 18px !important; }
     .result-share-details > summary { font-size: 19px !important; }
 }
+
+
+/* Interpretações expansíveis das cinco dimensões. */
+#dimensoes .result-card[data-dimension] {
+    min-height: 0;
+}
+.result-dimension-details {
+    margin-top: 20px;
+    border-top: 1px solid var(--border);
+    padding-top: 12px;
+}
+.result-dimension-details > summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    min-height: 44px;
+    color: var(--purple-light);
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+    list-style: none;
+}
+.result-dimension-details > summary::-webkit-details-marker { display: none; }
+.result-dimension-details > summary::after {
+    content: "+";
+    font-size: 22px;
+    font-weight: 400;
+}
+.result-dimension-details[open] > summary::after { content: "−"; }
+.result-dimension-details > summary:focus-visible {
+    outline: 2px solid var(--purple-light);
+    outline-offset: 3px;
+}
+.result-dimension-explanation {
+    padding: 2px 0 8px;
+}
+.result-dimension-explanation .result-description {
+    margin-top: 8px;
+}
