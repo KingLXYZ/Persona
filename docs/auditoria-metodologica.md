@@ -128,3 +128,23 @@ O conceito de trabalho será ampliado para **estilo de interação social**, abr
 **Avaliação crítica:** SOC-001 e SOC-004 ainda compartilham o tema da aproximação; SOC-003 e SOC-006 diferenciam expressão de ideias e oferta de ajuda, mas SOC-006 pode captar cooperação ou disposição para ajudar, e não apenas iniciativa social. SOC-002 pode variar conforme receptividade e normas do grupo. A aprovação aqui é **conceitual e provisória**, não comprovação de unidimensionalidade ou validade.
 
 **Decisão de implementação:** nenhuma alteração em `quiz-perguntas.js`, `metodologia.html`, resultados ou pontuação nesta etapa. Antes de publicar novas redações, revisar a compatibilidade dos resultados antigos e o controle de revisão dos itens; posteriormente investigar compreensão e estrutura do indicador com participantes. A definição pública atual permanece em vigor até uma implementação aprovada.
+
+
+## Revisão conceitual específica — Cognitiva (decisão posterior)
+
+**Definição operacional proposta:** *Preferência de abordagem cognitiva* — tendência a compreender e explorar informações por meio de exemplos e situações concretas ou por meio de conceitos gerais, relações entre ideias e possibilidades abstratas. Não representa inteligência, criatividade ou capacidade de aprender. A dimensão continua com um único indicador, sem subindicadores.
+
+### Conjunto de seis itens proposto e aprovado conceitualmente
+
+| ID | Texto de trabalho | Direção mantida | Situação |
+| --- | --- | --- | --- |
+| COG-001 | Quando descubro algo novo, gosto de pensar nas ideias por trás daquilo, além de entender como funciona. | Direta | Reformulação aprovada como proposta |
+| COG-002 | Quando estou aprendendo algo novo, prefiro começar por um exemplo para entender como funciona. | Invertida | Reformulação aprovada como proposta |
+| COG-003 | Gosto de descobrir o que situações diferentes têm em comum, mesmo quando parecem não ter relação. | Direta | Simplificação aprovada como proposta |
+| COG-004 | Quando quero entender por que algo acontece, prefiro observar situações reais antes de pensar em explicações gerais. | Invertida | Reformulação aprovada como proposta |
+| COG-005 | Gosto de imaginar diferentes possibilidades, mesmo quando não sei se elas poderiam acontecer de verdade. | Direta | Simplificação aprovada como proposta |
+| COG-006 | Quando conheço uma ideia nova, gosto de descobrir onde ela aparece no meu dia a dia. | Invertida | Reformulação aprovada como proposta |
+
+**Avaliação crítica:** a linguagem foi simplificada para que o questionário não pareça uma prova. Os itens concretos agora diferenciam começar por exemplos (COG-002), observar situações reais (COG-004) e reconhecer ideias no cotidiano (COG-006), embora ainda exista proximidade conceitual. COG-001 pode ser interpretado de maneiras distintas devido à expressão “ideias por trás”. COG-005 pode captar imaginação ou curiosidade, não apenas preferência por abstração. Preferências por concretude e abstração podem coexistir; a codificação invertida não demonstra que sejam polos psicometricamente opostos.
+
+**Status:** revisão conceitual documental preliminar concluída, com seis redações aprovadas **como propostas para futura implementação e teste**, sem alegação de validade científica. Permanecem pendentes entrevistas de compreensão, análise empírica da estrutura e revisão de comparabilidade dos resultados antigos. **Não alterar nesta etapa** os textos publicados em `quiz-perguntas.js`, a fórmula, a metodologia pública ou os resultados.
