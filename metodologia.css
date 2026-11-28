@@ -3,22 +3,22 @@
         .method-main { width: min(1080px, 86%); margin: 0 auto; }
         .method-hero { padding: 96px 0 85px; }
         .method-tag {
-            display: inline-block; color: var(--purple); font-size: 11px;
-            font-weight: 700; letter-spacing: 2px; text-transform: uppercase;
+            display: inline-block; color: var(--purple); font-size: 0.6875rem;
+            font-weight: 700; letter-spacing: 0.125rem; text-transform: uppercase;
         }
         .method-hero h1 {
             max-width: 850px; margin: 25px 0;
-            font-size: clamp(38px, 5vw, 68px); line-height: 1.15;
+            font-size: clamp(2.375rem, 5vw, 4.25rem); line-height: 1.15;
         }
         .method-hero h1 span, .method-section h2 span { color: var(--purple); }
         .method-lead {
             max-width: 680px; color: var(--muted);
-            font-size: 16px; line-height: 1.9;
+            font-size: 1rem; line-height: 1.9;
         }
         .method-notice {
             max-width: 700px; margin-top: 35px; padding: 18px 22px;
             border-left: 2px solid var(--purple); background: var(--surface);
-            color: var(--muted); font-size: 13px; line-height: 1.8;
+            color: var(--muted); font-size: 0.8125rem; line-height: 1.8;
         }
         .method-notice strong { color: var(--text); }
         .method-nav {
@@ -26,7 +26,7 @@
             padding: 20px 0 25px; border-top: 1px solid var(--border);
         }
         .method-nav a {
-            font-size: 12px; color: var(--muted); transition: color .2s ease;
+            font-size: 0.75rem; color: var(--muted); transition: color .2s ease;
         }
         .method-nav a:hover, .method-reference a:hover { color: var(--purple-light); }
         .method-section {
@@ -35,12 +35,12 @@
         }
         .method-section h2 {
             max-width: 820px; margin: 17px 0 24px;
-            font-size: clamp(30px, 4vw, 47px); line-height: 1.18;
+            font-size: clamp(1.875rem, 4vw, 2.9375rem); line-height: 1.18;
         }
         .method-text { max-width: 770px; }
         .method-text p, .method-text li {
             margin: 0 0 18px; color: var(--muted);
-            font-size: 15px; line-height: 1.9;
+            font-size: 0.9375rem; line-height: 1.9;
         }
         .method-text strong, .method-card strong { color: var(--text); }
         .method-grid {
@@ -52,14 +52,14 @@
             border-radius: 9px; background: var(--surface);
         }
         .method-number {
-            color: var(--purple); font-size: 11px;
-            letter-spacing: 2px; font-weight: 700;
+            color: var(--purple); font-size: 0.6875rem;
+            letter-spacing: 0.125rem; font-weight: 700;
         }
         .method-card h3 {
             margin: 18px 0 10px; font-family: "Manrope", sans-serif;
-            font-size: 20px; overflow-wrap: break-word;
+            font-size: 1.25rem; overflow-wrap: break-word;
         }
-        .method-card p { color: var(--muted); font-size: 14px; line-height: 1.8; }
+        .method-card p { color: var(--muted); font-size: 0.875rem; line-height: 1.8; }
         .method-scale {
             display: grid; grid-template-columns: repeat(5, minmax(0, 1fr));
             gap: 8px; margin: 30px 0;
@@ -71,18 +71,18 @@
         }
         .method-scale-item b {
             display: block; margin-bottom: 8px;
-            color: var(--purple-light); font-size: 20px;
+            color: var(--purple-light); font-size: 1.25rem;
         }
         .method-scale-item span {
             display: block; color: var(--muted);
-            font-size: 12px; line-height: 1.5;
+            font-size: 0.75rem; line-height: 1.5;
         }
         .method-example {
             max-width: 770px; padding: 24px; margin-top: 22px;
             border: 1px solid rgba(167, 139, 250, .35);
             background: rgba(167, 139, 250, .055); border-radius: 9px;
         }
-        .method-example p { color: var(--muted); font-size: 14px; line-height: 1.8; }
+        .method-example p { color: var(--muted); font-size: 0.875rem; line-height: 1.8; }
         .method-example p + p { margin-top: 10px; }
         .method-example strong { color: var(--text); }
         .method-list { padding-left: 20px; }
@@ -97,7 +97,7 @@
         }
         .method-reference p {
             margin-top: 8px; color: var(--muted);
-            font-size: 14px; line-height: 1.8;
+            font-size: 0.875rem; line-height: 1.8;
         }
         .method-footer-actions {
             padding: 48px 0 90px; display: flex;
@@ -111,7 +111,7 @@
             .method-scale { grid-template-columns: repeat(2, minmax(0, 1fr)); }
             .method-scale-item:last-child { grid-column: 1 / -1; }
             .method-card { padding: 24px; }
-            .method-lead { font-size: 15px; }
+            .method-lead { font-size: 0.9375rem; }
         }
         @media (prefers-reduced-motion: reduce) {
             .method-nav a { transition: none; }

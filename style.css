@@ -71,15 +71,15 @@ a {
     gap: 10px;
 
     font-family: "Manrope", sans-serif;
-    font-size: 15px;
+    font-size: 0.9375rem;
     font-weight: 800;
-    letter-spacing: 3px;
+    letter-spacing: 0.1875rem;
     white-space: nowrap;
 }
 
 .logo-symbol {
     color: var(--purple);
-    font-size: 26px;
+    font-size: 1.625rem;
 }
 
 .navigation {
@@ -90,7 +90,7 @@ a {
 
 .navigation a,
 .header-link {
-    font-size: 13px;
+    font-size: 0.8125rem;
     color: var(--muted);
     transition: color 0.25s ease;
 }
@@ -134,8 +134,8 @@ a {
 
 .eyebrow,
 .section-tag {
-    font-size: 11px;
-    letter-spacing: 2.5px;
+    font-size: 0.6875rem;
+    letter-spacing: 0.15625rem;
     color: var(--purple);
     font-weight: 700;
 }
@@ -166,7 +166,7 @@ h2 {
 }
 
 .hero h1 {
-    font-size: clamp(44px, 4.3vw, 64px);
+    font-size: clamp(2.75rem, 4.3vw, 4rem);
     text-wrap: balance;
 }
 
@@ -181,7 +181,7 @@ h2 span {
 
     margin: 30px 0 35px;
 
-    font-size: 15px;
+    font-size: 0.9375rem;
     line-height: 1.85;
 }
 
@@ -198,7 +198,7 @@ h2 span {
 
     padding: 16px 24px;
 
-    font-size: 13px;
+    font-size: 0.8125rem;
     font-weight: 700;
     line-height: 1.4;
 
@@ -220,7 +220,7 @@ h2 span {
 }
 
 .primary-button span {
-    font-size: 19px;
+    font-size: 1.1875rem;
 }
 
 .hero-note {
@@ -231,8 +231,8 @@ h2 span {
     gap: 12px;
 
     color: var(--muted);
-    font-size: 12px;
-    letter-spacing: 0.5px;
+    font-size: 0.8125rem;
+    letter-spacing: 0.03125rem;
 }
 
 .note-line {
@@ -315,7 +315,7 @@ h2 span {
 
 .center-symbol {
     font-family: "Manrope", sans-serif;
-    font-size: 55px;
+    font-size: 3.4375rem;
     font-weight: 800;
 
     color: var(--purple-light);
@@ -325,8 +325,8 @@ h2 span {
 .visual-label {
     position: absolute;
 
-    font-size: 10px;
-    letter-spacing: 1.5px;
+    font-size: 0.625rem;
+    letter-spacing: 0.09375rem;
     font-weight: 600;
 
     color: var(--muted);
@@ -361,7 +361,7 @@ h2 span {
     gap: 12px;
 
     color: var(--muted);
-    font-size: 10px;
+    font-size: 0.625rem;
 }
 
 .hero-index span:first-child {
@@ -387,7 +387,7 @@ h2 span {
     max-width: 900px;
     margin-top: 24px;
 
-    font-size: clamp(36px, 4.5vw, 58px);
+    font-size: clamp(2.25rem, 4.5vw, 3.625rem);
     text-wrap: balance;
 }
 
@@ -405,7 +405,7 @@ h2 span {
     margin-bottom: 20px;
 
     line-height: 1.95;
-    font-size: 15px;
+    font-size: 0.9375rem;
 }
 
 .concept-content strong {
@@ -418,8 +418,8 @@ h2 span {
     margin-top: 15px;
 
     color: var(--purple);
-    font-size: 11px;
-    letter-spacing: 1.5px;
+    font-size: 0.6875rem;
+    letter-spacing: 0.09375rem;
 }
 
 /* =========================
@@ -457,8 +457,8 @@ h2 span {
 
 .card-number {
     color: var(--purple);
-    font-size: 11px;
-    letter-spacing: 2px;
+    font-size: 0.6875rem;
+    letter-spacing: 0.125rem;
     font-weight: 700;
 }
 
@@ -466,7 +466,7 @@ h2 span {
     margin-top: 32px;
 
     font-family: "Manrope", sans-serif;
-    font-size: 20px;
+    font-size: 1.25rem;
     font-weight: 700;
 }
 
@@ -474,7 +474,7 @@ h2 span {
     margin-top: 13px;
 
     color: var(--muted);
-    font-size: 14px;
+    font-size: 0.875rem;
     line-height: 1.75;
 }
 
@@ -484,7 +484,7 @@ h2 span {
     top: 27px;
 
     color: var(--purple);
-    font-size: 15px;
+    font-size: 0.9375rem;
 }
 
 /* =========================
@@ -507,7 +507,7 @@ h2 span {
 
 .closing h2 {
     margin-top: 28px;
-    font-size: clamp(40px, 5.5vw, 68px);
+    font-size: clamp(2.5rem, 5.5vw, 4.25rem);
     text-wrap: balance;
 }
 
@@ -516,7 +516,7 @@ h2 span {
     margin: 25px auto 35px;
 
     color: var(--muted);
-    font-size: 15px;
+    font-size: 0.9375rem;
     line-height: 1.8;
 }
 
@@ -550,7 +550,7 @@ h2 span {
 
 .footer p,
 .footer > span {
-    font-size: 12px;
+    font-size: 0.75rem;
     color: var(--muted);
 }
 
@@ -587,7 +587,7 @@ h2 span {
     }
 
     .hero h1 {
-        font-size: clamp(45px, 6.4vw, 64px);
+        font-size: clamp(2.8125rem, 6.4vw, 4rem);
     }
 
     .hero-visual {
@@ -625,12 +625,12 @@ h2 span {
     }
 
     .logo {
-        font-size: 13px;
-        letter-spacing: 2px;
+        font-size: 0.8125rem;
+        letter-spacing: 0.125rem;
     }
 
     .logo-symbol {
-        font-size: 23px;
+        font-size: 1.4375rem;
     }
 
     .navigation {
@@ -638,7 +638,7 @@ h2 span {
     }
 
     .header-link {
-        font-size: 12px;
+        font-size: 0.75rem;
     }
 
     .hero {
@@ -648,8 +648,8 @@ h2 span {
 
     .eyebrow,
     .section-tag {
-        font-size: 10px;
-        letter-spacing: 1.7px;
+        font-size: 0.625rem;
+        letter-spacing: 0.10625rem;
     }
 
     .eyebrow {
@@ -657,7 +657,7 @@ h2 span {
     }
 
     .hero h1 {
-        font-size: clamp(36px, 10vw, 50px);
+        font-size: clamp(2.25rem, 10vw, 3.125rem);
         letter-spacing: -0.05em;
         line-height: 1.14;
     }
@@ -668,19 +668,19 @@ h2 span {
 
     .hero-description {
         margin: 25px 0 30px;
-        font-size: 14px;
+        font-size: 0.875rem;
         line-height: 1.85;
     }
 
     .primary-button,
     .secondary-button {
         padding: 15px 21px;
-        font-size: 12px;
+        font-size: 0.8125rem;
     }
 
     .hero-note {
         margin-top: 38px;
-        font-size: 11px;
+        font-size: 0.8125rem;
     }
 
     .hero-visual {
@@ -693,12 +693,12 @@ h2 span {
     }
 
     .center-symbol {
-        font-size: 45px;
+        font-size: 2.8125rem;
     }
 
     .visual-label {
-        font-size: 9px;
-        letter-spacing: 1px;
+        font-size: 0.5625rem;
+        letter-spacing: 0.0625rem;
     }
 
     .label-two {
@@ -716,7 +716,7 @@ h2 span {
 
     .section-heading h2 {
         margin-top: 20px;
-        font-size: clamp(32px, 8vw, 42px);
+        font-size: clamp(2rem, 8vw, 2.625rem);
         letter-spacing: -0.04em;
     }
 
@@ -725,13 +725,13 @@ h2 span {
     }
 
     .concept-content p {
-        font-size: 14px;
+        font-size: 0.875rem;
         line-height: 1.85;
     }
 
     .concept-signature {
-        font-size: 10px;
-        letter-spacing: 1px;
+        font-size: 0.625rem;
+        letter-spacing: 0.0625rem;
     }
 
     .dimension-grid {
@@ -747,11 +747,11 @@ h2 span {
 
     .dimension-card h3 {
         margin-top: 25px;
-        font-size: 19px;
+        font-size: 1.1875rem;
     }
 
     .dimension-card p {
-        font-size: 14px;
+        font-size: 0.875rem;
     }
 
     .closing {
@@ -759,11 +759,11 @@ h2 span {
     }
 
     .closing h2 {
-        font-size: clamp(36px, 9vw, 48px);
+        font-size: clamp(2.25rem, 9vw, 3rem);
     }
 
     .closing p {
-        font-size: 14px;
+        font-size: 0.875rem;
     }
 
     .footer {
@@ -781,7 +781,7 @@ h2 span {
 @media (max-width: 360px) {
 
     .hero h1 {
-        font-size: 34px;
+        font-size: 2.125rem;
     }
 
     .hero-visual {
@@ -872,7 +872,7 @@ h2 span {
         display: inline-block;
         padding: 3px 0;
 
-        font-size: 12px;
+        font-size: 0.75rem;
         line-height: 1.5;
         white-space: nowrap;
     }

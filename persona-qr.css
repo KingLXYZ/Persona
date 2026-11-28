@@ -1,21 +1,21 @@
 /* Estilos da interface de transferência por QR Code */
 .persona-qr-box { margin: 0 0 34px; padding: 25px; background: var(--surface, #15121d); border: 1px solid var(--border, #383140); border-radius: 12px; }
-      .persona-qr-box h3 { font: 750 19px/1.4 "Manrope",sans-serif; margin: 0 0 9px; }
-      .persona-qr-box p { font-size: 13px; line-height: 1.8; color: var(--muted, #b9b5c0); margin: 0 0 17px; max-width: 680px; }
-      .persona-qr-btn { cursor: pointer; display: inline-flex; justify-content: center; align-items: center; gap: 9px; background: #a78bfa; color: #100c19; font: 750 13px/1.4 "Manrope",sans-serif; border: 1px solid transparent; border-radius: 7px; min-height: 45px; padding: 12px 19px; transition: filter .16s; }
+      .persona-qr-box h3 { font: 750 1.1875rem/1.4 "Manrope",sans-serif; margin: 0 0 9px; }
+      .persona-qr-box p { font-size: 0.8125rem; line-height: 1.8; color: var(--muted, #b9b5c0); margin: 0 0 17px; max-width: 680px; }
+      .persona-qr-btn { cursor: pointer; display: inline-flex; justify-content: center; align-items: center; gap: 9px; background: #a78bfa; color: #100c19; font: 750 0.8125rem/1.4 "Manrope",sans-serif; border: 1px solid transparent; border-radius: 7px; min-height: 45px; padding: 12px 19px; transition: filter .16s; }
       .persona-qr-btn:hover { filter: brightness(1.09); }
       .persona-qr-btn:disabled { opacity: .45; cursor: not-allowed; }
-      .persona-qr-ghost { cursor: pointer; display: inline-flex; justify-content: center; align-items: center; text-decoration: none; background: transparent; color: var(--text, #f5f3fa); font: 700 13px/1.4 "Manrope",sans-serif; border: 1px solid var(--border-interactive, #70657f); border-radius: 7px; min-height: 45px; padding: 11px 16px; }
+      .persona-qr-ghost { cursor: pointer; display: inline-flex; justify-content: center; align-items: center; text-decoration: none; background: transparent; color: var(--text, #f5f3fa); font: 700 0.8125rem/1.4 "Manrope",sans-serif; border: 1px solid var(--border-interactive, #70657f); border-radius: 7px; min-height: 45px; padding: 11px 16px; }
       .persona-qr-btn:focus-visible, .persona-qr-ghost:focus-visible, .persona-qr-link:focus-visible { outline: 3px solid #c4b5fd; outline-offset: 3px; }
       .persona-qr-dialog { position: fixed; inset: 0; margin: auto; box-sizing: border-box; width: min(92vw, 470px); max-height: min(88vh, 800px); overflow: auto; padding: 27px; border: 1px solid #655085; border-radius: 16px; color: #f5f3fa; background: #171320; box-shadow: 0 20px 70px rgba(0,0,0,.6); }
       .persona-qr-dialog::backdrop { background: rgba(0,0,0,.75); }
-      .persona-qr-dialog h2 { font: 750 clamp(21px, 5vw, 27px)/1.3 "Manrope",sans-serif; margin: 0 0 12px; }
-      .persona-qr-dialog p { font-size: 13px; line-height: 1.75; color: #c6c1d0; margin: 9px 0 15px; }
-      .persona-qr-dialog .persona-qr-preview { display: grid; grid-template-columns: 1fr auto; gap: 8px 16px; margin: 20px 0; padding: 17px; background: #211a2d; border-radius: 8px; font-size: 13px; }
+      .persona-qr-dialog h2 { font: 750 clamp(1.3125rem, 5vw, 1.6875rem)/1.3 "Manrope",sans-serif; margin: 0 0 12px; }
+      .persona-qr-dialog p { font-size: 0.8125rem; line-height: 1.75; color: #c6c1d0; margin: 9px 0 15px; }
+      .persona-qr-dialog .persona-qr-preview { display: grid; grid-template-columns: 1fr auto; gap: 8px 16px; margin: 20px 0; padding: 17px; background: #211a2d; border-radius: 8px; font-size: 0.8125rem; }
       .persona-qr-dialog .persona-qr-preview strong { color: #d0bcff; }
       .persona-qr-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 18px; }
       .persona-qr-img { display: block; width: min(100%, 322px); height: auto; margin: 14px auto 19px; background: #fff; border-radius: 9px; image-rendering: pixelated; }
-      .persona-qr-link { display:block; width:100%; padding:12px; box-sizing:border-box; border:1px solid var(--border-interactive, #70657f); border-radius: 6px; background:#120f18; color:#f5f3fa; font: 12px/1.5 monospace; }
+      .persona-qr-link { display:block; width:100%; padding:12px; box-sizing:border-box; border:1px solid var(--border-interactive, #70657f); border-radius: 6px; background:#120f18; color:#f5f3fa; font: 0.75rem/1.5 monospace; }
       .persona-qr-status { min-height: 1.6em; color: #d1bfff !important; }
       @media (max-width:600px) { .persona-qr-box { padding: 19px; } .persona-qr-dialog { padding: 21px; } .persona-qr-actions > * { flex: 1 1 auto; } }
       @media (prefers-reduced-motion:reduce) { .persona-qr-btn { transition: none; } }

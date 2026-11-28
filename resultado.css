@@ -21,9 +21,9 @@
 
 .result-tag {
     color: var(--purple);
-    font-size: 11px;
+    font-size: 0.6875rem;
     font-weight: 700;
-    letter-spacing: 2.2px;
+    letter-spacing: 0.1375rem;
 }
 
 .result-intro h1 {
@@ -31,7 +31,7 @@
     margin-top: 26px;
 
     font-family: "Manrope", sans-serif;
-    font-size: clamp(40px, 5vw, 68px);
+    font-size: clamp(2.5rem, 5vw, 4.25rem);
     font-weight: 800;
     line-height: 1.15;
     letter-spacing: -0.045em;
@@ -46,7 +46,7 @@
     margin-top: 30px;
 
     color: var(--muted);
-    font-size: 16px;
+    font-size: 1rem;
     line-height: 1.9;
 }
 
@@ -60,7 +60,7 @@
     border-left: 2px solid var(--purple);
 
     color: var(--muted);
-    font-size: 13px;
+    font-size: 0.8125rem;
     line-height: 1.8;
 }
 
@@ -81,7 +81,7 @@
     margin-top: 24px;
 
     font-family: "Manrope", sans-serif;
-    font-size: clamp(34px, 4vw, 52px);
+    font-size: clamp(2.125rem, 4vw, 3.25rem);
     font-weight: 800;
     line-height: 1.2;
     letter-spacing: -0.04em;
@@ -96,7 +96,7 @@
     margin-top: 24px;
 
     color: var(--muted);
-    font-size: 15px;
+    font-size: 0.9375rem;
     line-height: 1.9;
 }
 
@@ -136,9 +136,9 @@
 
 .result-number {
     color: var(--purple);
-    font-size: 11px;
+    font-size: 0.6875rem;
     font-weight: 700;
-    letter-spacing: 2px;
+    letter-spacing: 0.125rem;
 }
 
 .result-card h3 {
@@ -146,7 +146,7 @@
 
     color: var(--text);
     font-family: "Manrope", sans-serif;
-    font-size: 23px;
+    font-size: 1.4375rem;
     font-weight: 700;
 }
 
@@ -155,7 +155,7 @@
     margin-top: 12px;
 
     color: var(--muted);
-    font-size: 14px;
+    font-size: 0.875rem;
     line-height: 1.8;
 }
 
@@ -173,15 +173,15 @@
 .result-score > span {
     color: var(--text);
     font-family: "Manrope", sans-serif;
-    font-size: 36px;
+    font-size: 2.25rem;
     font-weight: 800;
-    letter-spacing: -1.5px;
+    letter-spacing: -0.09375rem;
     line-height: 1.2;
 }
 
 .result-score small {
     color: var(--muted);
-    font-size: 12px;
+    font-size: 0.75rem;
 }
 
 /* Barras */
@@ -220,7 +220,7 @@
 
 .result-scale span {
     color: var(--muted);
-    font-size: 11px;
+    font-size: 0.75rem;
     line-height: 1.5;
 }
 
@@ -251,7 +251,7 @@
     max-width: 520px;
 
     font-family: "Manrope", sans-serif;
-    font-size: clamp(34px, 3.8vw, 51px);
+    font-size: clamp(2.125rem, 3.8vw, 3.1875rem);
     font-weight: 800;
     line-height: 1.2;
     letter-spacing: -0.04em;
@@ -268,7 +268,7 @@
     margin-bottom: 27px;
 
     color: var(--muted);
-    font-size: 15px;
+    font-size: 0.9375rem;
     line-height: 1.95;
 }
 
@@ -290,7 +290,7 @@
     border-top: 1px solid var(--border);
 
     color: var(--muted);
-    font-size: 12px;
+    font-size: 0.8125rem;
     line-height: 1.85;
 }
 
@@ -337,18 +337,18 @@
     }
 
     .result-tag {
-        font-size: 10px;
-        letter-spacing: 1.5px;
+        font-size: 0.625rem;
+        letter-spacing: 0.09375rem;
     }
 
     .result-intro h1 {
-        font-size: clamp(34px, 9vw, 45px);
+        font-size: clamp(2.125rem, 9vw, 2.8125rem);
         margin-top: 22px;
         line-height: 1.18;
     }
 
     .result-intro-text {
-        font-size: 14px;
+        font-size: 0.875rem;
         margin-top: 25px;
         line-height: 1.85;
     }
@@ -356,7 +356,7 @@
     .result-status {
         margin-top: 35px;
         padding: 17px;
-        font-size: 12px;
+        font-size: 0.75rem;
     }
 
     .result-section {
@@ -364,11 +364,11 @@
     }
 
     .result-heading h2 {
-        font-size: clamp(30px, 8vw, 40px);
+        font-size: clamp(1.875rem, 8vw, 2.5rem);
     }
 
     .result-heading p {
-        font-size: 14px;
+        font-size: 0.875rem;
     }
 
     .result-grid {
@@ -383,15 +383,15 @@
     }
 
     .result-card h3 {
-        font-size: 21px;
+        font-size: 1.3125rem;
     }
 
     .result-description {
-        font-size: 13px;
+        font-size: 0.8125rem;
     }
 
     .result-score > span {
-        font-size: 33px;
+        font-size: 2.0625rem;
     }
 
     .result-reflection {
@@ -408,18 +408,18 @@
     }
 
     .result-reflection h2 {
-        font-size: clamp(32px, 8vw, 42px);
+        font-size: clamp(2rem, 8vw, 2.625rem);
     }
 
     .result-reflection p {
         margin-bottom: 0;
-        font-size: 14px;
+        font-size: 0.875rem;
         line-height: 1.85;
     }
 
     .result-disclaimer {
         padding: 25px 0 50px;
-        font-size: 11px;
+        font-size: 0.8125rem;
     }
 }
 
@@ -466,12 +466,12 @@
     margin: 18px 0 12px;
 
     color: var(--text);
-    font: 700 21px/1.35 "Manrope", sans-serif;
+    font: 700 1.3125rem/1.35 "Manrope", sans-serif;
 }
 
 .cotidiano-text {
     color: var(--muted);
-    font-size: 14px;
+    font-size: 0.875rem;
     line-height: 1.85;
 }
 
@@ -482,7 +482,7 @@
     border-top: 1px solid var(--border);
 
     color: var(--text);
-    font-size: 13px;
+    font-size: 0.8125rem;
     line-height: 1.8;
 }
 
@@ -491,8 +491,8 @@
     margin-bottom: 7px;
 
     color: var(--purple-light);
-    font-size: 10px;
-    letter-spacing: 1.5px;
+    font-size: 0.625rem;
+    letter-spacing: 0.09375rem;
     text-transform: uppercase;
 }
 
@@ -510,7 +510,7 @@
 }
 
 .result-save-title {
-    font-size: 18px;
+    font-size: 1.125rem;
     letter-spacing: -0.02em;
     line-height: 1.4;
 }
@@ -519,7 +519,7 @@
     margin-top: 10px;
 
     color: var(--muted);
-    font-size: 13px;
+    font-size: 0.8125rem;
     line-height: 1.8;
 }
 
@@ -527,7 +527,7 @@
     margin-top: 14px;
 
     color: var(--purple-light);
-    font-size: 12px;
+    font-size: 0.75rem;
     line-height: 1.7;
 }
 
@@ -556,12 +556,12 @@
     }
 
     .cotidiano-card h3 {
-        font-size: 19px;
+        font-size: 1.1875rem;
     }
 
     .cotidiano-text,
     .cotidiano-question {
-        font-size: 13px;
+        font-size: 0.8125rem;
     }
 }
 
@@ -578,14 +578,14 @@
 }
 .result-feedback h2 {
     margin: 18px 0 12px;
-    font: 800 clamp(28px, 3.6vw, 43px)/1.2 "Manrope", sans-serif;
+    font: 800 clamp(1.75rem, 3.6vw, 2.6875rem)/1.2 "Manrope", sans-serif;
     letter-spacing: -0.035em;
 }
 .result-feedback > p {
     max-width: 660px;
     margin: 0 0 28px;
     color: var(--muted);
-    font-size: 14px;
+    font-size: 0.875rem;
     line-height: 1.85;
 }
 .feedback-details {
@@ -609,7 +609,7 @@
 .feedback-details > summary::-webkit-details-marker { display: none; }
 .feedback-details > summary span {
     color: var(--purple-light);
-    font-size: 24px;
+    font-size: 1.5rem;
     font-weight: 400;
 }
 .feedback-details[open] > summary span { transform: rotate(45deg); }
@@ -633,7 +633,7 @@
 .feedback-alternative, .feedback-privacy {
     margin-top: 16px;
     color: var(--muted);
-    font-size: 12px;
+    font-size: 0.75rem;
     line-height: 1.7;
 }
 .feedback-alternative a {
@@ -684,7 +684,7 @@
     border-radius: 999px;
     color: var(--text);
     background: transparent;
-    font-size: 13px;
+    font-size: 0.8125rem;
     font-weight: 600;
     line-height: 1.3;
     text-decoration: none;
@@ -735,7 +735,7 @@
         flex: 0 0 auto;
         min-height: 44px;
         padding: 10px 15px;
-        font-size: 12px;
+        font-size: 0.75rem;
     }
 }
 
@@ -775,7 +775,7 @@
     border-radius: 50%;
     background: var(--surface);
     color: var(--text);
-    font-size: 23px;
+    font-size: 1.4375rem;
     cursor: pointer;
     box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
 }
@@ -818,7 +818,7 @@
     border: 1px solid var(--border);
     border-radius: 50%;
     color: var(--purple-light);
-    font-size: 21px;
+    font-size: 1.3125rem;
     font-weight: 400;
 }
 .result-share-details[open] > summary::after { content: "−"; }
@@ -829,7 +829,7 @@
 }
 @media (max-width: 600px) {
     .result-share { padding: 18px !important; }
-    .result-share-details > summary { font-size: 19px !important; }
+    .result-share-details > summary { font-size: 1.1875rem !important; }
 }
 
 
@@ -849,7 +849,7 @@
     gap: 12px;
     min-height: 44px;
     color: var(--purple-light);
-    font-size: 13px;
+    font-size: 0.8125rem;
     font-weight: 700;
     cursor: pointer;
     list-style: none;
@@ -857,7 +857,7 @@
 .result-dimension-details > summary::-webkit-details-marker { display: none; }
 .result-dimension-details > summary::after {
     content: "+";
-    font-size: 22px;
+    font-size: 1.375rem;
     font-weight: 400;
 }
 .result-dimension-details[open] > summary::after { content: "−"; }
