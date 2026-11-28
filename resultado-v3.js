@@ -724,6 +724,14 @@
     });
   }
 
+  function selecionarResultado(escolher, salvoAntigo, salvoV3) {
+    if (escolher === "3") return carregarSessao(3) || salvoV3;
+    if (escolher === "2") return carregarSessao(2) || (salvoAntigo && salvoAntigo.versao === 2 ? salvoAntigo : null);
+    if (escolher === "1") return carregarSessao(1) || (salvoAntigo && salvoAntigo.versao === 1 ? salvoAntigo : null);
+    // Sem formato explícito, prioriza o questionário atual.
+    return carregarSessao(3) || salvoV3 || carregarSessao(2) || salvoAntigo || carregarSessao(1);
+  }
+
   const parametros = new URLSearchParams(window.location.search);
   if (parametros.get("exemplo") === "1") {
     mostrarResultados({
@@ -735,19 +743,7 @@
 
   const salvoAntigo = carregarSalvo(CHAVE_ANTIGA, [1, 2]);
   const salvoV3 = carregarSalvo(CHAVE_V3, [3]);
-  const escolher = parametros.get("versao");
-  let resultado;
-  if (escolher === "3") {
-    resultado = carregarSessao(3) || salvoV3;
-  } else if (escolher === "2") {
-    resultado = carregarSessao(2) || (salvoAntigo && salvoAntigo.versao === 2 ? salvoAntigo : null);
-  } else if (escolher === "1") {
-    resultado = carregarSessao(1) || (salvoAntigo && salvoAntigo.versao === 1 ? salvoAntigo : null);
-  } else {
-    // Mantém a compatibilidade com links antigos sem parâmetro.
-    // O questionário atual utiliza resultado.html?versao=3.
-    resultado = carregarSessao(2) || carregarSessao(3) || salvoV3 || salvoAntigo || carregarSessao(1);
-  }
+  const resultado = selecionarResultado(parametros.get("versao"), salvoAntigo, salvoV3);
 
   if (!resultado) {
     statusEl.textContent = armazenamentoRestrito
