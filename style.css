@@ -89,6 +89,10 @@ a {
 
 .navigation a,
 .header-link {
+    display: inline-flex;
+    align-items: center;
+    min-height: 24px;
+    min-width: 24px;
     font-size: 0.8125rem;
     color: var(--muted);
     transition: color 0.25s ease;
@@ -897,7 +901,7 @@ h2 span {
     /* Links do menu */
 
     .header > .navigation a {
-        display: inline-block;
+        display: inline-flex;
         padding: 3px 0;
 
         font-size: 0.75rem;

@@ -86,7 +86,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const acoes = elemento("div", "journey-actions");
         const excluir = elemento("button", "journey-delete", "Excluir esta exploração");
         excluir.type = "button";
-        excluir.setAttribute("aria-label", `Excluir exploração salva em ${data}`);
+        excluir.setAttribute("aria-label", `Excluir esta exploração, salva em ${data}`);
         excluir.addEventListener("click", () => {
           if (!window.confirm(`Excluir do histórico a exploração salva em ${data}?\n\nEsta ação não pode ser desfeita. O perfil salvo na página de resultados não será apagado.`)) return;
           try {

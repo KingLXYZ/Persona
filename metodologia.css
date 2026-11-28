@@ -26,6 +26,7 @@
             padding: 20px 0 25px; border-top: 1px solid var(--border);
         }
         .method-nav a {
+            display: inline-flex; align-items: center; min-height: 24px; min-width: 24px;
             font-size: 0.75rem; color: var(--muted); transition: color .2s ease;
         }
         .method-nav a:hover, .method-reference a:hover { color: var(--purple-light); }
