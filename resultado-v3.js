@@ -108,11 +108,18 @@
       ORDEM.every(chave => Number.isInteger(scores[chave]) && scores[chave] >= 0 && scores[chave] <= 100);
   }
 
-  function lerJSON(armazenamento, chave) {
+  let armazenamentoRestrito = false;
+  function lerJSON(tipo, chave) {
+    let bruto;
     try {
-      const bruto = armazenamento.getItem(chave);
+      bruto = window[tipo].getItem(chave);
+    } catch {
+      armazenamentoRestrito = true;
+      return null;
+    }
+    try {
       return bruto ? JSON.parse(bruto) : null;
-    } catch (erro) {
+    } catch {
       return null;
     }
   }
@@ -134,7 +141,7 @@
   }
 
   function carregarSessao(versao) {
-    const dados = lerJSON(sessionStorage, CHAVES_SESSAO[versao]);
+    const dados = lerJSON("sessionStorage", CHAVES_SESSAO[versao]);
     if (!dados || dados.version !== versao || !pontuacoesValidas(dados.scores)) return null;
     if (versao > 1 && dados.totalPerguntas !== 30) return null;
     if (!dados.historicoId || typeof dados.historicoId !== "string") {
@@ -154,7 +161,7 @@
   }
 
   function carregarSalvo(chave, versoes) {
-    const dados = lerJSON(localStorage, chave);
+    const dados = lerJSON("localStorage", chave);
     if (!dados || dados.formato !== 1 || !versoes.includes(dados.version) || !pontuacoesValidas(dados.scores)) return null;
     if (dados.version > 1 && dados.totalPerguntas !== 30) return null;
     if (typeof dados.salvoEm !== "string" || !Number.isFinite(Date.parse(dados.salvoEm))) return null;
@@ -453,6 +460,9 @@
     mensagem.textContent = salvoDaVersao
       ? `Perfil salvo neste navegador em ${textoData(salvoDaVersao.salvoEm)}.`
       : "Este perfil ainda não foi salvo neste navegador.";
+    if (armazenamentoRestrito) {
+      mensagem.textContent += " O navegador restringiu o acesso a parte do armazenamento; algumas ações podem estar indisponíveis.";
+    }
     painel.appendChild(mensagem);
 
     const acoes = document.createElement("div");
@@ -740,7 +750,9 @@
   }
 
   if (!resultado) {
-    statusEl.textContent = "Nenhum resultado disponível. Conclua o questionário ou abra um perfil salvo neste navegador.";
+    statusEl.textContent = armazenamentoRestrito
+      ? "O navegador restringiu o acesso ao armazenamento. Permita o armazenamento local e tente novamente. Nenhum dado foi apagado por esta página."
+      : "Nenhum resultado disponível. Conclua o questionário ou abra um perfil salvo neste navegador.";
     const leitura = document.getElementById("overview-combination");
     if (leitura) leitura.textContent = "Conclua o questionário para visualizar a leitura das dimensões.";
     const orientacao = document.getElementById("overview-guidance");
