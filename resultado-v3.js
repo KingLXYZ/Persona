@@ -147,6 +147,7 @@
     }
     return {
       versao, pontuacoes: dados.scores, origem: "sessao", historicoId: dados.historicoId,
+      ...(typeof dados.salvoEm === "string" && Number.isFinite(Date.parse(dados.salvoEm)) ? { salvoEm: dados.salvoEm } : {}),
       ...(revisaoResultado(dados, versao) === undefined ? {} :
         { revisaoInstrumento: revisaoResultado(dados, versao) })
     };
@@ -508,7 +509,7 @@
         registroExistente = historico.obter(id);
         salvoEm = registroExistente
           ? registroExistente.salvoEm
-          : (resultado.origem === "salvo" && resultado.salvoEm
+          : (resultado.salvoEm
             ? new Date(resultado.salvoEm).toISOString()
             : new Date().toISOString());
         gravacao = historico.adicionar({
