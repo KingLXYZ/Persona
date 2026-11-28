@@ -145,16 +145,26 @@ document.addEventListener("DOMContentLoaded", () => {
           mensagem.textContent = "Não foi possível ler os registros salvos. Por segurança, nenhum dado foi alterado ou excluído.";
         }
       }
+      const CHAVES_EXCLUSAO = new Set([
+        "persona_resultado_v1", "persona_resultado_v2", "persona_resultado_v3",
+        "persona_perfil_salvo_v1", "persona_perfil_salvo_v3",
+        "persona_historico_v1", "persona_progresso_v3"
+      ]);
+      function excluirDadosPersona(armazenamento) {
+        const chaves = Object.keys(armazenamento).filter(chave =>
+          CHAVES_EXCLUSAO.has(chave) || /^persona_backup_historico_[0-9]+$/.test(chave)
+        );
+        chaves.forEach(chave => armazenamento.removeItem(chave));
+      }
       const apagarTudo = document.getElementById("journey-clear-all");
       if (apagarTudo) apagarTudo.addEventListener("click", () => {
-        const aviso = "Apagar TODOS os dados do PERSONA neste navegador?\n\nSerão excluídos o histórico, os perfis salvos e os resultados temporários. Esta ação não pode ser desfeita e não afeta outros dispositivos.";
+        const aviso = "Apagar TODOS os dados do PERSONA neste navegador?\n\nSerão excluídos o histórico, seus backups, os perfis salvos, o progresso e os resultados temporários. Esta ação não pode ser desfeita e não afeta outros dispositivos.";
         if (!window.confirm(aviso)) return;
         try {
           for (const armazenamento of [localStorage, sessionStorage]) {
-            const chaves = Object.keys(armazenamento).filter(chave => chave.startsWith("persona_"));
-            chaves.forEach(chave => armazenamento.removeItem(chave));
+            excluirDadosPersona(armazenamento);
           }
-          atualizarLista("Os dados com prefixo persona_ foram excluídos dos armazenamentos deste navegador.");
+          atualizarLista("Os dados identificados do Persona foram excluídos do armazenamento local e desta sessão.");
         } catch {
           mensagem.textContent = "Não foi possível concluir a exclusão. Alguns dados podem ter sido removidos; confira as permissões de armazenamento.";
         }
