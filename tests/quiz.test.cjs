@@ -74,3 +74,32 @@ test('inversão aplica 6 - resposta e arredondamento atual', () => {
   r[item.id] = 5; // invertido: 5 torna-se 1; média 16/6 => 42
   assert.equal(pontuar(r)[nomes[0]], 42);
 });
+
+test('rejeita respostas ausentes, invalidas e desconhecidas', () => {
+  const id = perguntas[0].id;
+  for (const valor of [null, undefined, 0, 6, 2.5, "3", NaN, Infinity]) {
+    assert.throws(() => pontuar({ ...todasCom(3), [id]: valor }));
+  }
+  const incompleto = todasCom(3);
+  delete incompleto[id];
+  assert.throws(() => pontuar(incompleto));
+  assert.throws(() => pontuar({ ...todasCom(3), desconhecida: 3 }));
+});
+test('rejeita estrutura inconsistente do instrumento', () => {
+  const calcular = contexto.window.PersonaQuizPontuacao.calcularPontuacoes;
+  const itens = Array.from(perguntas);
+  const r = todasCom(3);
+  assert.throws(() => calcular(nomes.slice(1), itens, r));
+  assert.throws(() => calcular(nomes, itens.slice(1), r));
+  assert.throws(() => calcular(nomes, [itens[1], ...itens.slice(1)], r));
+  assert.throws(() => calcular(nomes, [{ ...itens[0], dimensao: "inexistente" }, ...itens.slice(1)], r));
+  assert.throws(() => calcular(nomes, [{ ...itens[0], invertida: "false" }, ...itens.slice(1)], r));
+  const outra = nomes.find(n => n !== itens[0].dimensao);
+  assert.throws(() => calcular(nomes, [{ ...itens[0], dimensao: outra }, ...itens.slice(1)], r));
+});
+test('extremos validos preservam pontuacoes zero e cem', () => {
+  for (const maximo of [false, true]) {
+    const r = Object.fromEntries(Array.from(perguntas, p => [p.id, p.invertida === maximo ? 1 : 5]));
+    assert.deepEqual(pontuar(r), Object.fromEntries(nomes.map(n => [n, maximo ? 100 : 0])));
+  }
+});
