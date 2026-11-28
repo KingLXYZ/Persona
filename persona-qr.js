@@ -36,6 +36,8 @@
     return registro && typeof registro === "object" && !Array.isArray(registro) &&
       typeof registro.id === "string" && registro.id.length >= 4 && registro.id.length <= 150 &&
       [1,2,3].includes(registro.versao) &&
+      (registro.revisaoInstrumento === undefined ||
+        (registro.versao === 3 && Number.isInteger(registro.revisaoInstrumento) && registro.revisaoInstrumento >= 1)) &&
       typeof registro.salvoEm === "string" &&
       /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:\.\d+)?Z$/.test(registro.salvoEm) &&
       Number.isFinite(Date.parse(registro.salvoEm)) &&
@@ -45,6 +47,7 @@
   function empacotar(registro) {
     // Campos curtos: QR menor e mais fácil de escanear.
     const dados = { i: registro.id, v: registro.versao, t: registro.salvoEm, p: CAMPOS.map(k => registro.pontuacoes[k]) };
+    if (registro.revisaoInstrumento !== undefined) dados.r = registro.revisaoInstrumento;
     return btoa(JSON.stringify(dados)).replace(/\+/g, "-").replace(/\//g, "_").replace(/=+$/, "");
   }
   function desempacotar(token) {
@@ -52,10 +55,11 @@
     const s = token.replace(/-/g, "+").replace(/_/g, "/");
     let o;
     try { o = JSON.parse(atob(s)); } catch { throw new Error("Não foi possível interpretar o QR Code."); }
-    const dados = { id: o && o.i, versao: o && o.v, salvoEm: o && o.t, valores: o && o.p };
+    const dados = { id: o && o.i, versao: o && o.v, salvoEm: o && o.t, valores: o && o.p, revisaoInstrumento: o && o.r };
     if (!validar(dados)) throw new Error("O QR Code não contém um perfil compatível.");
     return {
       id: dados.id, versao: dados.versao, salvoEm: dados.salvoEm,
+      ...(dados.revisaoInstrumento === undefined ? {} : { revisaoInstrumento: dados.revisaoInstrumento }),
       pontuacoes: Object.fromEntries(CAMPOS.map((k,i) => [k, dados.valores[i]]))
     };
   }
@@ -145,7 +149,8 @@
     try {
       sessionStorage.setItem(ARQUIVO_SESSAO[registro.versao], JSON.stringify({
         version: registro.versao, totalPerguntas: registro.versao === 1 ? 20 : 30,
-        scores: registro.pontuacoes, historicoId: registro.id
+        scores: registro.pontuacoes, historicoId: registro.id,
+        ...(registro.revisaoInstrumento === undefined ? {} : { revisaoInstrumento: registro.revisaoInstrumento })
       }));
     } catch {
       mensagem("O navegador bloqueou a visualização temporária deste perfil.");
