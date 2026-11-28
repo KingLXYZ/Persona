@@ -54,6 +54,8 @@
     perguntaEl.textContent = "Não foi possível carregar o questionário.";
     instrucaoEl.textContent = "Alguns arquivos necessários não foram carregados. Atualize a página ou tente novamente mais tarde.";
     continuarEl.disabled = true;
+    perguntaEl.setAttribute("aria-describedby", "quiz-instruction");
+    perguntaEl.focus();
     console.error("PERSONA: módulos necessários ausentes ou incompletos.");
     return;
   }
@@ -63,6 +65,8 @@
     contadorEl.textContent = "Questionário indisponível";
     perguntaEl.textContent = "Não foi possível carregar o questionário.";
     instrucaoEl.textContent = "Os dados do questionário estão incompletos. Tente novamente mais tarde.";
+    perguntaEl.setAttribute("aria-describedby", "quiz-instruction");
+    perguntaEl.focus();
     console.error("PERSONA: estrutura dos dados não reconhecida.");
     return;
   }
@@ -115,6 +119,7 @@
     contadorEl.textContent = "Não foi possível continuar";
     perguntaEl.textContent = "Encontramos um problema.";
     instrucaoEl.textContent = mensagem;
+    perguntaEl.setAttribute("aria-describedby", "quiz-instruction");
 
     alternativasEl.replaceChildren();
 
@@ -248,6 +253,7 @@
 
   function mostrarPergunta(moverFoco = false) {
     erroAtivo = false;
+    perguntaEl.setAttribute("aria-describedby", "quiz-counter");
 
     perguntaEl.textContent = perguntaAtual().texto;
 
@@ -353,6 +359,8 @@
         console.error("PERSONA: não foi possível reiniciar a tentativa.", erro);
         instrucaoEl.textContent =
           "Não foi possível apagar a tentativa. Verifique as permissões de armazenamento do navegador.";
+        perguntaEl.setAttribute("aria-describedby", "quiz-instruction");
+        perguntaEl.focus();
       }
     });
   }

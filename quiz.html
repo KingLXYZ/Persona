@@ -17,8 +17,8 @@
     <script src="quiz-perguntas.js?v=2" defer></script>
     <script src="quiz-pontuacao.js?v=2" defer></script>
     <script src="quiz-progresso.js?v=1" defer></script>
-    <script src="quiz-interface.js?v=1" defer></script>
-    <script src="quiz-v3.js?v=12" defer></script>
+    <script src="quiz-interface.js?v=2" defer></script>
+    <script src="quiz-v3.js?v=13" defer></script>
 
 </head>
 <body>
@@ -40,7 +40,7 @@
 
             <div class="quiz-progress" role="progressbar"
                  aria-label="Progresso do questionário"
-                 aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+                 aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" aria-valuetext="0 de 30 perguntas respondidas">
                 <div class="quiz-progress-fill" id="quiz-progress-fill"></div>
             </div>
 
@@ -51,11 +51,11 @@
                         Considere como você costuma pensar ou agir, não como gostaria de ser.
                     </p>
                 </div>
-                <p class="quiz-instruction">
+                <p class="quiz-instruction" id="quiz-instruction">
                     Escolha a alternativa que mais se aproxima da sua maneira de pensar ou agir.
                 </p>
-                <h1 id="quiz-question">Carregando a primeira pergunta...</h1>
-                <div class="quiz-options" id="quiz-options"></div>
+                <h1 id="quiz-question" tabindex="-1" aria-describedby="quiz-counter">Carregando a primeira pergunta...</h1>
+                <div class="quiz-options" id="quiz-options" aria-describedby="quiz-instruction"></div>
             </div>
 
             <div class="quiz-navigation">

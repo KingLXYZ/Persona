@@ -12,6 +12,7 @@
       const porcentagem = Math.round((respondidas / total) * 100);
       progressoEl.style.width = `${porcentagem}%`;
       barraEl.setAttribute("aria-valuenow", String(porcentagem));
+      barraEl.setAttribute("aria-valuetext", `${respondidas} de ${total} perguntas respondidas`);
     }
 
     function atualizarRadios(selecionado) {
