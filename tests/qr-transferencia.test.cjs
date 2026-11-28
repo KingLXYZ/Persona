@@ -52,7 +52,7 @@ test("visualizacao importada preserva revisao e identificador", () => {
   qr.irParaPerfil(perfil);
   assert.deepEqual(qr.sessoes.get("persona_resultado_v3"), {
     version: 3, totalPerguntas: 30, scores: perfil.pontuacoes,
-    historicoId: perfil.id, revisaoInstrumento: 2
+    historicoId: perfil.id, salvoEm: perfil.salvoEm, revisaoInstrumento: 2
   });
   assert.deepEqual(qr.destinos, ["resultado.html?versao=3"]);
 });
