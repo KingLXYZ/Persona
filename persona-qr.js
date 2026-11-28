@@ -87,14 +87,26 @@
   }
   function dialogo(titulo) {
     const d = el("dialog", "persona-qr-dialog");
-    d.setAttribute("aria-label", titulo);
+    d.setAttribute("aria-labelledby", "persona-qr-title");
+    d.setAttribute("aria-describedby", "persona-qr-instructions");
     const h = el("h2", "", titulo);
+    h.id = "persona-qr-title";
+    h.tabIndex = -1;
     d.appendChild(h);
     d.addEventListener("close", () => { d.remove(); });
+    return d;
+  }
+  function abrirDialogo(d) {
+    const anterior = document.activeElement;
+    d.querySelector("p").id = "persona-qr-instructions";
     document.body.appendChild(d);
+    d.addEventListener("close", () => {
+      if (anterior && anterior !== document.body && anterior.isConnected) anterior.focus();
+      else document.getElementById("journey-section-title")?.focus();
+    });
     if (typeof d.showModal === "function") d.showModal();
     else { d.open = true; }
-    return d;
+    d.querySelector("h2").focus();
   }
   function mostrarQR() {
     if (!window.PersonaHistorico || !window.PersonaHistorico.listar) {
@@ -140,6 +152,7 @@
         botao("Fechar", "persona-qr-ghost", () => d.close())
       );
       d.append(status, acoes);
+      abrirDialogo(d);
     } catch (e) {
       mensagem("Não foi possível gerar o QR Code. Nenhum dado foi alterado. " + (e.message || ""));
       document.querySelectorAll("dialog.persona-qr-dialog").forEach(d => d.close());
@@ -198,6 +211,7 @@
           botao("Ver perfil completo", "persona-qr-btn", () => irParaPerfil(registro)),
           botao("Ver Minha jornada", "persona-qr-ghost", () => location.reload())
         );
+        acoes.querySelector("button").focus();
       } catch (e) {
         status.textContent = "Não foi possível salvar este perfil. Nenhum registro existente foi apagado. " + (e.message || "");
       }
@@ -205,6 +219,7 @@
     acoes.append(confirmar, cancelar);
     d.append(status, acoes);
     d.addEventListener("close", () => { if (importado) location.reload(); });
+    abrirDialogo(d);
   }
   function iniciar() {
     if (!document.querySelector("#journey-list")) return;

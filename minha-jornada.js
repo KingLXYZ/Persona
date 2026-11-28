@@ -48,6 +48,8 @@ document.addEventListener("DOMContentLoaded", () => {
         medidor.setAttribute("aria-valuemin", "0");
         medidor.setAttribute("aria-valuemax", "100");
         medidor.setAttribute("aria-valuenow", String(pontuacao));
+        const atual = registro.versao === 3 && registro.revisaoInstrumento === 2;
+        medidor.setAttribute("aria-valuetext", atual ? `${pontuacao} de 100, em uma escala de ${extremos[0]} a ${extremos[1]}.` : `${pontuacao} de 100. Registro de uma aplicação anterior.`);
         const preenchimento = elemento("div", "journey-fill");
         preenchimento.style.width = `${pontuacao}%`;
         medidor.appendChild(preenchimento);
@@ -69,6 +71,7 @@ document.addEventListener("DOMContentLoaded", () => {
         cabecalho.appendChild(info);
         const detalhes = elemento("details", "journey-details");
         const sumario = elemento("summary", "", "Consultar cinco dimensões");
+        sumario.setAttribute("aria-label", `Consultar cinco dimensões da exploração ${indice + 1}, salva em ${data}`);
         detalhes.appendChild(sumario);
         const grade = elemento("div", "journey-score-grid");
         dimensoes.forEach(dim => grade.appendChild(montarDimensao(dim, registro)));
@@ -93,6 +96,7 @@ document.addEventListener("DOMContentLoaded", () => {
             } else {
               atualizarLista("Esta exploração não estava mais no histórico.");
             }
+            document.getElementById("journey-section-title").focus();
           } catch (erro) {
             mensagem.textContent = "Não foi possível excluir o registro. O histórico não foi modificado.";
           }
@@ -106,10 +110,11 @@ document.addEventListener("DOMContentLoaded", () => {
       if (recuperarInvalidos) recuperarInvalidos.addEventListener("click", () => {
         const quantidade = window.PersonaHistorico?.quantidadeIgnorada?.() || 0;
         if (!quantidade) return;
-        if (!window.confirm(`Remover ${quantidade} registro(s) inválido(s) do histórico?\\n\\nAntes da remoção, será criada uma cópia dos dados originais neste navegador. Esta ação não afeta perfis salvos.`)) return;
+        if (!window.confirm(`Remover ${quantidade} registro(s) inválido(s) do histórico?\n\nAntes da remoção, será criada uma cópia dos dados originais neste navegador. Esta ação não afeta perfis salvos.`)) return;
         try {
           const resultado = window.PersonaHistorico.removerInvalidos();
           atualizarLista(`${resultado.removidos} registro(s) inválido(s) removido(s). Uma cópia dos dados originais foi preservada neste navegador.`);
+          document.getElementById("journey-section-title").focus();
         } catch (erro) {
           mensagem.textContent = "Não foi possível recuperar o histórico. Os registros originais foram preservados.";
         }
