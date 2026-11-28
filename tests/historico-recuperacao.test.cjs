@@ -61,3 +61,32 @@ test('falha ao criar backup impede qualquer alteração no histórico', () => {
   assert.throws(() => e.api.removerInvalidos(), /quota exceeded/);
   assert.equal(e.localStorage.getItem(CHAVE), bruto);
 });
+
+test('reimportacao completa revisao ausente sem duplicar ou apagar registros', () => {
+  const e = ambiente();
+  const antigo = valido('perfil-1');
+  e.api.adicionar(antigo);
+  e.api.adicionar(valido('perfil-2'));
+  const r = e.api.adicionar({ ...antigo, revisaoInstrumento: 2 });
+  assert.equal(r.atualizado, true);
+  assert.equal(r.criado, false);
+  assert.equal(e.api.listar().length, 2);
+  assert.deepEqual(JSON.parse(JSON.stringify(e.api.obter(antigo.id))), { ...antigo, revisaoInstrumento: 2 });
+  e.api.adicionar(antigo);
+  assert.equal(e.api.obter(antigo.id).revisaoInstrumento, 2);
+});
+test('reimportacao conflitante preserva historico intacto', () => {
+  const e = ambiente();
+  const perfil = { ...valido('perfil-1'), revisaoInstrumento: 2 };
+  e.api.adicionar(perfil);
+  const bruto = e.localStorage.getItem(CHAVE);
+  for (const alteracao of [
+    { revisaoInstrumento: 1 },
+    { salvoEm: '2026-11-21T12:00:00.000Z' },
+    { versao: 2, revisaoInstrumento: undefined },
+    { pontuacoes: { ...pontuacoes, social: 51 } }
+  ]) {
+    assert.throws(() => e.api.adicionar({ ...perfil, ...alteracao }));
+    assert.equal(e.localStorage.getItem(CHAVE), bruto);
+  }
+});
