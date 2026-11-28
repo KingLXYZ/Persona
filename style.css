@@ -876,3 +876,22 @@ h2 span {
     }
 
 }
+
+/* Acessibilidade: salto para o conteúdo principal. */
+.skip-link {
+    position: fixed;
+    top: 1rem;
+    left: 1rem;
+    z-index: 10000;
+    padding: 0.75rem 1rem;
+    background: #ffffff;
+    color: #171020;
+    border-radius: 0.5rem;
+    font-weight: 700;
+    transform: translateY(calc(-100% - 2rem));
+}
+.skip-link:focus {
+    transform: none;
+    outline: 3px solid #a78bfa;
+    outline-offset: 3px;
+}
