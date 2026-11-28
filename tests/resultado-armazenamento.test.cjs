@@ -20,7 +20,7 @@ function ambiente(local, sessao) {
   const pos = fonte.indexOf(marcador);
   assert.ok(pos >= 0);
   vm.runInContext(fonte.slice(0, pos) +
-    'globalThis.api = { carregarSessao, carregarSalvo, lerJSON };\n' +
+    'globalThis.api = { carregarSessao, carregarSalvo, lerJSON, selecionarResultado };\n' +
     '})();', contexto);
   return { api: contexto.api, status, contexto };
 }
@@ -44,4 +44,27 @@ test("JSON invalido nao e confundido com bloqueio de armazenamento", () => {
   const e = ambiente({ getItem() { return "{"; } }, vazio);
   vm.runInContext(fonte, e.contexto);
   assert.match(e.status.textContent, /Nenhum resultado disponível/);
+});
+
+test("selecao prioriza formato atual e respeita consultas explicitas", () => {
+  const scores = { social: 50, cognitiva: 50, decisoria: 50, organizacional: 50, comportamental: 50 };
+  const sessoes = new Map([1, 2, 3].map(v => ["persona_resultado_v" + v,
+    JSON.stringify({ version: v, totalPerguntas: v === 1 ? 20 : 30, scores, historicoId: "teste-" + v })]));
+  const e = ambiente(vazio, { getItem(k) { return sessoes.get(k) || null; } });
+  const atual = { versao: 3, origem: "salvo" };
+  const antigo = { versao: 2, origem: "salvo" };
+  const selecionar = e.api.selecionarResultado;
+  assert.equal(selecionar(null, antigo, atual).versao, 3);
+  assert.equal(selecionar("2", antigo, atual).versao, 2);
+  assert.equal(selecionar("1", antigo, atual).versao, 1);
+  sessoes.delete("persona_resultado_v3");
+  assert.equal(selecionar(null, antigo, atual), atual);
+  assert.equal(selecionar(null, antigo, null).versao, 2);
+  assert.equal(selecionar("3", antigo, null), null);
+  sessoes.delete("persona_resultado_v2");
+  assert.equal(selecionar("2", antigo, atual), antigo);
+  assert.equal(selecionar(null, null, null).versao, 1);
+  sessoes.clear();
+  assert.equal(selecionar("1", antigo, atual), null);
+  assert.equal(selecionar(null, null, null), null);
 });
