@@ -36,7 +36,8 @@ a {
     text-decoration: none;
 }
 
-a:focus-visible {
+/* Indicador global de foco; regras específicas podem refiná-lo. */
+:where(a[href], button, input, select, textarea, summary, [tabindex]):focus-visible {
     outline: 2px solid var(--purple-light);
     outline-offset: 5px;
 }
