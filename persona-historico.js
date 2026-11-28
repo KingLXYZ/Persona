@@ -216,8 +216,14 @@
     if (existente) {
       const mesmasPontuacoes = DIMENSOES.every(chave => existente.pontuacoes[chave] === pontuacoes[chave]);
       if (!mesmasPontuacoes || existente.versao !== versao || existente.salvoEm !== salvoEm ||
-          existente.revisaoInstrumento !== revisaoInstrumento) {
+          (existente.revisaoInstrumento !== undefined && revisaoInstrumento !== undefined &&
+           existente.revisaoInstrumento !== revisaoInstrumento)) {
         throw new Error("Já existe uma exploração diferente com este identificador.");
+      }
+      if (existente.revisaoInstrumento === undefined && revisaoInstrumento !== undefined) {
+        existente.revisaoInstrumento = revisaoInstrumento;
+        localStorage.setItem(CHAVE, JSON.stringify(documento));
+        return { id, criado: false, atualizado: true };
       }
       return { id, criado: false };
     }
