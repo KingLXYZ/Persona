@@ -13,7 +13,7 @@ Reservado para alterações futuras, ainda não incluídas em um lançamento ide
 ### 2026-11-28 — Padronização da terminologia pública (correção 09)
 
 - Padronizados os termos perguntas, exploração, perfil e salvamento, com avisos metodológicos consistentes e linguagem mais clara sobre aplicações anteriores.
-- Preservados os identificadores técnicos, regras de pontuação e armazenamento. Validação manual pendente.
+- Preservados os identificadores técnicos, regras de pontuação e armazenamento. Validação manual concluída: nove verificações aprovadas pelo responsável pelo projeto, incluindo a execução do GitHub Actions. Correção 09 encerrada.
 
 ### 2026-11-28 — Encerramento da correção 08 (acessibilidade)
 
