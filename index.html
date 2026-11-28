@@ -27,13 +27,14 @@
     <link rel="stylesheet" href="fonts.css?v=2">
 
     <!-- Arquivos do projeto -->
-    <link rel="stylesheet" href="style.css?v=1">
+    <link rel="stylesheet" href="style.css?v=2">
     <link rel="stylesheet" href="home.css?v=1">
     <link rel="stylesheet" href="persona-interface.css?v=1">
     <script src="script.js?v=3" defer></script>
     <!-- Ajustes exclusivos da nova página inicial: não alteram as demais páginas. -->
 </head>
 <body class="home-refresh">
+    <a class="skip-link" href="#conteudo-principal">Pular para o conteúdo principal</a>
     <!-- CABEÇALHO -->
     <header class="header">
         <a href="index.html" class="logo" aria-label="PERSONA — Página inicial">
@@ -53,7 +54,7 @@
     </header>
 
     <!-- CONTEÚDO PRINCIPAL -->
-    <main>
+    <main id="conteudo-principal" tabindex="-1">
         <!-- APRESENTAÇÃO -->
         <section class="hero" aria-labelledby="titulo-principal">
             <div class="hero-content">
