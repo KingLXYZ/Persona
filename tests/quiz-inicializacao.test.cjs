@@ -14,7 +14,11 @@ function executar({ ausente = null, bloquearArmazenamento = false } = {}) {
      'quiz-back', 'quiz-next', '.quiz-progress', '.quiz-instruction']
       .map(id => [id, {
         id, textContent: id === 'quiz-question' ? 'Carregando a primeira pergunta...' : '',
-        disabled: false, focus() {}, replaceChildren() {}
+        disabled: false,
+        attributes: {},
+        setAttribute(nome, valor) { this.attributes[nome] = String(valor); },
+        getAttribute(nome) { return this.attributes[nome] ?? null; },
+        focus() {}, replaceChildren() {}
       }])
   );
   const document = {
@@ -47,6 +51,7 @@ for (const modulo of [
     assert.match(elementos['quiz-question'].textContent, /Não foi possível carregar/);
     assert.match(elementos['.quiz-instruction'].textContent, /arquivos necessários/);
     assert.equal(elementos['quiz-next'].disabled, true);
+    assert.equal(elementos['quiz-question'].getAttribute('aria-describedby'), 'quiz-instruction');
   });
 }
 
@@ -55,4 +60,5 @@ test('sessionStorage bloqueado exibe erro e impede avanço', () => {
   assert.equal(elementos['quiz-question'].textContent, 'Encontramos um problema.');
   assert.match(elementos['.quiz-instruction'].textContent, /bloqueou o armazenamento/);
   assert.equal(elementos['quiz-next'].disabled, true);
+  assert.equal(elementos['quiz-question'].getAttribute('aria-describedby'), 'quiz-instruction');
 });
