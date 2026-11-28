@@ -113,7 +113,6 @@
     if (!footer || footer.querySelector(".kingdom-signature")) return;
     const assinatura = document.createElement("div");
     assinatura.className = "kingdom-signature";
-    assinatura.setAttribute("aria-label", `${NOME} — Beyond Imagination`);
 
     const etiqueta = document.createElement("span");
     etiqueta.className = "kingdom-signature-label";
@@ -134,6 +133,7 @@
     const slogan = document.createElement("span");
     slogan.className = "kingdom-signature-slogan";
     slogan.textContent = "Beyond Imagination";
+    slogan.lang = "en";
     assinatura.append(etiqueta, marca, slogan);
     footer.appendChild(assinatura);
   }
