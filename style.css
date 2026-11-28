@@ -295,6 +295,35 @@ h2 span {
 
     border-style: dashed;
     animation: rotate 48s linear infinite;
+    animation-play-state: paused;
+}
+
+.orbit-three.is-running {
+    animation-play-state: running;
+}
+
+.hero-motion-toggle {
+    margin-top: 16px;
+    min-height: 44px;
+    padding: 8px 14px;
+    border: 1px solid var(--border-interactive);
+    border-radius: 999px;
+    background: transparent;
+    color: var(--purple-light);
+    font: inherit;
+    font-size: 0.8125rem;
+    cursor: pointer;
+}
+
+.hero-motion-toggle:hover {
+    background: var(--surface-hover);
+    border-color: var(--purple);
+}
+
+.hero-motion-toggle[hidden] { display: none; }
+
+@media (prefers-reduced-motion: reduce) {
+    .orbit-three { animation: none !important; }
 }
 
 .visual-center {

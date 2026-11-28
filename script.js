@@ -10,6 +10,36 @@
     const ano = document.getElementById("current-year");
     if (ano) ano.textContent = String(new Date().getFullYear());
 
+    // A órbita permanece parada se o JavaScript não inicializar.
+    const orbita = document.querySelector(".orbit-three");
+    const controleMovimento = document.getElementById("hero-motion-toggle");
+    if (orbita && controleMovimento && typeof window.matchMedia === "function") {
+      const preferencia = window.matchMedia("(prefers-reduced-motion: reduce)");
+      let pausada = false;
+
+      function atualizarMovimento() {
+        const reduzido = preferencia.matches;
+        orbita.classList.toggle("is-running", !reduzido && !pausada);
+        controleMovimento.textContent = reduzido
+          ? "Animação desativada pelo sistema"
+          : pausada ? "Retomar animação" : "Pausar animação";
+        controleMovimento.setAttribute("aria-disabled", String(reduzido));
+      }
+
+      controleMovimento.addEventListener("click", () => {
+        if (preferencia.matches) return;
+        pausada = !pausada;
+        atualizarMovimento();
+      });
+      if (preferencia.addEventListener) {
+        preferencia.addEventListener("change", atualizarMovimento);
+      } else if (preferencia.addListener) {
+        preferencia.addListener(atualizarMovimento);
+      }
+      controleMovimento.hidden = false;
+      atualizarMovimento();
+    }
+
     const dimensoes = [
       "social", "cognitiva", "decisoria", "organizacional", "comportamental"
     ];
