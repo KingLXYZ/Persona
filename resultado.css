@@ -721,18 +721,17 @@
     }
 
     .result-quick-nav-links {
-        flex-wrap: nowrap;
+        flex-wrap: wrap;
         gap: 8px;
         padding: 2px 16px 10px;
-        overflow-x: auto;
-        overscroll-behavior-x: contain;
-        -webkit-overflow-scrolling: touch;
-        scrollbar-width: thin;
-        scrollbar-color: var(--border) transparent;
     }
 
     .result-quick-nav-links a {
-        flex: 0 0 auto;
+        flex: 0 1 auto;
+        max-width: 100%;
+        white-space: normal;
+        overflow-wrap: anywhere;
+        text-align: center;
         min-height: 44px;
         padding: 10px 15px;
         font-size: 0.75rem;
@@ -786,7 +785,7 @@
     outline-offset: 3px;
 }
 @media (max-width: 600px) {
-    .result-quick-nav { top: 4px; }
+    .result-quick-nav { position: static; }
     .result-quick-nav--compact { padding: 10px 0 6px; }
     .result-back-to-top { width: 44px; height: 44px; }
 }
