@@ -78,6 +78,8 @@
       detalhes.className = "result-dimension-details";
       const resumo = document.createElement("summary");
       resumo.textContent = "Entender minha pontuação";
+      const nomeDimensao = cartao.querySelector("h3")?.textContent.trim();
+      if (nomeDimensao) resumo.setAttribute("aria-label", `Entender minha pontuação: ${nomeDimensao}`);
       const conteudo = document.createElement("div");
       conteudo.className = "result-dimension-explanation";
       conteudo.appendChild(descricao);
@@ -152,6 +154,8 @@
     botaoTopo.hidden = true;
     botaoTopo.addEventListener("click", () => {
       const reduzir = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      const titulo = document.getElementById("result-intro-title");
+      if (titulo) titulo.focus({ preventScroll: true });
       window.scrollTo({ top: 0, behavior: reduzir ? "instant" : "smooth" });
     });
     document.body.appendChild(botaoTopo);

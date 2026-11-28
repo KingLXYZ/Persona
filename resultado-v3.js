@@ -402,6 +402,9 @@
         medidor.setAttribute("aria-valuemin", "0");
         medidor.setAttribute("aria-valuemax", "100");
         medidor.setAttribute("aria-valuenow", String(scores[chave]));
+        medidor.setAttribute("aria-valuetext", revisaoAnterior
+          ? `${scores[chave]} de 100. Registro de uma aplicação anterior.`
+          : `${scores[chave]} de 100, em uma escala de ${config.esquerda} a ${config.direita}.`);
       }
     }
     if (revisaoAnterior) {
@@ -662,9 +665,17 @@
         canvas.style.width = "100%";
         canvas.style.height = "auto";
         canvas.setAttribute("role", "img");
-        canvas.setAttribute("aria-label", formato.value === "completo"
-          ? "Prévia do cartão com cinco dimensões."
-          : "Prévia do cartão com duas dimensões em destaque.");
+        const valores = ORDEM.map((chave, ordem) => ({
+          nome: DIMENSOES[resultado.versao][chave].nome,
+          valor: resultado.pontuacoes[chave], ordem
+        }));
+        const completo = formato.value === "completo";
+        const exibidos = completo ? valores : valores.slice()
+          .sort((a, b) => b.valor - a.valor || a.ordem - b.ordem).slice(0, 2);
+        canvas.setAttribute("aria-label",
+          `${completo ? "Prévia do cartão com cinco dimensões" : "Prévia do cartão com duas dimensões em destaque"}. ` +
+          exibidos.map(item => `${item.nome}: ${item.valor} de 100`).join("; ") +
+          ". Indicadores exploratórios, não medem capacidades. Questionário experimental, não validado. Não representa diagnóstico psicológico.");
         visualizacao.replaceChildren(canvas);
         aviso.textContent = "Prévia gerada somente neste dispositivo.";
       } catch (erro) {
