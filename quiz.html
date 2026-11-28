@@ -11,7 +11,7 @@
 
     <link rel="stylesheet" href="fonts.css?v=2">
 
-    <link rel="stylesheet" href="style.css?v=1">
+    <link rel="stylesheet" href="style.css?v=2">
     <link rel="stylesheet" href="quiz.css?v=3">
     <link rel="stylesheet" href="persona-interface.css?v=1">
     <script src="quiz-perguntas.js?v=2" defer></script>
@@ -22,6 +22,7 @@
 
 </head>
 <body>
+    <a class="skip-link" href="#conteudo-principal">Pular para o conteúdo principal</a>
     <header class="header">
         <a href="index.html" class="logo" aria-label="PERSONA — Página inicial">
             <span class="logo-symbol">P.</span>
@@ -30,7 +31,7 @@
         <a href="index.html" class="header-link">← Voltar ao início</a>
     </header>
 
-    <main class="quiz-layout">
+    <main id="conteudo-principal" tabindex="-1" class="quiz-layout">
         <section class="quiz-container" aria-labelledby="quiz-question">
             <div class="quiz-top">
                 <span class="quiz-category">EXPLORAÇÃO PESSOAL</span>
