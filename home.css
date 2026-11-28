@@ -79,7 +79,7 @@
             min-height: 128px;
             padding: 18px;
             border-radius: 14px;
-            border: 1px solid rgba(255, 255, 255, .095);
+            border: 1px solid var(--border-interactive);
             background: #14121b;
             box-shadow: none;
             cursor: pointer;
@@ -91,11 +91,11 @@
         }
         .home-refresh .dimension-choice:hover {
             transform: translateY(-3px);
-            border-color: rgba(167, 139, 250, .45);
+            border-color: var(--purple);
             background: #1b1728;
         }
         .home-refresh .dimension-choice[aria-pressed="true"] {
-            border-color: rgba(167, 139, 250, .78);
+            border-color: var(--purple);
             background: linear-gradient(155deg, #251c38 0%, #171320 100%);
         }
         .home-refresh .dimension-choice-top {

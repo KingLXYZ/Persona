@@ -47,9 +47,10 @@
 
 .quiz-progress {
     width: 100%;
-    height: 5px;
+    height: 7px;
 
     background: #292431;
+    border: 1px solid var(--border-interactive);
     border-radius: 20px;
 
     overflow: hidden;
@@ -117,7 +118,7 @@
     padding: 20px 24px;
 
     background: var(--surface);
-    border: 1px solid var(--border);
+    border: 1px solid var(--border-interactive);
     border-radius: 10px;
 
     color: var(--text);
@@ -156,7 +157,7 @@
 
 .quiz-option:hover {
     background: var(--surface-hover);
-    border-color: rgba(167, 139, 250, 0.55);
+    border-color: var(--purple);
 }
 
 /* Alternativa selecionada */
@@ -217,7 +218,7 @@
 .quiz-back {
     background: transparent;
     color: var(--muted);
-    border: 1px solid var(--border);
+    border: 1px solid var(--border-interactive);
 }
 
 .quiz-back:not(:disabled):hover {
