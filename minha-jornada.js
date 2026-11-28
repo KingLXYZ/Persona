@@ -78,7 +78,7 @@ document.addEventListener("DOMContentLoaded", () => {
         detalhes.appendChild(grade);
         if (registro.versao === 3 && registro.revisaoInstrumento !== 2) {
           detalhes.appendChild(elemento("p", "journey-action-note",
-            "Registro de uma aplicação anterior ou de revisão não identificada. As pontuações foram preservadas, mas não devem ser comparadas diretamente com as do questionário atual."));
+            "Registro de uma aplicação anterior ou cuja estrutura original não pôde ser identificada. Suas pontuações foram preservadas, mas não devem ser comparadas diretamente com as do questionário atual."));
         } else if (registro.versao < 3) {
           detalhes.appendChild(elemento("p", "journey-action-note",
             "Este registro pertence a um questionário anterior. Evite comparar diretamente suas pontuações com as de aplicações recentes."));

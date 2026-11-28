@@ -10,6 +10,11 @@ O versionamento dos lançamentos do site será independente da revisão metodol�
 
 Reservado para alterações futuras, ainda não incluídas em um lançamento identificado. Quando definirmos a primeira versão formal, registraremos sua data e o conjunto de mudanças correspondente.
 
+### 2026-11-28 — Padronização da terminologia pública (correção 09)
+
+- Padronizados os termos perguntas, exploração, perfil e salvamento, com avisos metodológicos consistentes e linguagem mais clara sobre aplicações anteriores.
+- Preservados os identificadores técnicos, regras de pontuação e armazenamento. Validação manual pendente.
+
 ### 2026-11-28 — Encerramento da correção 08 (acessibilidade)
 
 - Atalho para conteúdo principal, foco visível, nomes acessíveis e mensagens de erro revisados.

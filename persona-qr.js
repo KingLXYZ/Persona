@@ -206,7 +206,7 @@
         importado = registro;
         status.textContent = resultado.criado
           ? "Perfil importado! Ele está salvo neste dispositivo."
-          : resultado.atualizado ? "Perfil atualizado com a revisão metodológica recebida." : "Este perfil já estava salvo neste dispositivo.";
+          : resultado.atualizado ? "Perfil atualizado com as informações recebidas sobre o questionário." : "Este perfil já estava salvo neste dispositivo.";
         acoes.replaceChildren(
           botao("Ver perfil completo", "persona-qr-btn", () => irParaPerfil(registro)),
           botao("Ver Minha jornada", "persona-qr-ghost", () => location.reload())

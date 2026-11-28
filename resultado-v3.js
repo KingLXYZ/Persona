@@ -21,7 +21,7 @@
   const comum = {
     cognitiva: {
       nome: "Cognitiva", esquerda: "Concreta", direita: "Abstrata",
-      baixo: "Suas respostas se aproximaram da preferência por exemplos e situações concretas nas afirmações apresentadas.",
+      baixo: "Suas respostas se aproximaram da preferência por exemplos e situações concretas nas perguntas apresentadas.",
       medio: "Suas respostas ficaram próximas do centro desta escala. Isso pode refletir preferências diferentes conforme a situação.",
       alto: "Suas respostas se aproximaram da preferência por ideias gerais, hipóteses e relações entre conceitos."
     },
@@ -220,7 +220,7 @@
     orientacao.textContent = centrais.length
       ? `Ficaram na faixa central: ${centrais.map(d => d.nome).join(", ")}. ` +
         "Estar perto de 50 não demonstra equilíbrio ou ausência de preferências. " +
-        `Cada indicador resume ${versao === 1 ? 4 : 6} afirmações e não é uma medida clínica nem cientificamente validada.`
+        `Cada indicador resume ${versao === 1 ? 4 : 6} perguntas e não é uma medida clínica nem cientificamente validada.`
       : "Embora as cinco pontuações estejam fora da faixa central, isso não define características fixas. " +
         "Estes indicadores são experimentais e não foram validados cientificamente.";
   }
@@ -385,7 +385,7 @@
       numero.textContent = String(scores[chave]);
       preenchimento.style.width = `${scores[chave]}%`;
       descricao.textContent = revisaoAnterior
-        ? "Pontuação preservada de uma aplicação anterior. A interpretação específica desta dimensão não está disponível para esta revisão do questionário."
+        ? "Pontuação preservada de uma aplicação anterior. A interpretação específica desta dimensão não está disponível para a estrutura do questionário utilizada nesta aplicação."
         : interpretar(config, scores[chave]);
       if (chave === "social" && !revisaoAnterior) {
         descricao.textContent += " Esta pontuação resume preferências em situações sociais específicas. Ela não define se você é antissocial, tímido ou introvertido.";
@@ -424,7 +424,7 @@
         statusEl.textContent += " Perfil recuperado deste navegador.";
       }
       if (revisaoAnterior) {
-        statusEl.textContent += " Este resultado foi criado com uma revisão anterior ou não identificada do questionário. Suas pontuações foram preservadas, mas as interpretações atuais não se aplicam automaticamente. Não compare diretamente com resultados recentes.";
+        statusEl.textContent += " Este resultado foi criado com uma estrutura anterior ou não identificada do questionário. Suas pontuações foram preservadas, mas as interpretações atuais não se aplicam automaticamente. Não compare diretamente com resultados recentes.";
       }
       if (versao === 1) {
         statusEl.textContent += " Este perfil foi criado com perguntas anteriores. Não compare diretamente suas pontuações com resultados mais recentes.";
@@ -485,7 +485,7 @@
       excluir.className = "secondary-button";
       excluir.textContent = versao === 3 ? "Excluir perfil salvo" : "Excluir perfil anterior";
       excluir.addEventListener("click", () => {
-        if (!window.confirm("Deseja excluir o perfil principal salvo? As explorações guardadas no histórico não serão apagadas.")) return;
+        if (!window.confirm("Deseja excluir o perfil principal salvo? As explorações salvas no histórico não serão apagadas.")) return;
         try {
           localStorage.removeItem(chave);
           sessionStorage.removeItem(CHAVES_SESSAO[versao]);
@@ -531,7 +531,7 @@
           salvoEm, origem: resultado.origem
         });
       } catch (erro) {
-        mensagem.textContent = "Não foi possível guardar esta exploração no histórico. " +
+        mensagem.textContent = "Não foi possível salvar esta exploração no histórico. " +
           "Seu perfil anterior não foi alterado. " + (erro && erro.message ? erro.message : "");
         return;
       }
@@ -547,12 +547,12 @@
         resultado.salvoEm = salvoEm;
         const quantidade = historico.listar().length;
         mensagem.textContent = gravacao.criado
-          ? `Perfil salvo! Você tem ${quantidade} ${quantidade === 1 ? "exploração guardada" : "explorações guardadas"} no histórico.`
+          ? `Perfil salvo! Você tem ${quantidade} ${quantidade === 1 ? "exploração salva" : "explorações salvas"} no histórico.`
           : `Perfil preservado. Esta exploração já estava no histórico (${quantidade} ${quantidade === 1 ? "registro" : "registros"}).`;
         salvar.textContent = "Atualizar perfil salvo";
         atualizarExcluir();
       } catch {
-        mensagem.textContent = "A exploração foi guardada no histórico, mas não foi possível atualizar " +
+        mensagem.textContent = "A exploração foi salva no histórico, mas não foi possível atualizar " +
           "seu perfil principal. Verifique as permissões de armazenamento.";
       }
     });

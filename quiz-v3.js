@@ -430,7 +430,7 @@
     restaurarProgresso();
     if (progressoIncompativel) {
       mostrarErro(
-        "Existe uma tentativa salva incompatível com esta revisão do questionário. Seus dados foram preservados neste navegador e não serão substituídos automaticamente.",
+        "Existe uma tentativa salva incompatível com a estrutura atual do questionário. Seus dados foram preservados neste navegador e não serão substituídos automaticamente.",
         false
       );
       if (reiniciarEl) reiniciarEl.hidden = false;
