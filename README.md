@@ -30,7 +30,7 @@ Com Node.js instalado, execute na raiz do repositório:
 node --test tests/*.test.cjs
 ```
 
-A suíte contém 23 testes de perguntas, pontuação, progresso, navegação, falhas de inicialização e recuperação do histórico. Os testes de navegação extraem funções do controlador e podem precisar de atualização se essas funções forem movidas. Ainda não existe teste automatizado de ponta a ponta para a interface no navegador.
+A suíte contém testes de perguntas, pontuação, progresso, navegação, falhas de inicialização e recuperação do histórico. Os testes de navegação extraem funções do controlador e podem precisar de atualização se essas funções forem movidas. Ainda não existe teste automatizado de ponta a ponta para a interface no navegador.
 
 ## Testes manuais recomendados antes da publicação
 
@@ -41,3 +41,7 @@ A suíte contém 23 testes de perguntas, pontuação, progresso, navegação, fa
 5. Examinar no navegador o Console e a aba Network para bloqueios CSP ou recursos inesperados, em celular e computador.
 
 Scripts antigos não referenciados foram retirados em etapas anteriores; o histórico Git preserva esses conteúdos. Os testes automatizados atuais ficam na pasta `tests/`.
+
+## Acessibilidade
+
+O registro da auditoria interna, das evidências e das limitações está em [`docs/acessibilidade.md`](docs/acessibilidade.md). O encerramento da correção 08 não constitui declaração formal de conformidade WCAG.

@@ -10,6 +10,14 @@ O versionamento dos lançamentos do site será independente da revisão metodol�
 
 Reservado para alterações futuras, ainda não incluídas em um lançamento identificado. Quando definirmos a primeira versão formal, registraremos sua data e o conjunto de mudanças correspondente.
 
+### 2026-11-28 — Encerramento da correção 08 (acessibilidade)
+
+- Atalho para conteúdo principal, foco visível, nomes acessíveis e mensagens de erro revisados.
+- Contraste, tipografia, reflow, alvos interativos e controle de pausa da órbita aprimorados.
+- Testes de inicialização atualizados para simular atributos DOM.
+- 178 testes manuais contabilizados e aprovados conforme relato do responsável, além de verificações complementares e GitHub Actions aprovado.
+- Matriz de evidências e limitações em [docs/acessibilidade.md](docs/acessibilidade.md). Sem declaração formal de conformidade WCAG.
+
 ### 2026-11-22 — Compartilhamento, compatibilidade histórica e validação
 
 **Adicionado**
